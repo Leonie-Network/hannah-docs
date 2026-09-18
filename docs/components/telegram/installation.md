@@ -8,3 +8,15 @@
 ```bash
 curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/telegram/deploy/install.sh | sudo bash
 ```
+
+## Automatisch aktuell halten
+
+Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+
+```yaml
+  - name: telegram
+    channel: telegram-stable
+    install_dir: /opt/hannah/telegram
+    service: hannah-telegram
+    post_install: "/opt/hannah/telegram/venv/bin/pip install --upgrade -q -r /opt/hannah/telegram/requirements.txt"
+```

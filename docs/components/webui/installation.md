@@ -14,3 +14,15 @@ Eigenes Repo, eigenes `deploy/install.sh`:
 ```bash
 curl -fsSL https://github.com/NurPech/hannah-webui/raw/refs/heads/main/deploy/install.sh | sudo bash
 ```
+
+## Automatisch aktuell halten
+
+Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+
+```yaml
+  - name: webui
+    channel: webui-stable
+    install_dir: /opt/hannah/webui
+    service: hannah-webui
+    post_install: "/opt/hannah/webui/venv/bin/pip install --upgrade -q -r /opt/hannah/webui/requirements.txt"
+```
