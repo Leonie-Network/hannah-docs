@@ -33,7 +33,7 @@ Steuerbar über Umgebungsvariablen:
 
 ## Automatisch aktuell halten
 
-Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):
 
 ```yaml
   - name: core

@@ -11,7 +11,7 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/telegram/depl
 
 ## Automatisch aktuell halten
 
-Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):
 
 ```yaml
   - name: telegram

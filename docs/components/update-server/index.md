@@ -1,6 +1,6 @@
 # Update-Server
 
-Die Quelle, von der `install.sh`-Installationen und Auto-Update ihre Releases beziehen.
+Die Quelle, von der `install.sh`-Installationen und AutoDeploy ihre Releases beziehen.
 Du brauchst keinen eigenen — Leonies Update-Server ist für Dritte geöffnet, genau zu
 diesem Zweck: sie ist praktisch die einzige, die die Release-Pakete überhaupt bereitstellen
 kann.

@@ -25,6 +25,12 @@ Pro Komponente ein Eintrag. Unter Linux heißt `service` wie der systemd-Service
 `com.hannah.<komponente>`-Schema:
 
 ```yaml title="Linux (/etc/hannah/autodeploy.conf)"
+  - name: autodeploy
+    channel: autodeploy-stable
+    install_dir: /opt/hannah/autodeploy
+    service: hannah-autodeploy
+    post_install: "/opt/hannah/autodeploy/venv/bin/pip install --upgrade -q -r /opt/hannah/autodeploy/requirements.txt"
+
   - name: core
     channel: core-stable
     install_dir: /opt/hannah/core

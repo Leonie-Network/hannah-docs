@@ -12,10 +12,10 @@ Bedarf dazugeschaltet.
 | [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Nein |
 | [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Nein |
 | [Timer](timer/index.md) | Timer und Wecker | Nein |
-| [Auto-Update](auto-update/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
-| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen und Auto-Update ihre Releases beziehen | — (kein eigener nötig) |
+| [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
+| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen und AutoDeploy ihre Releases beziehen | — (kein eigener nötig) |
 
 !!! note "macOS"
-    Native Installation unter macOS gibt es bislang nur für [Auto-Update](auto-update/index.md)
+    Native Installation unter macOS gibt es bislang nur für [AutoDeploy](autodeploy/index.md)
     und [VoiceID](voiceid/index.md). Für alle anderen Komponenten: Linux (nativ) oder
     [Docker](../manual/installation.md).

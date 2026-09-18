@@ -17,7 +17,7 @@ curl -fsSL https://github.com/NurPech/hannah-webui/raw/refs/heads/main/deploy/in
 
 ## Automatisch aktuell halten
 
-Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):
 
 ```yaml
   - name: webui

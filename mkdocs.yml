@@ -51,9 +51,9 @@ nav:
           - Timer:
               - Übersicht: components/timer/index.md
               - Installation: components/timer/installation.md
-          - Auto-Update:
-              - Übersicht: components/auto-update/index.md
-              - Installation: components/auto-update/installation.md
+          - AutoDeploy:
+              - Übersicht: components/autodeploy/index.md
+              - Installation: components/autodeploy/installation.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
       - Known Gaps: manual/known-gaps.md
