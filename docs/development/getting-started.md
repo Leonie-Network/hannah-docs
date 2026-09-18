@@ -21,7 +21,7 @@ Hannah is a multi-repo project:
 ## What you need
 
 - A Raspberry Pi (or similar) for Hannah Core
-- An [ioBroker](https://www.iobroker.net/) instance for smart home integration
+- An [ioBroker](https://www.iobroker.com/) instance for smart home integration
 - One or more satellites — either the custom PCB (see [Hardware](../hardware/overview.md)), or a dev kit while you're prototyping
 - ESP-IDF for building satellite firmware
 

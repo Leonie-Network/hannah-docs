@@ -3,13 +3,13 @@
 Hannah ist ein **lokal betriebener, deutschsprachiger Sprachassistent** für das Smart
 Home — ein selbst gehosteter Ersatz für Google Assistant oder Amazon Echo. Sie läuft
 problemlos auf einem Raspberry Pi, ist aber nicht darauf festgelegt, und ist über
-[ioBroker](https://www.iobroker.net/) an dein Smart Home angebunden. Satelliten sind ESP32-S3-Geräte, die per Wake-Word oder Push-to-Talk
+[ioBroker](https://www.iobroker.com/) an dein Smart Home angebunden. Satelliten sind ESP32-S3-Geräte, die per Wake-Word oder Push-to-Talk
 Sprachbefehle aufnehmen und an Hannah weiterleiten.
 
 ## Wo anfangen?
 
 - **[Installation](manual/installation.md)** — Hannah einrichten
-- **[Einstellungen](manual/settings.md)** — was welche Option bewirkt
+- **[Komponenten](components/index.md)** — was es alles gibt, und wie man's einzeln installiert/konfiguriert
 - **[Known Gaps](manual/known-gaps.md)** — bekannte Lücken und Einschränkungen
 
 Wer mehr über den Aufbau von Hannah wissen möchte oder mitentwickeln will, findet unter

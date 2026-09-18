@@ -192,30 +192,6 @@ Startpunkt dienen die `config.example.yaml`-Dateien im jeweiligen Komponenten-Or
 
 ## Variante 2: Native Installation per Script
 
-Jede Komponente hat ihr eigenes `deploy/install.sh` (z. B. `core/deploy/install.sh`,
-`proxy/deploy/install.sh`, `telegram/deploy/install.sh`, `voiceid/deploy/install.sh`).
-Gemeinsames Muster:
-
-- lädt das aktuelle Release vom Hannah-Update-Server
-- installiert es als systemd-Service, laufend unter einem eigenen `hannah`-System-User
-- Config liegt unter `/etc/hannah/` (bzw. `/etc/hannah-<komponente>/`)
-- muss als root laufen (`sudo bash install.sh`)
-
-```bash
-sudo bash install.sh              # installieren oder aktualisieren
-sudo bash install.sh --uninstall  # deinstallieren (Config bleibt erhalten)
-```
-
-Steuerbar über Umgebungsvariablen, u. a. `CORE_CHANNEL` (Release-Kanal, Default
-`core-stable`) und `UPDATE_SERVER_TOKEN` (nur nötig für nicht-öffentliche Kanäle).
-
-*(Konfiguration pro Komponente folgt in eigenen Abschnitten.)*
-
-## Auto-Update
-
-Es gibt einen zusätzlichen Dienst, der die anderen Komponenten automatisch aktuell hält —
-"AutoDeploy" genannt, obwohl "Auto-Update" die Funktion eigentlich besser trifft (der Name
-wird langfristig noch überarbeitet). Auch dieser lässt sich wie die anderen Komponenten
-per `install.sh` installieren, läuft aber als root statt als `hannah`-User.
-
-*(Konfiguration pro Komponente folgt.)*
+Statt Docker hat jede Komponente auch ihr eigenes `deploy/install.sh`, das sie als
+systemd-Service installiert. Details dazu stehen auf der jeweiligen Komponenten-Seite
+unter [Komponenten](../components/index.md) — z. B. [Core → Installation](../components/core/installation.md).
