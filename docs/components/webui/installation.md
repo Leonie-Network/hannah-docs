@@ -15,8 +15,8 @@ Eigenes Repo, eigenes `deploy/install.sh`:
 curl -fsSL https://github.com/NurPech/hannah-webui/raw/refs/heads/main/deploy/install.sh | sudo bash
 ```
 
-Config: `/etc/hannah-webui/config.yaml`, nach demselben Muster wie die übrigen
-Komponenten.
+Config: `/etc/hannah-webui/config.yaml` — Startpunkt ist `config.example.yaml` im
+[hannah-webui-Repo](https://github.com/NurPech/hannah-webui).
 
 ## Automatisch aktuell halten
 
