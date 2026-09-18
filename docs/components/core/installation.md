@@ -21,7 +21,17 @@ sudo bash install.sh --uninstall
 - Lädt das aktuelle Release vom Update-Server, installiert es als systemd-Service
   (`hannah.service`), laufend unter einem eigenen `hannah`-System-User
 - Installationsverzeichnis: `/opt/hannah/core`
-- Config: `/etc/hannah/config.yaml` — Startpunkt ist `core/config.example.yaml` im Repo
+- Config: `/etc/hannah/config.yaml`
+
+Beim ersten Lauf legt das Script noch keine `config.yaml` an — die liegt als Vorlage
+schon mit im Release, direkt im Installationsverzeichnis. Kopieren, anpassen, Dienst
+starten:
+
+```bash
+sudo cp /opt/hannah/core/config.example.yaml /etc/hannah/config.yaml
+sudo nano /etc/hannah/config.yaml
+sudo systemctl enable --now hannah
+```
 
 Steuerbar über Umgebungsvariablen:
 
