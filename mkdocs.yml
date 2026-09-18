@@ -31,33 +31,33 @@ nav:
   - Start: index.md
   - Handbuch:
       - Installation: manual/installation.md
+      - Komponenten:
+          - Übersicht: components/index.md
+          - Core:
+              - Übersicht: components/core/index.md
+              - Installation: components/core/installation.md
+              - Einstellungen: components/core/settings.md
+          - WebUI:
+              - Übersicht: components/webui/index.md
+              - Installation: components/webui/installation.md
+          - Proxy:
+              - Übersicht: components/proxy/index.md
+              - Installation: components/proxy/installation.md
+          - Telegram:
+              - Übersicht: components/telegram/index.md
+              - Installation: components/telegram/installation.md
+          - VoiceID:
+              - Übersicht: components/voiceid/index.md
+              - Installation: components/voiceid/installation.md
+          - Timer:
+              - Übersicht: components/timer/index.md
+              - Installation: components/timer/installation.md
+          - Auto-Update:
+              - Übersicht: components/auto-update/index.md
+              - Installation: components/auto-update/installation.md
+          - Update-Server:
+              - Übersicht: components/update-server/index.md
       - Known Gaps: manual/known-gaps.md
-  - Komponenten:
-      - Übersicht: components/index.md
-      - Core:
-          - Übersicht: components/core/index.md
-          - Installation: components/core/installation.md
-          - Einstellungen: components/core/settings.md
-      - WebUI:
-          - Übersicht: components/webui/index.md
-          - Installation: components/webui/installation.md
-      - Proxy:
-          - Übersicht: components/proxy/index.md
-          - Installation: components/proxy/installation.md
-      - Telegram:
-          - Übersicht: components/telegram/index.md
-          - Installation: components/telegram/installation.md
-      - VoiceID:
-          - Übersicht: components/voiceid/index.md
-          - Installation: components/voiceid/installation.md
-      - Timer:
-          - Übersicht: components/timer/index.md
-          - Installation: components/timer/installation.md
-      - Auto-Update:
-          - Übersicht: components/auto-update/index.md
-          - Installation: components/auto-update/installation.md
-      - Update-Server:
-          - Übersicht: components/update-server/index.md
   - Entwickler:
       - Architecture:
           - Overview: architecture/overview.md
