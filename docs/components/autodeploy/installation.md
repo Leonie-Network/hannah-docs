@@ -17,14 +17,25 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/autodeploy/de
 
 | Plattform | Config-Datei |
 |---|---|
-| Linux | `/etc/hannah/autodeploy.conf` |
+| Linux | `/etc/hannah/autodeploy.yaml` |
 | macOS | `/opt/hannah/etc/autodeploy.yaml` |
+
+Unter Linux liegt eine Beispiel-Config bereits im Release, im Installationsverzeichnis
+(Name etwas unglücklich gewählt: `autodeploy.yaml.example`, nicht `config.example.yaml`
+wie bei den übrigen Komponenten):
+
+```bash
+sudo cp /opt/hannah/autodeploy/autodeploy.yaml.example /etc/hannah/autodeploy.yaml
+sudo nano /etc/hannah/autodeploy.yaml
+```
+
+Für macOS gibt es aktuell keine Beispiel-Config.
 
 Pro Komponente ein Eintrag. Unter Linux heißt `service` wie der systemd-Service
 (`hannah`, `hannah-proxy`, …), unter macOS wie der launchd-Job im
 `com.hannah.<komponente>`-Schema:
 
-```yaml title="Linux (/etc/hannah/autodeploy.conf)"
+```yaml title="Linux (/etc/hannah/autodeploy.yaml)"
   - name: autodeploy
     channel: autodeploy-stable
     install_dir: /opt/hannah/autodeploy

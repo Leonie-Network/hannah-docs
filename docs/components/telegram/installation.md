@@ -14,7 +14,7 @@ noch nicht veröffentlicht.
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):
+Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.yaml`):
 
 ```yaml
   - name: telegram
