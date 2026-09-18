@@ -9,6 +9,9 @@
 curl -fsSL https://raw.githubusercontent.com/NurPech/Hannah/refs/heads/master/proxy/deploy/install.sh | sudo bash
 ```
 
+Config: `/etc/hannah-proxy/config.yaml` — Startpunkt ist `proxy/config.example.yaml` im
+[hannah-Repo](https://github.com/NurPech/hannah).
+
 ## Automatisch aktuell halten
 
 Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):

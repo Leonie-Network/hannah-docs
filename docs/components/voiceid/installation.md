@@ -15,6 +15,9 @@ Unter macOS gibt es eine eigene Variante:
 curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/voiceid/deploy/install-macos.sh | sudo bash
 ```
 
+Config: `/etc/hannah-voiceid/config.yaml`. Ein Beispiel ist bislang noch nicht
+veröffentlicht.
+
 ## Automatisch aktuell halten
 
 Unter Linux ist der [AutoDeploy](../autodeploy/index.md)-Eintrag für VoiceID aktuell

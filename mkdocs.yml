@@ -56,6 +56,9 @@ nav:
               - Installation: components/autodeploy/installation.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
+          - ioBroker-Adapter:
+              - Übersicht: components/iobroker-adapter/index.md
+              - Installation: components/iobroker-adapter/installation.md
       - Known Gaps: manual/known-gaps.md
   - Entwickler:
       - Architecture:

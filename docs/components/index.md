@@ -14,6 +14,7 @@ Bedarf dazugeschaltet.
 | [Timer](timer/index.md) | Timer und Wecker | Nein |
 | [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
 | [Update-Server](update-server/index.md) | Die Quelle, von der Installationen und AutoDeploy ihre Releases beziehen | — (kein eigener nötig) |
+| [ioBroker-Adapter](iobroker-adapter/index.md) | Bindet Hannah an ioBroker an — ohne ihn keine Smart-Home-Steuerung | Ja (für Smart-Home-Steuerung) |
 
 !!! note "macOS"
     Native Installation unter macOS gibt es bislang nur für [AutoDeploy](autodeploy/index.md)

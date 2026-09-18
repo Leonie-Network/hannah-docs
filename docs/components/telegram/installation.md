@@ -9,6 +9,9 @@
 curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/telegram/deploy/install.sh | sudo bash
 ```
 
+Config: `/etc/hannah-telegram/config.yaml` (u. a. Bot-Token). Ein Beispiel ist bislang
+noch nicht veröffentlicht.
+
 ## Automatisch aktuell halten
 
 Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.conf`):
