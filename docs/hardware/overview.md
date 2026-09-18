@@ -1,8 +1,7 @@
 # Hardware Overview
 
-> This page is a placeholder.
-
-Hannah's satellites run on a custom ESP32-S3 PCB (88mm round), currently at Rev. 5:
+Hannah's satellites run on a custom ESP32-S3 PCB (88mm round), currently at
+[Rev. 5](pcb-revisions.md):
 
 - ESP32-S3-WROOM-1U-N16R8 (external antenna)
 - 4× PDM microphones via an ADAU7118 PDM→TDM converter (enables beamforming)
@@ -11,4 +10,6 @@ Hannah's satellites run on a custom ESP32-S3 PCB (88mm round), currently at Rev.
 - BME680 environmental sensor (temperature, humidity, pressure, gas/IAQ)
 - LD2410 mmWave presence radar
 
-*(Full BOM, PCB revision history, and enclosure/print details to follow.)*
+See [PCB Revisions](pcb-revisions.md) for the full revision history, [Component
+Decisions](components.md) for why specific parts were chosen, and
+[Enclosure](enclosure.md) for the 3D-printed case.

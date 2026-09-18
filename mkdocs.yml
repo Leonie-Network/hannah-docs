@@ -30,8 +30,15 @@ nav:
   - Home: index.md
   - Architecture:
       - Overview: architecture/overview.md
+      - Protocols:
+          - gRPC: architecture/protocols/grpc.md
+          - MQTT: architecture/protocols/mqtt.md
+          - UDP: architecture/protocols/udp.md
   - Hardware:
       - Overview: hardware/overview.md
+      - PCB Revisions: hardware/pcb-revisions.md
+      - Components: hardware/components.md
+      - Enclosure: hardware/enclosure.md
   - Development:
       - Getting Started: development/getting-started.md
   - Services:
