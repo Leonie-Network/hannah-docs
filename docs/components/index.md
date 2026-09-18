@@ -13,7 +13,7 @@ Bedarf dazugeschaltet.
 | [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Nein |
 | [Timer](timer/index.md) | Timer und Wecker | Nein |
 | [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
-| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen und AutoDeploy ihre Releases beziehen | — (kein eigener nötig) |
+| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen, AutoDeploy und die Satelliten-Firmware ihre Releases beziehen | — (kein eigener nötig) |
 | [ioBroker-Adapter](iobroker-adapter/index.md) | Bindet Hannah an ioBroker an — ohne ihn keine Smart-Home-Steuerung | Ja (für Smart-Home-Steuerung) |
 
 !!! note "macOS"
