@@ -1,0 +1,45 @@
+site_name: Hannah
+site_description: Public documentation for Hannah, a self-hosted, German-speaking voice assistant for smart homes.
+site_url: https://hannah.leonie.network/
+
+repo_url: https://github.com/Leonie-Network/hannah-docs
+repo_name: Leonie-Network/hannah-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.action.edit
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Architecture:
+      - Overview: architecture/overview.md
+  - Hardware:
+      - Overview: hardware/overview.md
+  - Development:
+      - Getting Started: development/getting-started.md
+  - Services:
+      - Overview: services/overview.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
