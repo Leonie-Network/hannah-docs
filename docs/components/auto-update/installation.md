@@ -20,9 +20,11 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/autodeploy/de
 | Linux | `/etc/hannah/autodeploy.conf` |
 | macOS | `/opt/hannah/etc/autodeploy.yaml` |
 
-Pro Komponente ein Eintrag, z. B.:
+Pro Komponente ein Eintrag. Unter Linux heißt `service` wie der systemd-Service
+(`hannah`, `hannah-proxy`, …), unter macOS wie der launchd-Job im
+`com.hannah.<komponente>`-Schema:
 
-```yaml
+```yaml title="Linux (/etc/hannah/autodeploy.conf)"
   - name: core
     channel: core-stable
     install_dir: /opt/hannah/core
@@ -33,6 +35,21 @@ Pro Komponente ein Eintrag, z. B.:
     channel: proxy-stable-arm64
     install_dir: /usr/local/bin
     service: hannah-proxy
+```
+
+```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"
+components:
+  - name: autodeploy
+    channel: autodeploy-stable
+    install_dir: /opt/hannah/autodeploy
+    service: com.hannah.autodeploy
+    post_install: "/opt/hannah/autodeploy/venv/bin/pip install -q -r /opt/hannah/autodeploy/requirements.txt"
+
+  - name: voiceid
+    channel: voiceid-stable
+    install_dir: /opt/hannah/voiceid
+    service: com.hannah.voiceid
+    post_install: "/opt/hannah/voiceid/venv/bin/pip install -q -r /opt/hannah/voiceid/requirements.txt"
 ```
 
 | Feld | Bedeutung |

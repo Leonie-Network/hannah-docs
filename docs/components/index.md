@@ -14,3 +14,8 @@ Bedarf dazugeschaltet.
 | [Timer](timer/index.md) | Timer und Wecker | Nein |
 | [Auto-Update](auto-update/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
 | [Update-Server](update-server/index.md) | Die Quelle, von der Installationen und Auto-Update ihre Releases beziehen | — (kein eigener nötig) |
+
+!!! note "macOS"
+    Native Installation unter macOS gibt es bislang nur für [Auto-Update](auto-update/index.md)
+    und [VoiceID](voiceid/index.md). Für alle anderen Komponenten: Linux (nativ) oder
+    [Docker](../manual/installation.md).

@@ -17,5 +17,13 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/voiceid/deplo
 
 ## Automatisch aktuell halten
 
-Der [Auto-Update](../auto-update/index.md)-Eintrag für VoiceID ist aktuell deaktiviert —
-ein konkretes Beispiel folgt, sobald das wieder aktiv ist.
+Unter Linux ist der [Auto-Update](../auto-update/index.md)-Eintrag für VoiceID aktuell
+deaktiviert. Unter macOS läuft er aktiv:
+
+```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"
+  - name: voiceid
+    channel: voiceid-stable
+    install_dir: /opt/hannah/voiceid
+    service: com.hannah.voiceid
+    post_install: "/opt/hannah/voiceid/venv/bin/pip install -q -r /opt/hannah/voiceid/requirements.txt"
+```
