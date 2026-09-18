@@ -192,6 +192,8 @@ Startpunkt dienen die `config.example.yaml`-Dateien im jeweiligen Komponenten-Or
 
 ## Variante 2: Native Installation per Script
 
-Statt Docker hat jede Komponente auch ihr eigenes `deploy/install.sh`, das sie als
-systemd-Service installiert. Details dazu stehen auf der jeweiligen Komponenten-Seite
-unter [Komponenten](../components/index.md) — z. B. [Core → Installation](../components/core/installation.md).
+Die meisten Komponenten haben statt Docker auch ihr eigenes `deploy/install.sh`, das sie
+als systemd-Service installiert (einzige bekannte Ausnahme: der [Timer](../components/timer/index.md),
+den es nur als Docker-Image gibt). Details dazu stehen auf der jeweiligen
+Komponenten-Seite unter [Komponenten](../components/index.md) — z. B.
+[Core → Installation](../components/core/installation.md).

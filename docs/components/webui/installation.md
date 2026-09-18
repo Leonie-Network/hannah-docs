@@ -7,4 +7,10 @@ Verbindet sich per gRPC mit Core (`HANNAH_WEBUI_GRPC_HOST` / `HANNAH_WEBUI_GRPC_
 braucht einen eigenen `HANNAH_WEBUI_SECRET_KEY` (zufälliger String, siehe
 [Hinweis zur Compose-Datei](../../manual/installation.md)).
 
-*(Native Installation ohne Docker folgt.)*
+## Native Installation
+
+Eigenes Repo, eigenes `deploy/install.sh`:
+
+```bash
+curl -fsSL https://github.com/NurPech/hannah-webui/raw/refs/heads/main/deploy/install.sh | sudo bash
+```

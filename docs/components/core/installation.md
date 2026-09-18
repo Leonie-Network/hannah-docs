@@ -8,8 +8,14 @@ darin bereits enthalten und läuft standardmäßig mit.
 Core hat ein eigenes `deploy/install.sh` im [hannah-Repo](https://github.com/NurPech/hannah):
 
 ```bash
-sudo bash install.sh              # installieren oder aktualisieren
-sudo bash install.sh --uninstall  # deinstallieren (Config bleibt erhalten)
+curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/core/deploy/install.sh | sudo bash
+```
+
+Zum Deinstallieren (Config bleibt erhalten) das Script herunterladen und mit
+`--uninstall` aufrufen:
+
+```bash
+sudo bash install.sh --uninstall
 ```
 
 - Lädt das aktuelle Release vom Update-Server, installiert es als systemd-Service
