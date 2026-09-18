@@ -66,6 +66,7 @@ nav:
           - ioBroker-Adapter:
               - Übersicht: components/iobroker-adapter/index.md
               - Installation: components/iobroker-adapter/installation.md
+              - Konfiguration: components/iobroker-adapter/configuration.md
       - Known Gaps: manual/known-gaps.md
   - Entwickler:
       - Architecture:
