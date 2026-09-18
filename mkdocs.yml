@@ -37,25 +37,30 @@ nav:
           - Core:
               - Übersicht: components/core/index.md
               - Installation: components/core/installation.md
-              - Einstellungen: components/core/settings.md
+              - Konfiguration: components/core/configuration.md
           - WebUI:
               - Übersicht: components/webui/index.md
               - Installation: components/webui/installation.md
+              - Konfiguration: components/webui/configuration.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md
+              - Konfiguration: components/proxy/configuration.md
           - Telegram:
               - Übersicht: components/telegram/index.md
               - Installation: components/telegram/installation.md
+              - Konfiguration: components/telegram/configuration.md
           - VoiceID:
               - Übersicht: components/voiceid/index.md
               - Installation: components/voiceid/installation.md
+              - Konfiguration: components/voiceid/configuration.md
           - Timer:
               - Übersicht: components/timer/index.md
               - Installation: components/timer/installation.md
           - AutoDeploy:
               - Übersicht: components/autodeploy/index.md
               - Installation: components/autodeploy/installation.md
+              - Konfiguration: components/autodeploy/configuration.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
           - ioBroker-Adapter:
