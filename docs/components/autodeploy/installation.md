@@ -27,9 +27,21 @@ wie bei den übrigen Komponenten):
 ```bash
 sudo cp /opt/hannah/autodeploy/autodeploy.yaml.example /etc/hannah/autodeploy.yaml
 sudo nano /etc/hannah/autodeploy.yaml
+sudo systemctl enable --now hannah-autodeploy
 ```
 
 Für macOS gibt es aktuell keine Beispiel-Config.
+
+!!! warning "Nach Config-Änderungen neu starten"
+    AutoDeploy liest seine Config nicht automatisch neu — nach jeder Änderung an
+    `autodeploy.yaml` den Dienst neu starten, sonst wirkt sie erst beim nächsten
+    zufälligen Neustart:
+    ```bash title="Linux"
+    sudo systemctl restart hannah-autodeploy
+    ```
+    ```bash title="macOS"
+    sudo launchctl kickstart -k system/com.hannah.autodeploy
+    ```
 
 Pro Komponente ein Eintrag. Unter Linux heißt `service` wie der systemd-Service
 (`hannah`, `hannah-proxy`, …), unter macOS wie der launchd-Job im
