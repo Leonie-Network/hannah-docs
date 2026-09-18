@@ -30,7 +30,10 @@ Nur bei **Rev. 5**:
 
 | Feld | Zweck | Default |
 |---|---|---|
-| TDM-Beamforming-Richtung | Vorzugsrichtung in Grad im Uhrzeigersinn ab Norden/Strom-Seite | `180°` |
+| TDM-Beamforming-Richtung | Vorzugsrichtung in Grad, im Uhrzeigersinn | `180°` |
+
+Bezugspunkt für 0°: den Satelliten wie eine Landkarte an die Wand halten, Vol+-Taste
+zeigt dabei nach links — die Richtung nach oben ist 0°.
 
 ## Firmware
 
