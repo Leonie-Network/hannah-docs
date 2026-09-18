@@ -9,8 +9,14 @@
 curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/telegram/deploy/install.sh | sudo bash
 ```
 
-Config: `/etc/hannah-telegram/config.yaml` (u. a. Bot-Token). Ein Beispiel ist bislang
-noch nicht veröffentlicht.
+Config: `/etc/hannah-telegram/config.yaml` (u. a. Bot-Token). Die Vorlage liegt bereits im
+Release, im Installationsverzeichnis — kopieren, anpassen, Dienst starten:
+
+```bash
+sudo cp /opt/hannah/telegram/config.example.yaml /etc/hannah-telegram/config.yaml
+sudo nano /etc/hannah-telegram/config.yaml
+sudo systemctl enable --now hannah-telegram
+```
 
 ## Automatisch aktuell halten
 

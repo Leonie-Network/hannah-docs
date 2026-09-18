@@ -9,8 +9,14 @@
 curl -fsSL https://raw.githubusercontent.com/NurPech/Hannah/refs/heads/master/proxy/deploy/install.sh | sudo bash
 ```
 
-Config: `/etc/hannah-proxy/config.yaml` — Startpunkt ist `proxy/config.example.yaml` im
-[hannah-Repo](https://github.com/NurPech/hannah).
+Config: `/etc/hannah-proxy/config.yaml`. Die Vorlage liegt nach der Installation bereits
+daneben — kopieren, anpassen, Dienst starten:
+
+```bash
+sudo cp /etc/hannah-proxy/config.example.yaml /etc/hannah-proxy/config.yaml
+sudo nano /etc/hannah-proxy/config.yaml
+sudo systemctl enable --now hannah-proxy
+```
 
 ## Automatisch aktuell halten
 
