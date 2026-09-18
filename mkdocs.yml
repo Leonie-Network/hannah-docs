@@ -43,6 +43,13 @@ nav:
       - Getting Started: development/getting-started.md
   - Services:
       - Overview: services/overview.md
+      - Proxy: services/proxy.md
+      - Telegram: services/telegram.md
+      - VoiceID: services/voiceid.md
+      - Timer Service: services/timer.md
+      - Asset Server: services/asset-server.md
+      - Update Server: services/update-server.md
+      - WebUI: services/webui.md
 
 markdown_extensions:
   - admonition
