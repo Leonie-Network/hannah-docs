@@ -14,9 +14,9 @@ Satellite (audio / PTT)
 
 ## Components
 
-- **Hannah Core** — the brain: STT, NLU, TTS, device control, orchestration. Runs on a Raspberry Pi.
+- **Hannah Core** — the brain: STT, NLU, TTS, device control, orchestration. Comfortably runs on something as modest as a Raspberry Pi, but nothing about it is Pi-specific — any machine that can run Python works.
 - **Satellites** — ESP32-S3 devices with microphones, a speaker, an LED ring, and a wake-word model. Stream audio to Core over UDP (or via the Proxy, see below) and receive TTS/commands back.
-- **Proxy** — a small Go service that bridges satellites which can't (or shouldn't) reach Core directly over UDP, tunneling audio over a persistent gRPC stream instead.
+- **Proxy** — a Go service that takes UDP audio-stream handling off Core's plate. When a Proxy is connected, Core disables its own UDP server entirely; the Proxy handles the satellite UDP streams instead (Go's concurrency model suits that job well) and hands Core clean PCM audio over gRPC.
 - **ioBroker adapter** — bridges Hannah to your actual smart home devices via ioBroker, over a bidirectional gRPC stream.
 - A handful of standalone services (Telegram bot, VoiceID, timers, asset serving, OTA updates) round out the system — see [Services](../services/overview.md).
 
@@ -29,4 +29,4 @@ A few decisions that shaped the architecture:
 - **gRPC for external services, MQTT for satellite control.** gRPC gives typed, bidirectional APIs where that's useful (external integrations); MQTT is the one channel that reliably reaches *every* satellite regardless of whether it's UDP-connected or proxy-connected, so all control commands (mute, volume, announcements, …) go through it instead of UDP.
 - **STT runs locally** (faster-whisper) — no dependency on a cloud STT provider. NLU is rule-based and works without an LLM; an LLM (via Ollama) is optional, for tool-calling style requests.
 - **16kHz mono audio, no TLS on the UDP link.** Matches what the STT/wake-word models expect, and skips the CPU/RAM cost of TLS on the ESP32 — a reasonable trade-off for a LAN-only protocol.
-- **ESP32-S3 over a Raspberry Pi Zero for satellites.** Cheaper (~4€ vs ~18€) and far lower power draw (~0.1W vs ~1W), at the cost of building the audio pipeline (wake word, VAD, PDM mics) yourself instead of using a mature Linux audio stack.
+- **ESP32-S3 over a general-purpose SBC (like a Raspberry Pi) for satellites.** A focused, specialized design for exactly this job — compact and low-power (~0.1W vs ~1W for a Pi Zero) — at the cost of building the audio pipeline (wake word, VAD, PDM mics) yourself instead of using a mature Linux audio stack. A fully assembled satellite board runs around 50€, so this isn't primarily about being dramatically cheaper — the real win is size and power draw.
