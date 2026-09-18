@@ -20,8 +20,7 @@ veröffentlicht.
 
 ## Automatisch aktuell halten
 
-Unter Linux ist der [AutoDeploy](../autodeploy/index.md)-Eintrag für VoiceID aktuell
-deaktiviert. Unter macOS läuft er aktiv:
+Eintrag für [AutoDeploy](../autodeploy/index.md), macOS-Pfade/Service-Namen:
 
 ```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"
   - name: voiceid
@@ -30,3 +29,6 @@ deaktiviert. Unter macOS läuft er aktiv:
     service: com.hannah.voiceid
     post_install: "/opt/hannah/voiceid/venv/bin/pip install -q -r /opt/hannah/voiceid/requirements.txt"
 ```
+
+Unter Linux gilt dasselbe Format wie bei den anderen Komponenten (`service` als
+systemd-Name statt `com.hannah.*`, Config in `/etc/hannah/autodeploy.conf`).
