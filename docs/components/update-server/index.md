@@ -19,7 +19,12 @@ für den Erstflash. Pro PCB-Revision ein eigener Kanal:
 | Rev. 4 | `satellite-esp-stable-rev4` | `satellite-esp-stable-init-rev4` |
 | Rev. 5 | `satellite-esp-stable-rev5` | `satellite-esp-stable-init-rev5` |
 
-Genutzt wird das vor allem indirekt über den [ioBroker-Adapter](../iobroker-adapter/configuration.md#firmware)
-— dessen „Firmware Source URL" zeigt auf genau diesen Server (`/releases/latest?channel=...`),
-der Satellite Manager im Adapter-Tab übernimmt Flashen und OTA-Anstoß darüber. Ein
-Direkt-Download ist über dieselbe URL trotzdem möglich, falls du manuell flashen willst.
+Zwei getrennte Wege nutzen das:
+
+- **OTA** (bereits laufende Satelliten): fest im Firmware-Build hinterlegter Kanal
+  (`satellite-esp-stable-rev4`/`-rev5`) — kein Konfigurationsfeld dafür, Core stößt
+  das Update per MQTT an (`hannah/satellite/{device}/ota/pending` → `/ok`).
+- **Erstflash/WebFlash** (neuer Satellit): der [ioBroker-Adapter](../iobroker-adapter/configuration.md#firmware)
+  lädt über seine konfigurierbare „Firmware Source URL" (zeigt standardmäßig auf den
+  `-init`-Kanal dieses Servers) das WebFlash-Paket für den Satellite Manager im Adapter-Tab.
+  Ein Direkt-Download über dieselbe URL ist auch möglich, falls du manuell flashen willst.
