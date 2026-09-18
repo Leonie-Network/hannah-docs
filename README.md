@@ -2,7 +2,7 @@
 
 Public documentation for [Hannah](https://github.com/NurPech/hannah), a self-hosted,
 German-speaking voice assistant for smart homes. Published at
-[hannah.leonie.network](https://hannah.leonie.network/).
+[hannah-docs.leonie.network](https://hannah-docs.leonie.network/).
 
 ## Local development
 
