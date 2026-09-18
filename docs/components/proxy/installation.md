@@ -8,3 +8,16 @@
 ```bash
 curl -fsSL https://raw.githubusercontent.com/NurPech/Hannah/refs/heads/master/proxy/deploy/install.sh | sudo bash
 ```
+
+## Automatisch aktuell halten
+
+Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+
+```yaml
+  - name: proxy
+    channel: proxy-stable-arm64
+    install_dir: /usr/local/bin
+    service: hannah-proxy
+```
+
+*(`channel` ist architekturabhängig — `proxy-stable-arm64` gilt für ARM64.)*

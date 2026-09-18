@@ -30,3 +30,15 @@ Steuerbar über Umgebungsvariablen:
 | `UPDATE_SERVER_URL` | Basis-URL des Update-Servers | `https://hannah-update.sgessinger.de` |
 | `UPDATE_SERVER_TOKEN` | Bearer-Token (nur für nicht-öffentliche Kanäle nötig) | — |
 | `CORE_CHANNEL` | Release-Kanal | `core-stable` |
+
+## Automatisch aktuell halten
+
+Eintrag für [Auto-Update](../auto-update/index.md) (`/etc/hannah/autodeploy.conf`):
+
+```yaml
+  - name: core
+    channel: core-stable
+    install_dir: /opt/hannah/core
+    service: hannah
+    post_install: "/opt/hannah/core/venv/bin/pip install --upgrade -q -r /opt/hannah/core/requirements.txt"
+```
