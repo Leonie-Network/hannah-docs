@@ -15,7 +15,10 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/autodeploy/de
 
 ## Konfiguration
 
-Linux: `/etc/hannah/autodeploy.conf`. Unter macOS steht der Pfad noch nicht fest.
+| Plattform | Config-Datei |
+|---|---|
+| Linux | `/etc/hannah/autodeploy.conf` |
+| macOS | `/opt/hannah/etc/autodeploy.yaml` |
 
 Pro Komponente ein Eintrag, z. B.:
 
@@ -37,5 +40,5 @@ Pro Komponente ein Eintrag, z. B.:
 | `name` | Freier Bezeichner für den Eintrag |
 | `channel` | Release-Kanal auf dem Update-Server, von dem aktualisiert wird |
 | `install_dir` | Installationsverzeichnis der Komponente |
-| `service` | Name des systemd-Service, der nach einem Update neugestartet wird |
+| `service` | Name des Service (systemd unter Linux, launchd-Job unter macOS), der nach einem Update neugestartet wird |
 | `post_install` | Optional: Befehl, der nach dem Entpacken eines neuen Release läuft (z. B. Python-Dependencies aktualisieren) |

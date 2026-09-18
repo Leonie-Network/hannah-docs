@@ -17,6 +17,5 @@ curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/voiceid/deplo
 
 ## Automatisch aktuell halten
 
-Der [Auto-Update](../auto-update/index.md)-Eintrag für VoiceID ist aktuell deaktiviert;
-unter macOS ist zudem noch unklar, wo Auto-Update seine Config ablegt. Details folgen,
-sobald das geklärt ist.
+Der [Auto-Update](../auto-update/index.md)-Eintrag für VoiceID ist aktuell deaktiviert —
+ein konkretes Beispiel folgt, sobald das wieder aktiv ist.
