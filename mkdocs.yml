@@ -42,6 +42,9 @@ nav:
               - Übersicht: components/webui/index.md
               - Installation: components/webui/installation.md
               - Konfiguration: components/webui/configuration.md
+          - Satellit:
+              - Übersicht: components/satellite/index.md
+              - Konfiguration: components/satellite/configuration.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md
