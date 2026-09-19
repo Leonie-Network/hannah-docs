@@ -2,7 +2,14 @@
 
 ## Voraussetzungen
 
-- Ein Server für Hannah Core — ein Raspberry Pi reicht, Hannah ist aber nicht darauf festgelegt
+- Ein Server für Hannah Core — läuft z. B. auf einem Raspberry Pi 5 (auf einem solchen
+  mit 8GB RAM laufen im Dauerbetrieb seit Langem zusätzlich auch noch VoiceID, Timer,
+  WebUI, Telegram und Proxy mit). Eine verlässliche RAM-Untergrenze gibt es nicht — das
+  hängt stark davon ab, ob Spracherkennung/-ausgabe lokal laufen (Whisper und Piper
+  laden ihre Modelle in den RAM und verarbeiten dort auch die rohen Audiodaten) oder
+  über einen Cloud-Dienst wie Azure, wodurch Core selbst sehr genügsam bleibt. Als grobe
+  Richtschnur: für dich allein oder zu zweit dürften 2GB reichen, mehr schadet aber nie.
+  Ein leistungsstärkerer Server (z. B. x86) ist ebenso geeignet
 - Eine laufende [ioBroker](https://www.iobroker.com/)-Instanz
 - Mindestens ein Satellit — entweder die eigene Platine (siehe [Hardware](../hardware/overview.md)) oder ein Dev-Kit zum Ausprobieren
 
@@ -192,8 +199,11 @@ curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/core/config.e
 nano core-config.yaml
 ```
 
-Mindestens dein MQTT-Passwort darin eintragen — alle Schlüssel erklärt
-[Core → Konfiguration](../components/core/configuration.md).
+Mindestens `mqtt.host` musst du auf deinen Broker zeigen lassen, sonst findet Core ihn
+gar nicht erst — Benutzername/Passwort sind dagegen optional, nur nötig, wenn dein
+Broker Zugangsdaten verlangt (Mosquitto läuft im Standardfall sogar ganz ohne Auth,
+siehe [with-mqtt](#mosquitto-config-nur-bei-with-mqtt) weiter unten). Alle Schlüssel
+erklärt [Core → Konfiguration](../components/core/configuration.md).
 
 Schaltest du später weitere Profile dazu, brauchen auch die jeweils ihre eigene
 Config-Datei — mit Ausnahme von [WebUI](../components/webui/installation.md) (siehe
@@ -229,6 +239,26 @@ Dienste sind über **Profiles** opt-in, z. B.:
 | `with-mqtt` | Mosquitto (falls du keinen eigenen MQTT-Broker hast) |
 | `full` | alles zusammen |
 
+### Mosquitto-Config (nur bei `with-mqtt`)
+
+Hast du schon einen eigenen MQTT-Broker, ignorier diesen Abschnitt — trag einfach seine
+Adresse in `mqtt.host` (`core-config.yaml`) ein. Aktivierst du stattdessen `with-mqtt`,
+um den mitgelieferten Mosquitto-Broker zu nutzen, braucht auch der eine eigene
+Config-Datei im selben Verzeichnis, `mosquitto.conf` — ohne sie startet der Container
+gar nicht erst (derselbe leerer-Ordner-Effekt wie bei einer fehlenden
+`core-config.yaml`). Zum Ausprobieren reicht die denkbar einfachste Variante, ganz ohne
+Authentifizierung:
+
+```title="mosquitto.conf"
+listener 1883
+allow_anonymous true
+```
+
+Zeig in dem Fall in `core-config.yaml` mit `mqtt.host: "mosquitto"` auf den
+Container-Namen (nicht auf `localhost` oder eine IP) — beide laufen im selben
+Docker-Netzwerk. Wer den Broker absichern will (Passwort, TLS, …), findet das in der
+[offiziellen Mosquitto-Doku](https://mosquitto.org/documentation/authentication-methods/).
+
 Profiles lassen sich beliebig kombinieren — du musst nicht gleich zu `full` greifen, nur
 weil du mehr als Core+WebUI willst. Beispiel: MQTT-Broker und Activity-Log dazuschalten,
 alles andere weglassen:
@@ -242,6 +272,18 @@ docker compose --profile with-mqtt --profile with-db up -d
 ```bash
 docker compose --profile full up -d
 ```
+
+### Prüfen, ob es läuft
+
+```bash
+docker compose ps
+docker compose logs -f hannah-core
+```
+
+`ps` zeigt, ob die Container wirklich laufen (Status `Up`) oder ständig neu starten;
+`logs -f` folgt dem Log eines Containers live — `hannah-core` durch den Namen jeder
+anderen Komponente ersetzen (z. B. `hannah-webui`), um deren Log zu sehen. Beendet mit
+Strg+C.
 
 ## Variante 2: Native Installation per Script
 

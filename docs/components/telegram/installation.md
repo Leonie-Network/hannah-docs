@@ -19,9 +19,24 @@ sudo nano /etc/hannah-telegram/config.yaml
 sudo systemctl enable --now hannah-telegram
 ```
 
+Prüfen, ob der Dienst wirklich läuft:
+
+```bash
+sudo systemctl status hannah-telegram
+sudo journalctl -u hannah-telegram -f
+```
+
+Zum Deinstallieren (Config bleibt erhalten), Script liegt bereits im
+Installationsverzeichnis:
+
+```bash
+sudo bash /opt/hannah/telegram/deploy/install.sh --uninstall
+```
+
 ## Automatisch aktuell halten
 
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+**Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen.**
 
 Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 

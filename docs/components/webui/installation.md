@@ -25,9 +25,24 @@ sudo nano /etc/hannah-webui/config.yaml
 sudo systemctl enable --now hannah-webui
 ```
 
+Prüfen, ob der Dienst wirklich läuft:
+
+```bash
+sudo systemctl status hannah-webui
+sudo journalctl -u hannah-webui -f
+```
+
+Zum Deinstallieren (Config bleibt erhalten), Script liegt bereits im
+Installationsverzeichnis:
+
+```bash
+sudo bash /opt/hannah/webui/deploy/install.sh --uninstall
+```
+
 ## Automatisch aktuell halten
 
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+**Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen.**
 
 Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 

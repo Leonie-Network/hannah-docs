@@ -19,6 +19,20 @@ sudo nano /etc/hannah-voiceid/config.yaml
 sudo systemctl enable --now hannah-voiceid
 ```
 
+Prüfen, ob der Dienst wirklich läuft:
+
+```bash
+sudo systemctl status hannah-voiceid
+sudo journalctl -u hannah-voiceid -f
+```
+
+Zum Deinstallieren (Voice-Profile bleiben erhalten), Script liegt bereits im
+Installationsverzeichnis:
+
+```bash
+sudo bash /opt/hannah/voiceid/deploy/install.sh --uninstall
+```
+
 Unter macOS gibt es eine eigene Variante:
 
 ```bash
@@ -29,9 +43,23 @@ Config dort: `/opt/hannah/etc/voiceid.yaml` — anderer Pfad und Dateiname als u
 Das Script legt sie nicht automatisch an; ohne sie läuft VoiceID mit generischen Defaults
 (`unknown_threshold=0.25`, `uncertain_threshold=0.40`).
 
+Prüfen, ob der Dienst wirklich läuft:
+
+```bash
+sudo launchctl print system/com.hannah.voiceid
+sudo tail -f /opt/hannah/voiceid.log
+```
+
+Zum Deinstallieren, Script liegt ebenfalls schon im Installationsverzeichnis:
+
+```bash
+sudo bash /opt/hannah/voiceid/deploy/install-macos.sh --uninstall
+```
+
 ## Automatisch aktuell halten
 
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+**Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen.**
 Eintrag mit macOS-Pfaden/Service-Namen:
 
 ```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"

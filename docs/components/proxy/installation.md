@@ -21,9 +21,28 @@ sudo nano /etc/hannah-proxy/config.yaml
 sudo systemctl enable --now hannah-proxy
 ```
 
+Prüfen, ob der Dienst wirklich läuft:
+
+```bash
+sudo systemctl status hannah-proxy
+sudo journalctl -u hannah-proxy -f
+```
+
+Zum Deinstallieren: anders als bei den übrigen Komponenten installiert der Proxy (ein
+einzelnes Go-Binary) sich nicht in ein eigenes Verzeichnis mit eigener Kopie des
+Scripts — `install.sh` muss dafür noch einmal per `curl` geholt werden, die Argumente
+dahinter landen dann direkt beim Script:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NurPech/Hannah/refs/heads/master/proxy/deploy/install.sh | sudo bash -s -- --uninstall
+```
+
 ## Automatisch aktuell halten
 
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+**Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen** (bei
+Proxy selbst zwar ohne `post_install`, aber relevant, sobald du weitere Komponenten über
+dieselbe AutoDeploy-Instanz verwaltest).
 
 Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 
