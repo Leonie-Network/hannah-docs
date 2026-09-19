@@ -1,7 +1,8 @@
 # Installation
 
 Am schnellsten über [Docker Compose](../../manual/installation.md) — `hannah-core` ist
-darin bereits enthalten und läuft standardmäßig mit.
+darin bereits enthalten und läuft standardmäßig mit. Die native Installation auf dieser
+Seite brauchst du nur, wenn du bewusst **kein** Docker willst.
 
 ## Native Installation
 
@@ -38,12 +39,15 @@ Steuerbar über Umgebungsvariablen:
 | Variable | Zweck | Default |
 |---|---|---|
 | `UPDATE_SERVER_URL` | Basis-URL des Update-Servers | `https://hannah-update.sgessinger.de` |
-| `UPDATE_SERVER_TOKEN` | Bearer-Token (nur für nicht-öffentliche Kanäle nötig) | — |
+| `UPDATE_SERVER_TOKEN` | Bearer-Token, nur für nicht-öffentliche Kanäle nötig | — |
 | `CORE_CHANNEL` | Release-Kanal | `core-stable` |
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.yaml`):
+Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt. Ohne
+AutoDeploy aktualisierst du Core, indem du das Install-Script erneut ausführst.
+
+Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 
 ```yaml
   - name: core

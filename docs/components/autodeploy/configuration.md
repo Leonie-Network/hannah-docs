@@ -1,5 +1,10 @@
 # Konfiguration
 
+Ohne diese Datei tut AutoDeploy nichts — anders als bei den meisten anderen Komponenten
+gibt es hier keine sinnvollen Defaults ohne Konfiguration: du musst mindestens
+eintragen, *welche* Komponenten überwacht werden sollen (Abschnitt
+[Komponenten-Liste](#komponenten-liste) unten).
+
 AutoDeploy hat keine eigene Datenbank für Einstellungen — die komplette Konfiguration
 liegt in `autodeploy.yaml`.
 

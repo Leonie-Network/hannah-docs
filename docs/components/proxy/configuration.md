@@ -1,5 +1,8 @@
 # Konfiguration
 
+Ein Wert ist wirklich Pflicht: `hannah.address`, die Adresse deiner Core-Instanz. Alles
+andere kannst du zunächst so lassen.
+
 Proxy hat keine eigene Datenbank für Einstellungen — die komplette Konfiguration liegt in
 `config.yaml`.
 

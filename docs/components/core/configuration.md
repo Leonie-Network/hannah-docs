@@ -1,6 +1,11 @@
 # Konfiguration
 
-Core ist die einzige Komponente mit zwei getrennten Konfigurationsebenen:
+Direkt nach dem Kopieren der Vorlage (siehe [Installation](installation.md)) läuft Core
+noch nicht ohne Weiteres — mindestens dein MQTT-Passwort musst du eintragen. Alle
+anderen Werte auf dieser Seite haben brauchbare Defaults; du musst sie nur ändern, wenn
+du einen konkreten Grund dazu hast (z. B. Azure statt Piper für die Sprachausgabe).
+
+Core ist außerdem die einzige Komponente mit zwei getrennten Konfigurationsebenen:
 
 - **Die meisten Einstellungen** (NLU-Wortlisten, LLM-System-Prompt, BLE-Tags,
   Auto-Zuordnungen, Trigger, Routinen, Fahrzeuge, Gruppen, …) liegen **nicht** in

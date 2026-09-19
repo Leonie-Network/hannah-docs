@@ -1,7 +1,8 @@
 # Installation
 
 Über [Docker Compose](../../manual/installation.md) mit dem Profile `telegram` (oder
-`full`) dazuschalten. Braucht eine eigene `telegram-config.yaml` (u. a. Bot-Token).
+`full`) dazuschalten. Braucht eine eigene `telegram-config.yaml` (u. a. Bot-Token, siehe
+[Konfiguration](configuration.md)).
 
 ## Native Installation
 
@@ -20,7 +21,9 @@ sudo systemctl enable --now hannah-telegram
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.yaml`):
+Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+
+Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 
 ```yaml
   - name: telegram

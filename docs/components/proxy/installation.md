@@ -1,5 +1,8 @@
 # Installation
 
+Brauchst du den Proxy überhaupt? Siehe [Übersicht](index.md) — die meisten Setups
+kommen ohne aus.
+
 Über [Docker Compose](../../manual/installation.md) mit dem Profile `with-proxy` (oder
 `full`) dazuschalten.
 
@@ -20,7 +23,9 @@ sudo systemctl enable --now hannah-proxy
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.yaml`):
+Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+
+Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 
 ```yaml
   - name: proxy

@@ -1,5 +1,9 @@
 # Konfiguration
 
+Nur der Tab **Connection** ist wirklich Pflicht — ohne eine erreichbare Hannah-Core-Adresse
+verbindet sich der Adapter gar nicht erst. Die übrigen fünf Tabs sind Feintuning, das du
+bei Bedarf anpasst, sobald die Grundverbindung steht.
+
 Keine `config.yaml` — die Konfiguration ist eine normale ioBroker-Adapterinstanz, verwaltet
 über den Konfigurationsdialog in Admin. Sechs Tabs:
 
@@ -29,6 +33,9 @@ Adapter-Neustart, um live anzukommen.
 | Residents Adapter Instance | Welche `residents.<instance>` für Anwesenheitserkennung genutzt wird |
 
 ## Firmware
+
+Optional — nur relevant, wenn du über den Satellite Manager im Adapter-Tab Satelliten
+flashst oder deren OTA-Updates auslöst.
 
 | Feld | Zweck |
 |---|---|

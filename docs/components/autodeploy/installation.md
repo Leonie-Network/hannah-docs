@@ -1,7 +1,11 @@
 # Installation
 
-Wie die anderen nativen Komponenten per `install.sh`, allerdings als root statt als
-`hannah`-User:
+AutoDeploy gibt es nur als native Installation (kein Docker-Image) — ergibt Sinn, da es
+gerade die Aufgabe hat, andere systemd-Services (unter Linux) bzw. launchd-Jobs (unter
+macOS) auf dem Host zu aktualisieren, nicht sich selbst in einem Container.
+
+Installation läuft wie bei den anderen nativen Komponenten per `install.sh`, allerdings
+als root statt als `hannah`-User:
 
 ```bash
 curl -fsSL https://github.com/NurPech/Hannah/raw/refs/heads/master/autodeploy/deploy/install.sh | sudo bash

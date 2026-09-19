@@ -1,7 +1,8 @@
 # Installation
 
 Über [Docker Compose](../../manual/installation.md) mit dem Profile `with-voiceid` (oder
-`full`) dazuschalten. Braucht eine eigene `voiceid-config.yaml`.
+`full`) dazuschalten. Braucht eine eigene `voiceid-config.yaml`, ist aber auch ohne sie
+mit brauchbaren Defaults lauffähig (siehe [Konfiguration](configuration.md)).
 
 ## Native Installation
 
@@ -30,7 +31,8 @@ Das Script legt sie nicht automatisch an; ohne sie läuft VoiceID mit generische
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md), macOS-Pfade/Service-Namen:
+Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+Eintrag mit macOS-Pfaden/Service-Namen:
 
 ```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"
   - name: voiceid

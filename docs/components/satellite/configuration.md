@@ -1,6 +1,10 @@
 # Konfiguration
 
-Kein `config.yaml` — Einstellungen liegen im Satelliten selbst (NVS-Flash), verwaltet
+Die WLAN- und MQTT-Werte musst du einmalig setzen, sonst verbindet sich der Satellit gar
+nicht erst — alles andere auf dieser Seite hat brauchbare Defaults, die du nur bei
+Bedarf anfasst.
+
+Kein `config.yaml` — Einstellungen liegen im Satelliten selbst, im NVS-Flash, verwaltet
 über seine lokale Web-Oberfläche unter `/settings`. Nach dem Speichern startet der
 Satellit neu.
 
@@ -26,7 +30,7 @@ Satellit neu.
 | Erkennungsschwelle | Wakeword-Konfidenz, ab der ein Treffer zählt (0–100 %) | `75%` |
 | VAD-Stille (ms) | Wie lange Stille nach der Erkennung gewartet wird, bevor die Aufnahme endet | `1500` |
 
-Nur bei **Rev. 5**:
+Nur bei **Rev. 5**, optional:
 
 | Feld | Zweck | Default |
 |---|---|---|
@@ -36,6 +40,9 @@ Bezugspunkt für 0°: den Satelliten wie eine Landkarte an die Wand halten, Vol+
 zeigt dabei nach links — die Richtung nach oben ist 0°.
 
 ## Firmware
+
+Optional — steuert nur, woher der Satellit seine automatischen OTA-Updates bezieht. Die
+Defaults zeigen bereits auf Leonies offenen Update-Server.
 
 | Feld | Zweck | Default |
 |---|---|---|
