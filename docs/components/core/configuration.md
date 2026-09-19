@@ -136,7 +136,6 @@ residents:
   state_away: 0
 
 iobroker:
-  virtual_device_prefix: "javascript.0.virtualDevice"
   feedback_timeout: 3.0   # Sekunden bis "Gerät antwortet nicht"
 
 memory:
@@ -152,7 +151,6 @@ memory:
 | `user_registry.hannah_roomie` | Roomie-ID für Hannahs eigenen Resident-Eintrag — **unabhängig** von `residents.hannah_roomie` unten, beide haben zufällig denselben Default |
 | `satellite_manager.*` | Aufräum-Fristen für Satelliten-Provisionierung |
 | `residents.*` | Anbindung an den ioBroker-Residents-Adapter für Anwesenheitserkennung |
-| `iobroker.virtual_device_prefix` | Pfad-Prefix der virtualDevice-Geräte in ioBroker |
 | `iobroker.feedback_timeout` | Wartezeit, bevor ein gesteuertes Gerät als "antwortet nicht" gilt |
 | `memory.*` | SQLite-Speicher für Langzeit-Erinnerungen |
 | `plink_wav_path` | Eigener Ton für den geführten Plink beim Wakeword-Training statt des generierten Standardtons |

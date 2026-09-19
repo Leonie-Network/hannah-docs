@@ -95,6 +95,13 @@ melden ihre Position genau andersherum (0 % = offen). Statt jedes Mal "andersher
 mitzudenken, setzt du an genau diesem State das Override-Feld **shutterInverted** — ab
 dann rechnet Hannah automatisch um, und du sagst weiterhin ganz normal "Rollladen zu".
 
+**Fenster/Tür-Tristate**: manche Kontakte (z. B. Homematic-Fensterkontakte mit Rolle
+`state`) melden nicht nur offen/zu, sondern drei Zustände (0 = zu, 1 = gekippt,
+2 = offen). Für die generische Rolle `state` greift die automatische Erkennung nicht —
+hier brauchst du den Override und setzt canonicalKey auf `open`. Eine eigene Wortform
+für "gekippt" gibt es bei Hannah bewusst nicht: gekippt zählt für die Sprachsteuerung
+als offen, eine reine Boolean-Auswertung (0 → zu, alles andere → offen) reicht.
+
 **Luftqualität in Worten**: den rohen IAQ-Index sagt dir Hannah nie als Zahl vor,
 sondern übersetzt ihn: bis 50 "gut", bis 100 "okay", bis 150 "leicht belastet", darüber
 "schlecht".
