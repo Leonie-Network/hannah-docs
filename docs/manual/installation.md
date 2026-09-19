@@ -343,3 +343,10 @@ Installations-Script pro Komponente.
     [Core → Installation](../components/core/installation.md) zeigt genau diesen Ablauf noch
     einmal im Detail; die anderen Komponentenseiten unter [Komponenten](../components/index.md)
     folgen demselben Schema mit ihren jeweiligen Pfaden und Variablen.
+
+## Nächste Schritte
+
+Läuft alles, geht's mit der WebUI weiter: erst [Nutzerverwaltung](users.md) (wer darf
+was) und [Satelliten verwalten](satellites.md) (Räume/Besitzer zuordnen), dann
+[Smart-Home-Integration](smart-home-integration.md), um ioBroker-Geräte per Sprache
+steuerbar zu machen.

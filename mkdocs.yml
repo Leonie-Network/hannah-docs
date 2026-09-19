@@ -33,6 +33,13 @@ nav:
   - Start: index.md
   - Handbuch:
       - Installation: manual/installation.md
+      - Nutzerverwaltung: manual/users.md
+      - Satelliten verwalten: manual/satellites.md
+      - Smart-Home-Integration: manual/smart-home-integration.md
+      - Erweiterte Einstellungen: manual/settings.md
+      - Automatisierung:
+          - Trigger: manual/triggers.md
+          - Wecker: manual/alarms.md
       - Komponenten:
           - Übersicht: components/index.md
           - Core:
