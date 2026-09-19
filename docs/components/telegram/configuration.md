@@ -1,5 +1,8 @@
 # Konfiguration
 
+Ein Wert ist Pflicht: `telegram_token`, ohne den der Bot sich gar nicht erst bei
+Telegram anmelden kann. Alles andere kannst du zunächst so lassen.
+
 Telegram hat keine eigene Datenbank für Einstellungen — die komplette Konfiguration liegt
 in `config.yaml`.
 

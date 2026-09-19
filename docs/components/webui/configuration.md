@@ -1,5 +1,9 @@
 # Konfiguration
 
+Zwei Werte musst du wirklich setzen, damit die WebUI läuft: `secret_key` und, falls Core
+nicht auf derselben Maschine läuft, `grpc.host`. Alles andere kannst du zunächst bei den
+Vorgabewerten belassen.
+
 WebUI hat keine eigene Datenbank für Einstellungen — die komplette Konfiguration liegt in
 `config.yaml`.
 

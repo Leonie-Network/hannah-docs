@@ -1,5 +1,9 @@
 # Konfiguration
 
+Nichts hier ist Pflicht — ohne `config.yaml` läuft VoiceID mit den unten gezeigten
+Default-Werten. Ändern lohnt sich nur, wenn die Erkennung in der Praxis zu oft daneben
+liegt.
+
 VoiceID hat keine eigene Datenbank für Einstellungen — die komplette Konfiguration liegt
 in `config.yaml`.
 

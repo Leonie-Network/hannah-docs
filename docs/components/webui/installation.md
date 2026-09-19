@@ -1,7 +1,8 @@
 # Installation
 
 Am schnellsten über [Docker Compose](../../manual/installation.md) — `hannah-webui` ist
-standardmäßig mit dabei (zusammen mit Core).
+standardmäßig mit dabei (zusammen mit Core). Die native Installation auf dieser Seite
+brauchst du nur, wenn du bewusst kein Docker willst.
 
 Verbindet sich per gRPC mit Core (`HANNAH_WEBUI_GRPC_HOST` / `HANNAH_WEBUI_GRPC_PORT`) und
 braucht einen eigenen `HANNAH_WEBUI_SECRET_KEY` (zufälliger String, siehe
@@ -26,7 +27,9 @@ sudo systemctl enable --now hannah-webui
 
 ## Automatisch aktuell halten
 
-Eintrag für [AutoDeploy](../autodeploy/index.md) (`/etc/hannah/autodeploy.yaml`):
+Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
+
+Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
 
 ```yaml
   - name: webui

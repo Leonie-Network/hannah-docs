@@ -1,5 +1,8 @@
 # Satellit
 
+**Pflicht — mindestens einer.** Ohne Satellit hat Hannah kein Mikrofon: Core allein
+verarbeitet nur, was bei ihr ankommt, nimmt selbst aber nichts auf.
+
 Die ESP32-S3-Geräte, die Sprachbefehle per Wake-Word oder PTT aufnehmen und an Hannah
 Core (bzw. den [Proxy](../proxy/index.md)) senden. Eigene Firmware, eigene Hardware —
 siehe [Hardware-Übersicht](../../hardware/overview.md) für PCB und Bauteile.

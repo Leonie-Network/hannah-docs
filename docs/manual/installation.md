@@ -11,7 +11,13 @@ Installations-Script pro Komponente.
 
 ## Variante 1: Docker Compose
 
-Die einfachste Variante. Zum Kopieren als `docker-compose.yml`:
+Die einfachste Variante.
+
+**Du möchtest Hannah nur erstmal ausprobieren?** Dann brauchst du zunächst nur Core und
+WebUI. Die anderen Dienste in der folgenden Compose-Datei sind optional und werden erst
+durch ein passendes Profile aktiviert (Details weiter unten).
+
+Zum Kopieren als `docker-compose.yml`:
 
 ??? note "docker-compose.yml anzeigen"
     ```yaml
@@ -50,7 +56,7 @@ Die einfachste Variante. Zum Kopieren als `docker-compose.yml`:
         ports:
           - "5000:5000"
         environment:
-          HANNAH_WEBUI_SECRET_KEY: "change-me-to-a-random-base64-string"
+          HANNAH_WEBUI_SECRET_KEY: "change-me-to-a-random-string"
           HANNAH_WEBUI_GRPC_HOST: "hannah-core"
           HANNAH_WEBUI_GRPC_PORT: "50051"
 
@@ -165,8 +171,9 @@ Die einfachste Variante. Zum Kopieren als `docker-compose.yml`:
     ```
 
 !!! warning "Passwörter ändern"
-    Die `change-me`-Platzhalter (MySQL-Passwörter, WebUI-Secret-Key) vor dem produktiven
-    Einsatz durch eigene, zufällige Werte ersetzen.
+    Alle Platzhalter, die mit `change-me` beginnen, vor dem produktiven Einsatz durch
+    eigene, zufällige Werte ersetzen — die MySQL-Passwörter (dort steht wörtlich
+    `change-me`) und der WebUI-Secret-Key (dort steht `change-me-to-a-random-string`).
 
 Ohne weitere Angaben startet `docker compose up -d` nur Core und die WebUI. Weitere
 Dienste sind über **Profiles** opt-in, z. B.:
