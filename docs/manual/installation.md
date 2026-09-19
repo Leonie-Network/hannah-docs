@@ -188,6 +188,16 @@ Dienste sind über **Profiles** opt-in, z. B.:
 | `with-mqtt` | Mosquitto (falls du keinen eigenen MQTT-Broker hast) |
 | `full` | alles zusammen |
 
+Profiles lassen sich beliebig kombinieren — du musst nicht gleich zu `full` greifen, nur
+weil du mehr als Core+WebUI willst. Beispiel: MQTT-Broker und Activity-Log dazuschalten,
+alles andere weglassen:
+
+```bash
+docker compose --profile with-mqtt --profile with-db up -d
+```
+
+`full` bleibt die Abkürzung, wenn du wirklich alles auf einmal willst:
+
 ```bash
 docker compose --profile full up -d
 ```
