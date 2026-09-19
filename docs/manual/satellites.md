@@ -25,6 +25,8 @@ nur die dir gehörenden Satelliten.
 | Zuletzt gesehen | Zeitpunkt der letzten Kontaktaufnahme |
 | Firmware | Nur ab Trust 10 sichtbar: aktuelle Version, plus Update-Button falls verfügbar |
 
+![Satelliten-Übersicht mit Raum-, Besitzer- und Firmware-Spalten](../assets/screenshots/manual/satellites-table.png)
+
 **Raum-Diskrepanz**: Meldet sich ein Satellit mit einem anderen Raum, als ihm hier
 zugewiesen ist (z. B. weil er per NVS-Rewrite umgezogen wurde), erscheint ein gelber
 Warnhinweis "Meldet sich als: *Raum*" direkt neben dem Raum-Feld — ein Hinweis, dass die

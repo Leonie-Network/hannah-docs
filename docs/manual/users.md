@@ -60,6 +60,8 @@ bearbeitest bestehende:
 Es gibt daneben noch einen internen, unsichtbaren **Mood-Level** — beeinflusst
 Formulierungen, ist keine von dir zu pflegende Einstellung.
 
+![Nutzerliste mit Trust-Level und Resident-Verknüpfung](../assets/screenshots/manual/users-list.png)
+
 !!! warning "Löschen ist endgültig"
     Einen Nutzer zu löschen entfernt auch alle seine Wecker, verknüpften Konten und
     Presence-Quellen. Satelliten und BLE-Tags, die ihm gehörten, werden nicht gelöscht,
@@ -74,12 +76,15 @@ unterschiedlichen Stellen, je nachdem worum es geht:
   verknüpft: pro Nutzer ein Dropdown mit den vom Residents-Adapter gemeldeten Personen +
   "Verknüpfen"-Button. Ein Resident taucht dort erst auf, sobald ioBroker mindestens
   einmal ein Anwesenheits-Update für ihn geschickt hat.
-- **Telegram** (und perspektivisch Microsoft) — läuft **nicht** über die
-  Nutzerverwaltung, sondern **Self-Service**: jeder Nutzer verknüpft sein eigenes
+- **Telegram** (aktuell der einzige verfügbare Anbieter — weitere sind technisch
+  vorbereitet, aber noch nicht in der Oberfläche freigeschaltet) — läuft **nicht** über
+  die Nutzerverwaltung, sondern **Self-Service**: jeder Nutzer verknüpft sein eigenes
   Telegram-Konto selbst, auf seiner eigenen Profilseite (**Mein Konto** → "Verknüpfte
   Konten" → "Verbinden"). Das startet den offiziellen Telegram-Login-Widget-Flow. Ist
   die [Telegram-Komponente](../components/telegram/index.md) serverseitig nicht
   eingerichtet, taucht der Button gar nicht erst auf.
+
+![Verknüpfte Konten auf „Mein Konto" mit einem verbundenen Telegram-Account](../assets/screenshots/manual/me-linked-accounts.png)
 
 Ein externes Konto lässt sich immer nur mit **einem** Hannah-Nutzer verknüpfen. Sein
 eigenes Konto trennt jeder selbst; ein fremdes zu trennen braucht Trust-Level ≥ 10.

@@ -71,6 +71,8 @@ Ein State-Override sticht einen Geräte-Override, der wiederum die automatische
 Erkennung sticht — du kannst also gezielt nur einen einzelnen State korrigieren, ohne
 das ganze Gerät anzufassen.
 
+![Hannah-Override-Tab an einem ioBroker-State mit Name, Gerätekategorie und canonicalKey](../assets/screenshots/manual/iobroker-override-tab.png)
+
 ## Die Hannah-Kategorien im Detail
 
 Pro Kategorie kennt Hannah feste "canonical keys" mit definiertem Wertebereich:

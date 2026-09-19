@@ -19,6 +19,8 @@ Per Sprache geht das genauso: *"Stell mir einen Wecker auf 7 Uhr"*. Nennst du da
 einen Wochentag (z. B. *"Wecker für Montag um 6 Uhr"*), fragt Hannah aktiv nach, ob
 daraus gleich eine Mo–Fr-Serie werden soll, statt nur den einen Tag anzulegen.
 
+![Wecker-Abschnitt auf „Mein Konto" mit bestehenden Weckern und Anlegen-Formular](../assets/screenshots/manual/me-alarms.png)
+
 ## Verhalten beim Klingeln
 
 - Die Lautstärke steigt langsam an (leise → laut), statt sofort voll loszulegen.
@@ -47,8 +49,8 @@ Uhrzeit eines Weckers trifft, kann diesen Wecker beenden oder für diesen Tag au
 unabhängig davon, wem er gehört. Das ist bewusst so gebaut (jemand soll einen fremden,
 störenden Wecker auch ohne Zugriff auf dessen Account abstellen können), sieht auf den
 ersten Blick aber wie ein Berechtigungsproblem aus. Es gibt aktuell **kein**
-Trust-Level-Gate dafür — falls dir das zu offen ist, ist das ein guter Kandidat für ein
-[Known-Gap](known-gaps.md)-Feedback.
+Trust-Level-Gate dafür — das ist als [Known Gap](known-gaps.md#wecker-kein-trust-level-schutz-beim-löschen-fremder-wecker)
+gelistet und soll langfristig eingeschränkt werden.
 
 In der WebUI dagegen sieht und verwaltet jeder ausschließlich die eigenen Wecker auf
 seiner eigenen "Mein Konto"-Seite.

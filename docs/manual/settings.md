@@ -24,6 +24,8 @@ Jede Liste bearbeitest du direkt inline:
 Änderungen wirken sofort, ohne Core-Neustart. Ist dir ein Wort zu speziell formuliert
 oder fehlt eines ganz (z. B. ein Dialektausdruck), trägst du es einfach hier ein.
 
+![NLU-Zuordnung category_words: deutsches Wort → Gerätekategorie](../assets/screenshots/manual/settings-nlu.png)
+
 ## LLM-System-Prompt
 
 Ebenfalls unter **Einstellungen**, Kategorie **llm**: ein freier Text, der Hannahs
@@ -49,6 +51,8 @@ ihren Status an Hannah melden:
 Fragt jemand *"wo ist mein Auto"*, beantwortet Hannah das ausschließlich mit den
 Fahrzeugen, die der sprechenden Person als Besitzer zugeordnet sind — nie mit fremden
 Autos.
+
+![Fahrzeug-Verwaltung mit bestehendem Auto und Anlegen-Formular](../assets/screenshots/manual/settings-cars.png)
 
 ## Gruppen
 

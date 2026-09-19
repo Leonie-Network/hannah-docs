@@ -6,7 +6,9 @@ automatisch eine Aktion aus, ohne dass du danach fragen musst. Typisches Beispie
 *"Wenn das Küchenfenster länger als 15 Minuten offen ist, sag mir Bescheid."*
 
 Trigger ansehen braucht Trust-Level ≥ 5, anlegen/bearbeiten/löschen ≥ 7 (siehe
-[Nutzerverwaltung → Trust-Level](users.md#trust-level)).
+[Nutzerverwaltung → Trust-Level](users.md#trust-level)). Das vergleichsweise hohe Level
+fürs Anlegen kommt daher, dass Trigger aktuell **global fürs ganze Haus** wirken, nicht
+nur für die eigene Person — siehe [Known Gaps](known-gaps.md#trigger-global-statt-pro-nutzer).
 
 ## Wenn: die Bedingung
 
@@ -22,6 +24,8 @@ Uhrzeit-Zeile, die immer zusätzlich als UND-Filter über allem anderen wirkt):
 
 Phrase-Trigger haben kein Cooldown (siehe unten) — sie sollen jedes Mal reagieren, wenn
 der Satz fällt.
+
+![Trigger-Liste mit Bedingungs-Badges und Aktionen](../assets/screenshots/manual/triggers-list.png)
 
 ### Und / Außer wenn
 
@@ -44,6 +48,8 @@ Pro Trigger sind mehrere Aktionen möglich:
   [Smart-Home-Integration](smart-home-integration.md)-Seite beschrieben)
 - **Anwesenheit setzen** — setzt den Anwesenheitsstatus (zuhause/weg/schläft/wach) eines
   Bewohners direkt, z. B. als Teil einer "Gute Nacht"-Phrase
+
+![Trigger-Editor mit Wenn/Und/Außer-wenn/Dann-Aufbau](../assets/screenshots/manual/trigger-editor.png)
 
 ## Weitere Felder
 
