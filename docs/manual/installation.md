@@ -11,7 +11,13 @@ Installations-Script pro Komponente.
 
 ## Variante 1: Docker Compose
 
-Die einfachste Variante. Zum Kopieren als `docker-compose.yml`:
+Die einfachste Variante.
+
+**Du möchtest Hannah nur erstmal ausprobieren?** Dann brauchst du zunächst nur Core und
+WebUI. Die anderen Dienste in der folgenden Compose-Datei sind optional und werden erst
+durch ein passendes Profile aktiviert (Details weiter unten).
+
+Zum Kopieren als `docker-compose.yml`:
 
 ??? note "docker-compose.yml anzeigen"
     ```yaml
