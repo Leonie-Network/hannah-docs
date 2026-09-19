@@ -1,14 +1,20 @@
 # Installation
 
-Der Adapter ist im **"latest"**-Repository von ioBroker gelistet, nicht im "stable".
-Falls dein ioBroker-Setup nur "stable" verwendet, unter Adapter-Einstellungen zuerst auf
-"latest" umstellen — dann im Tab "Adapter" nach "hannah" suchen und installieren.
+Am einfachsten: der Adapter ist im **"latest"**-Repository von ioBroker gelistet, nicht
+im "stable". Falls dein ioBroker-Setup nur "stable" verwendet, zuerst in den
+**Systemeinstellungen** (Zahnrad-Icon unten links) auf "latest" umstellen — dann im Tab
+"Adapter" nach "hannah" suchen und installieren.
 
-Alternativ manuell, unabhängig vom eingestellten Repository:
+Alternativ, ohne das Repository umzustellen, direkt per npm:
 
 ```bash
-iobroker url https://github.com/NurPech/ioBroker.hannah
+cd /opt/iobroker
+npm install iobroker.hannah@latest
+iobroker add iobroker.hannah
 ```
+
+Oder im Admin mit aktiviertem Expertenmodus über das Adapter-Install-Icon eine
+beliebige Quelle angeben, z. B. `iobroker.hannah@latest`.
 
 Nach der Installation eine Instanz anlegen — siehe [Konfiguration](configuration.md) für
 alle Einstellungen im Adapter-Konfigurationsdialog.
