@@ -175,6 +175,47 @@ Zum Kopieren als `docker-compose.yml`:
     eigene, zufällige Werte ersetzen — die MySQL-Passwörter (dort steht wörtlich
     `change-me`) und der WebUI-Secret-Key (dort steht `change-me-to-a-random-string`).
 
+### Config-Dateien anlegen
+
+**Bevor** du `docker compose up -d` ausführst: Core (und jede weitere Komponente, die du
+per Profile dazuschaltest) braucht ihre eigene Config-Datei im selben Verzeichnis wie
+die `docker-compose.yml` — z. B. `core-config.yaml`. Fehlt sie, legt Docker beim Start
+automatisch einen leeren *Ordner* mit genau diesem Namen an, die Komponente findet keine
+gültige Config und startet mit Fehlern (in den Core-Logs sichtbar).
+
+Für den Standard-Fall (nur Core + WebUI) reicht eine Datei — WebUI selbst braucht keine
+eigene, ihre Einstellungen kommen komplett über Umgebungsvariablen in der
+`docker-compose.yml`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/core/config.example.yaml -o core-config.yaml
+nano core-config.yaml
+```
+
+Mindestens dein MQTT-Passwort darin eintragen — alle Schlüssel erklärt
+[Core → Konfiguration](../components/core/configuration.md).
+
+Schaltest du später weitere Profile dazu, brauchen auch die jeweils ihre eigene
+Config-Datei — mit Ausnahme von [WebUI](../components/webui/installation.md) (siehe
+oben) und [Timer](../components/timer/installation.md): beide wurden von Anfang an
+container-tauglich gebaut und nehmen ihre gesamte Konfiguration über
+Umgebungsvariablen statt einer Datei entgegen.
+
+```bash title="Telegram"
+curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/telegram/config.example.yaml -o telegram-config.yaml
+```
+
+```bash title="Proxy"
+curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/proxy/config.example.yaml -o proxy-config.yaml
+```
+
+```bash title="VoiceID"
+curl -fsSL https://raw.githubusercontent.com/NurPech/hannah/master/voiceid/config.example.yaml -o voiceid-config.yaml
+```
+
+Welche Schlüssel jede Komponente hat, steht auf ihrer jeweiligen Seite unter
+[Komponenten](../components/index.md).
+
 Ohne weitere Angaben startet `docker compose up -d` nur Core und die WebUI. Weitere
 Dienste sind über **Profiles** opt-in, z. B.:
 
@@ -201,11 +242,6 @@ docker compose --profile with-mqtt --profile with-db up -d
 ```bash
 docker compose --profile full up -d
 ```
-
-Jede Komponente braucht ihre eigene Config-Datei (`core-config.yaml`,
-`proxy-config.yaml`, …) im selben Verzeichnis wie die `docker-compose.yml`. Als
-Startpunkt dienen die `config.example.yaml`-Dateien im jeweiligen Komponenten-Ordner des
-[hannah-Repos](https://github.com/NurPech/hannah) (z. B. `core/config.example.yaml`).
 
 ## Variante 2: Native Installation per Script
 
