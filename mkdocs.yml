@@ -50,6 +50,7 @@ nav:
               - Übersicht: components/webui/index.md
               - Installation: components/webui/installation.md
               - Konfiguration: components/webui/configuration.md
+              - Telegram-Verknüpfung einrichten: components/webui/telegram-login.md
           - Satellit:
               - Übersicht: components/satellite/index.md
               - Konfiguration: components/satellite/configuration.md

@@ -49,7 +49,7 @@ Uhrzeit eines Weckers trifft, kann diesen Wecker beenden oder für diesen Tag au
 unabhängig davon, wem er gehört. Das ist bewusst so gebaut (jemand soll einen fremden,
 störenden Wecker auch ohne Zugriff auf dessen Account abstellen können), sieht auf den
 ersten Blick aber wie ein Berechtigungsproblem aus. Es gibt aktuell **kein**
-Trust-Level-Gate dafür — das ist als [Known Gap](known-gaps.md#wecker-kein-trust-level-schutz-beim-löschen-fremder-wecker)
+Trust-Level-Gate dafür — das ist als [Known Gap](known-gaps.md#wecker-kein-trust-level-schutz-beim-loschen-fremder-wecker)
 gelistet und soll langfristig eingeschränkt werden.
 
 In der WebUI dagegen sieht und verwaltet jeder ausschließlich die eigenen Wecker auf

@@ -84,6 +84,13 @@ unterschiedlichen Stellen, je nachdem worum es geht:
   die [Telegram-Komponente](../components/telegram/index.md) serverseitig nicht
   eingerichtet, taucht der Button gar nicht erst auf.
 
+!!! warning "Wichtig: Domain + HTTPS nötig"
+    Der "Verbinden"-Button funktioniert nur, wenn du die WebUI über eine **Domain**
+    aufrufst (nicht per IP-Adresse) und die Verbindung **HTTPS** nutzt — beides
+    verlangt Telegram für den Login-Widget-Flow. Bei einer frischen Installation ist
+    das meist noch nicht eingerichtet. Schritt-für-Schritt-Anleitung:
+    [Telegram-Verknüpfung einrichten](../components/webui/telegram-login.md).
+
 ![Verknüpfte Konten auf „Mein Konto" mit einem verbundenen Telegram-Account](../assets/screenshots/manual/me-linked-accounts.png)
 
 Ein externes Konto lässt sich immer nur mit **einem** Hannah-Nutzer verknüpfen. Sein

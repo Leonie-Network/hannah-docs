@@ -62,10 +62,15 @@ Installations-Script pro Komponente.
               - hannah_network
             ports:
               - "5000:5000"
+            volumes:
+              - webui_data:/data
             environment:
               HANNAH_WEBUI_SECRET_KEY: "change-me-to-a-random-string"
               HANNAH_WEBUI_GRPC_HOST: "hannah-core"
               HANNAH_WEBUI_GRPC_PORT: "50051"
+              # Optional: natives TLS fürs Telegram-Login-Widget, siehe
+              # Telegram-Verknüpfung einrichten (WebUI-Komponente)
+              # HANNAH_WEBUI_TLS_ENABLED: "true"
 
           hannah-telegram:
             image: quay.io/m1kad0/hannah-telegram:latest
@@ -166,6 +171,7 @@ Installations-Script pro Komponente.
           core_data:
           core_activity_audio:
           core_audio_dumps:
+          webui_data:
           timer_data:
           mysql_data:
           mosquitto_data:
