@@ -21,9 +21,103 @@
 Es gibt zwei Wege, Hannah selbst zu betreiben: als Docker-Container, oder nativ per
 Installations-Script pro Komponente.
 
-=== "Docker Compose"
+=== "Docker (Schnellstart)"
 
-    Die einfachste Variante.
+    Komponenten anklicken, fertige `docker-compose.yml` bekommen — inklusive automatisch
+    generierter Passwörter, ganz ohne separate Config-Dateien. Der schnellste Weg, Hannah
+    auszuprobieren.
+
+    !!! tip "Docker-Kenner"
+        Willst du die Datei lieber selbst anpassen (eigene Image-Tags, zusätzliche Volumes,
+        volle Kontrolle) — siehe Tab **Docker Compose (für Docker-Kenner)**.
+
+    <style>
+    .hannah-compose-builder{border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:12px;padding:20px;margin:16px 0;font-family:system-ui,-apple-system,sans-serif}
+    .hannah-compose-builder fieldset{border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:8px;margin:0 0 16px;padding:12px 16px}
+    .hannah-compose-builder legend{font-weight:600;padding:0 4px}
+    .hannah-compose-builder label{display:block;margin:8px 0;font-size:.95rem}
+    .hannah-compose-builder label input[type="text"],
+    .hannah-compose-builder label input[type="password"]{display:block;width:100%;max-width:420px;margin-top:4px;padding:6px 8px;border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:6px;background:var(--md-default-bg-color,#fff);color:var(--md-default-fg-color,#1c2430)}
+    .hannah-compose-builder label input[type="checkbox"],
+    .hannah-compose-builder label input[type="radio"]{margin-right:8px}
+    .hannah-compose-builder [data-hcb="generate"]{background:var(--md-primary-fg-color,#5b4fd1);color:#fff;border:none;border-radius:6px;padding:10px 18px;font-size:1rem;cursor:pointer;margin-top:8px}
+    .hannah-compose-builder [data-hcb="download-compose"]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px}
+    .hannah-compose-builder [data-hcb="errors"]{background:#fdecea;color:#611a15;border-radius:8px;padding:12px 16px;margin:12px 0}
+    .hannah-compose-builder pre{max-height:420px;overflow:auto}
+    </style>
+
+    <div class="hannah-compose-builder" id="hannah-compose-builder">
+
+    <p><strong>Core</strong> und <strong>WebUI</strong> sind immer dabei — alles andere ist optional.</p>
+
+    <label>IP-Adresse dieses Docker-Hosts im Netzwerk (Pflicht — deine Satelliten müssen Hannah über
+    diese Adresse erreichen können, egal ob mit oder ohne Proxy)
+    <input type="text" data-hcb="host-lan-ip" placeholder="192.168.1.5"></label>
+
+    <fieldset>
+    <legend>Komponenten</legend>
+    <label><input type="checkbox" checked disabled> Core (immer dabei)</label>
+    <label><input type="checkbox" checked disabled> WebUI (immer dabei)</label>
+    <label><input type="checkbox" data-hcb="component-telegram"> Telegram — Hannah per Chat ansprechen</label>
+    <div data-hcb="telegram-fields" hidden style="margin-left:24px">
+    <label>Bot-Token (von <a href="https://core.telegram.org/bots#how-do-i-create-a-bot">@BotFather</a>)<input type="text" data-hcb="telegram-token" placeholder="123456:ABC-DEF..."></label>
+    <label>WebUI-URL für Bot-Antworten (optional)<input type="text" data-hcb="telegram-webui-url" placeholder="https://hannah.example.com"></label>
+    </div>
+    <label><input type="checkbox" data-hcb="component-proxy"> Proxy — nimmt Core die UDP-Verarbeitung ab</label>
+    <label><input type="checkbox" data-hcb="component-voiceid"> VoiceID — erkennt wer spricht</label>
+    <label><input type="checkbox" data-hcb="component-timer"> Timer — Timer und Wecker</label>
+    </fieldset>
+
+    <fieldset>
+    <legend>MQTT-Broker (kein Optional-Teil — Core braucht immer einen)</legend>
+    <label><input type="radio" name="hcb-mqtt-mode" value="bundled" checked> Mitgelieferten Mosquitto nutzen (einfachster Fall, ohne Auth)</label>
+    <label><input type="radio" name="hcb-mqtt-mode" value="own"> Eigenen Broker verwenden</label>
+    <div data-hcb="mqtt-own-fields" hidden style="margin-left:24px">
+    <label>Adresse<input type="text" data-hcb="mqtt-host" placeholder="192.168.1.1"></label>
+    <label>Port (optional, Default 1883)<input type="text" data-hcb="mqtt-port"></label>
+    <label>Benutzername (optional)<input type="text" data-hcb="mqtt-user"></label>
+    <label>Passwort (optional)<input type="password" data-hcb="mqtt-pass"></label>
+    </div>
+    </fieldset>
+
+    <fieldset>
+    <legend>Aktivitäts-Log</legend>
+    <label><input type="checkbox" data-hcb="activity-log-enabled"> Aktivitäts-Log aktivieren</label>
+    <div data-hcb="db-fields" hidden style="margin-left:24px">
+    <label><input type="radio" name="hcb-db-mode" value="bundled" checked> Mitgelieferte Datenbank verwenden</label>
+    <label><input type="radio" name="hcb-db-mode" value="own"> Bestehende Datenbank verwenden</label>
+    <div data-hcb="db-own-fields" hidden style="margin-left:24px">
+    <label>Adresse<input type="text" data-hcb="db-host" placeholder="192.168.1.X"></label>
+    <label>Port (optional, Default 3306)<input type="text" data-hcb="db-port"></label>
+    <label>Benutzername<input type="text" data-hcb="db-user"></label>
+    <label>Passwort<input type="password" data-hcb="db-pass"></label>
+    <label>Datenbankname<input type="text" data-hcb="db-name"></label>
+    </div>
+    </div>
+    </fieldset>
+
+    <div data-hcb="errors" hidden></div>
+
+    <button type="button" data-hcb="generate">docker-compose.yml erzeugen</button>
+
+    <div data-hcb="output" hidden>
+    <p>Fertig — Passwörter und Secrets wurden automatisch zufällig generiert, keine
+    <code>change-me</code>-Platzhalter mehr. Einfach herunterladen und
+    <code>docker compose up -d</code> ausführen.</p>
+    <p>Danach kurz <code>docker compose logs -f hannah-core</code> prüfen — beim
+    allerersten Start steht dort dein generierter Admin-Login, siehe
+    <a href="../users/#erster-login">Nutzerverwaltung → Erster Login</a>.</p>
+    <pre><code data-hcb="yaml-code"></code></pre>
+    <button type="button" data-hcb="download-compose">docker-compose.yml herunterladen</button>
+    </div>
+
+    </div>
+
+=== "Docker Compose (für Docker-Kenner)"
+
+    Für alle, die sich mit Docker auskennen und die Datei lieber selbst anpassen (z.B. eigene
+    Image-Tags, zusätzliche Volumes) — der Builder im Tab **Docker (Schnellstart)** deckt den
+    Standardfall ab, hier die volle Datei mit allen Komponenten über Profiles gesteuert.
 
     **Du möchtest Hannah nur erstmal ausprobieren?** Dann brauchst du zunächst nur Core und
     WebUI. Die anderen Dienste in der folgenden Compose-Datei sind optional und werden erst
@@ -52,6 +146,7 @@ Installations-Script pro Komponente.
                 required: false
             ports:
               - "50051:50051"
+              - "7775:7775/udp"
             networks:
               - hannah_network
             volumes:
@@ -100,6 +195,8 @@ Installations-Script pro Komponente.
             restart: unless-stopped
             pull_policy: always
             profiles: ["full", "with-proxy"]
+            # Nutzt du with-proxy: hier "- \"7775:7775/udp\"" ergänzen und dieselbe
+            # Zeile bei hannah-core entfernen (Port-Konflikt sonst, siehe Warnhinweis oben)
             depends_on:
               - hannah-core
             networks:
@@ -220,6 +317,13 @@ Installations-Script pro Komponente.
     siehe [with-mqtt](#mosquitto-config-nur-bei-with-mqtt) weiter unten). Alle Schlüssel
     erklärt [Core → Konfiguration](../components/core/configuration.md).
 
+    !!! warning "udp.advertise_host setzen"
+        Ohne Proxy (siehe Profile-Tabelle unten) übernimmt Core selbst die UDP-Verbindung zu
+        deinen Satelliten — dafür muss `udp.advertise_host` in `core-config.yaml` auf die
+        **LAN-IP-Adresse dieses Docker-Hosts** zeigen (nicht leer lassen: Core würde sonst
+        seine eigene, von außen unerreichbare Container-Adresse im Netzwerk bekanntgeben, und
+        kein Satellit findet sie).
+
     Schaltest du später weitere Profile dazu, brauchen auch die jeweils ihre eigene
     Config-Datei — mit Ausnahme von [WebUI](../components/webui/installation.md) (siehe
     oben) und [Timer](../components/timer/installation.md): beide wurden von Anfang an
@@ -259,6 +363,19 @@ Installations-Script pro Komponente.
         ohne läuft er zwar an, aber Satelliten-Steuerung und MQTT-Trigger bleiben tot.
         `with-mqtt` ist nur dann verzichtbar, wenn `mqtt.host` stattdessen auf einen
         eigenen, bereits laufenden Broker zeigt.
+
+    !!! warning "with-proxy: Port-Zeile manuell umziehen"
+        Core und Proxy können nicht beide gleichzeitig Port `7775/udp` auf dem Host
+        belegen — `docker compose up -d` startet sonst nur den ersten der beiden, der
+        zweite scheitert mit "port is already allocated". Aktivierst du `with-proxy`,
+        musst du deshalb von Hand:
+
+        1. bei `hannah-core` die Zeile `- "7775:7775/udp"` unter `ports:` entfernen
+        2. sie stattdessen bei `hannah-proxy` unter `ports:` eintragen
+        3. in `proxy-config.yaml` `udp.advertise_host` auf die LAN-IP dieses Docker-Hosts
+           setzen (dieselbe Adresse wie oben bei `udp.advertise_host` in `core-config.yaml`
+           — die braucht Core dann nicht mehr, weil sie ihre UDP-Verarbeitung an Proxy
+           abgibt)
 
     ### Mosquitto-Config (nur bei `with-mqtt`)
 
@@ -306,6 +423,11 @@ Installations-Script pro Komponente.
     anderen Komponente ersetzen (z. B. `hannah-webui`), um deren Log zu sehen. Beendet mit
     Strg+C.
 
+    !!! tip "Admin-Zugangsdaten stehen im Log"
+        Beim allerersten Start legt Core automatisch einen Admin-Account mit zufälligem
+        Passwort an und gibt beides genau einmal hier aus — siehe
+        [Nutzerverwaltung → Erster Login](users.md#erster-login).
+
 === "Native Installation"
 
     Kein Docker: jede Komponente installiert sich per eigenem `deploy/install.sh` direkt auf
@@ -349,6 +471,10 @@ Installations-Script pro Komponente.
     sudo journalctl -u hannah -f
     ```
 
+    Beim allerersten Start legt Core hier automatisch einen Admin-Account mit zufälligem
+    Passwort an und gibt beides genau einmal aus — siehe
+    [Nutzerverwaltung → Erster Login](users.md#erster-login).
+
     **4. Aktuell halten** — entweder das Install-Script bei jedem neuen Release erneut
     ausführen, oder [AutoDeploy](../components/autodeploy/index.md) das automatisch für dich
     erledigen lassen ([Sicherheitshinweis](../components/autodeploy/index.md) dort unbedingt
@@ -367,7 +493,8 @@ Installations-Script pro Komponente.
 
 ## Nächste Schritte
 
-Läuft alles, geht's mit der WebUI weiter: erst [Nutzerverwaltung](users.md) (wer darf
-was) und [Satelliten verwalten](satellites.md) (Räume/Besitzer zuordnen), dann
-[Smart-Home-Integration](smart-home-integration.md), um ioBroker-Geräte per Sprache
-steuerbar zu machen.
+Läuft alles, geht's mit der WebUI weiter: zuerst mit den Admin-Zugangsdaten aus dem
+Core-Log einloggen (siehe [Nutzerverwaltung → Erster Login](users.md#erster-login)), dann
+[Nutzerverwaltung](users.md) (wer darf was) und [Satelliten verwalten](satellites.md)
+(Räume/Besitzer zuordnen), dann [Smart-Home-Integration](smart-home-integration.md), um
+ioBroker-Geräte per Sprache steuerbar zu machen.

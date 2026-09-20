@@ -44,6 +44,11 @@ sudo journalctl -u hannah -f
 `status` zeigt den aktuellen Zustand (läuft/abgestürzt/deaktiviert), `journalctl -f`
 folgt dem Log live — hier siehst du z. B. sofort, wenn die Config fehlerhaft ist.
 
+!!! tip "Admin-Zugangsdaten stehen im Log"
+    Beim allerersten Start (leere Datenbank) legt Core automatisch einen Admin-Account mit
+    zufälligem Passwort an und gibt beides genau einmal hier aus — siehe
+    [Nutzerverwaltung → Erster Login](../../manual/users.md#erster-login).
+
 Steuerbar über Umgebungsvariablen:
 
 | Variable | Zweck | Default |

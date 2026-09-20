@@ -32,6 +32,12 @@ sudo systemctl status hannah-webui
 sudo journalctl -u hannah-webui -f
 ```
 
+!!! tip "Erster Login"
+    Die WebUI legt selbst keinen Account an — das macht Core beim allerersten Start
+    automatisch (Admin-Account, zufälliges Passwort, einmalig ins Core-Log geschrieben).
+    Mit diesen Zugangsdaten meldest du dich hier zum ersten Mal an, siehe
+    [Nutzerverwaltung → Erster Login](../../manual/users.md#erster-login).
+
 Zum Deinstallieren (Config bleibt erhalten), Script liegt bereits im
 Installationsverzeichnis:
 
