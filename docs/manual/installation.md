@@ -12,6 +12,11 @@
   Ein leistungsstärkerer Server (z. B. x86) ist ebenso geeignet
 - Eine laufende [ioBroker](https://www.iobroker.com/)-Instanz
 - Mindestens ein Satellit — entweder die eigene Platine (siehe [Hardware](../hardware/overview.md)) oder ein Dev-Kit zum Ausprobieren
+- **Ein erreichbarer MQTT-Broker.** Core startet zwar auch ohne, aber Satelliten-Steuerung
+  und MQTT-basierte Trigger funktionieren dann nicht — das ergibt so wenig Sinn. Hast du
+  schon einen eigenen (z. B. für andere Smart-Home-Komponenten), trägst du nur seine
+  Adresse ein. Sonst bringt die Docker-Compose-Variante weiter unten optional einen fertig
+  konfigurierten Mosquitto-Broker mit.
 
 Es gibt zwei Wege, Hannah selbst zu betreiben: als Docker-Container, oder nativ per
 Installations-Script pro Komponente.
@@ -22,7 +27,11 @@ Installations-Script pro Komponente.
 
     **Du möchtest Hannah nur erstmal ausprobieren?** Dann brauchst du zunächst nur Core und
     WebUI. Die anderen Dienste in der folgenden Compose-Datei sind optional und werden erst
-    durch ein passendes Profile aktiviert (Details weiter unten).
+    durch ein passendes Profile aktiviert (Details weiter unten) — nur bei MQTT lohnt sich
+    ein genauerer Blick: Core startet zwar auch ohne Broker durch, aber ohne einen (eigenen
+    oder per `with-mqtt` mitgeliefert) funktioniert nichts, was über Satelliten oder
+    MQTT-Trigger läuft. "Optional" bei Mosquitto heißt nur: der *mitgelieferte Container*
+    ist optional, falls du schon einen eigenen Broker hast — nicht MQTT als Ganzes.
 
     Zum Kopieren als `docker-compose.yml`:
 
@@ -244,6 +253,12 @@ Installations-Script pro Komponente.
     | `with-db` | MySQL (Activity-Log) |
     | `with-mqtt` | Mosquitto (falls du keinen eigenen MQTT-Broker hast) |
     | `full` | alles zusammen |
+
+    !!! warning "MQTT ist keine Option, nur der Broker dahinter"
+        Core braucht immer einen erreichbaren MQTT-Broker, um richtig zu funktionieren —
+        ohne läuft er zwar an, aber Satelliten-Steuerung und MQTT-Trigger bleiben tot.
+        `with-mqtt` ist nur dann verzichtbar, wenn `mqtt.host` stattdessen auf einen
+        eigenen, bereits laufenden Broker zeigt.
 
     ### Mosquitto-Config (nur bei `with-mqtt`)
 
