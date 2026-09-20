@@ -106,6 +106,9 @@ nav:
           - Update Server: services/update-server.md
           - WebUI: services/webui.md
 
+extra_javascript:
+  - assets/js/compose-builder.js
+
 markdown_extensions:
   - abbr
   - admonition
