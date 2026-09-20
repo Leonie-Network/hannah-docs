@@ -5,6 +5,39 @@ WebUI und im Rest dieser Doku auch "Roomie" genannt. Nutzer regeln zwei Dinge: *
 was* (Trust-Level) und *wer ist gerade zuhause* (Anwesenheit, siehe
 [Presence-Quellen](#presence-quellen-anwesenheit)).
 
+## Erster Login
+
+Beim allerersten Start (leere Datenbank, noch kein Nutzer angelegt) legt Core automatisch
+einen **Admin-Account** mit zufällig generiertem Passwort an — Benutzername `admin`,
+Trust-Level 10. Beides wird **genau einmal** ins Core-Log geschrieben, danach nirgends
+mehr angezeigt:
+
+```text
+=======================================================
+  First-run: admin account created
+  Username : admin
+  Password : Xk3mZ9pQvR2tYbNc8dF1Lg
+  Please change the password after first login!
+=======================================================
+```
+
+Wo du das findest, hängt davon ab, wie Core läuft:
+
+- **Docker**: `docker compose logs -f hannah-core` (oder `docker logs hannah-core`, falls
+  der Container schon eine Weile läuft und du weiter zurückscrollen musst)
+- **Native Installation**: `sudo journalctl -u hannah -f` — oder ohne `-f` durchsuchen,
+  falls der Start schon länger zurückliegt
+
+Mit diesem Login meldest du dich einmalig in der WebUI an und legst dir dort einen eigenen
+Nutzer an (oder änderst direkt das Admin-Passwort, siehe
+[Nutzer anlegen und bearbeiten](#nutzer-anlegen-und-bearbeiten) unten).
+
+!!! warning "Passwort verpasst?"
+    Ein zweites Mal wird die Meldung nicht ausgegeben — auch nicht bei einem Neustart,
+    solange schon Nutzer in der Datenbank stehen. Findest du sie in deinem Log nicht mehr
+    (z. B. weil er inzwischen rotiert wurde), bleibt nur der Weg über die Datenbank direkt
+    auf dem Server, um einen neuen Admin anzulegen oder das Passwort zurückzusetzen.
+
 ## Trust-Level
 
 Jeder Nutzer hat ein **Trust-Level von 0 bis 10**. Es ist keine Alters- oder
