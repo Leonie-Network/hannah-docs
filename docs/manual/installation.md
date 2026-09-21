@@ -32,7 +32,7 @@ Installations-Script pro Komponente.
         volle Kontrolle) — siehe Tab **Docker Compose (für Docker-Kenner)**.
 
     <style>
-    .hannah-compose-builder{border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:12px;padding:20px;margin:16px 0;font-family:system-ui,-apple-system,sans-serif}
+    .hannah-compose-builder{font-family:system-ui,-apple-system,sans-serif}
     .hannah-compose-builder fieldset{border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:8px;margin:0 0 16px;padding:12px 16px}
     .hannah-compose-builder legend{font-weight:600;padding:0 4px}
     .hannah-compose-builder label{display:block;margin:8px 0;font-size:.95rem}
@@ -47,15 +47,13 @@ Installations-Script pro Komponente.
     .hannah-compose-builder [data-copy-target]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px;margin-right:8px}
     .hannah-compose-builder [data-hcb="errors"]{background:#fdecea;color:#611a15;border-radius:8px;padding:12px 16px;margin:12px 0}
     .hannah-compose-builder pre{max-height:420px;overflow:auto}
-    .hannah-compose-builder .admonition:first-child{margin-top:0}
     </style>
-
-    <div class="hannah-compose-builder" id="hannah-compose-builder">
 
     <div class="admonition tip">
     <p class="admonition-title">🧩 Interaktiver Builder</p>
     <p>Häkchen setzen, Felder ausfüllen — unten direkt die passende <code>docker-compose.yml</code> herunterladen.</p>
-    </div>
+
+    <div class="hannah-compose-builder" id="hannah-compose-builder">
 
     <p><strong>Core</strong> und <strong>WebUI</strong> sind immer dabei — alles andere ist optional.</p>
 
@@ -120,6 +118,8 @@ Installations-Script pro Komponente.
     <pre><code data-hcb="yaml-code"></code></pre>
     <button type="button" data-hcb="download-compose">docker-compose.yml herunterladen</button>
     <button type="button" data-copy-target='[data-hcb="yaml-code"]'>In Zwischenablage kopieren</button>
+    </div>
+
     </div>
 
     </div>
