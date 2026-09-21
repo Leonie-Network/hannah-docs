@@ -37,11 +37,14 @@ Installations-Script pro Komponente.
     .hannah-compose-builder legend{font-weight:600;padding:0 4px}
     .hannah-compose-builder label{display:block;margin:8px 0;font-size:.95rem}
     .hannah-compose-builder label input[type="text"],
-    .hannah-compose-builder label input[type="password"]{display:block;width:100%;max-width:420px;margin-top:4px;padding:6px 8px;border:1px solid var(--md-default-fg-color--lightest,#c7d0da);border-radius:6px;background:var(--md-default-bg-color,#fff);color:var(--md-default-fg-color,#1c2430)}
+    .hannah-compose-builder label input[type="password"]{display:block;width:100%;max-width:420px;margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid var(--md-default-fg-color--light,#8b96a3);border-radius:6px;background:var(--md-code-bg-color,#f5f5f5);color:var(--md-default-fg-color,#1c2430)}
+    .hannah-compose-builder label input[type="text"]:focus,
+    .hannah-compose-builder label input[type="password"]:focus{outline:none;border-color:var(--md-accent-fg-color,#5b4fd1);box-shadow:0 0 0 3px var(--md-accent-fg-color--transparent,rgba(91,79,209,.25))}
     .hannah-compose-builder label input[type="checkbox"],
     .hannah-compose-builder label input[type="radio"]{margin-right:8px}
     .hannah-compose-builder [data-hcb="generate"]{background:var(--md-primary-fg-color,#5b4fd1);color:#fff;border:none;border-radius:6px;padding:10px 18px;font-size:1rem;cursor:pointer;margin-top:8px}
-    .hannah-compose-builder [data-hcb="download-compose"]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px}
+    .hannah-compose-builder [data-hcb="download-compose"],
+    .hannah-compose-builder [data-copy-target]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px;margin-right:8px}
     .hannah-compose-builder [data-hcb="errors"]{background:#fdecea;color:#611a15;border-radius:8px;padding:12px 16px;margin:12px 0}
     .hannah-compose-builder pre{max-height:420px;overflow:auto}
     .hannah-compose-builder .admonition:first-child{margin-top:0}
@@ -116,6 +119,7 @@ Installations-Script pro Komponente.
     <a href="../users/#erster-login">Nutzerverwaltung → Erster Login</a>.</p>
     <pre><code data-hcb="yaml-code"></code></pre>
     <button type="button" data-hcb="download-compose">docker-compose.yml herunterladen</button>
+    <button type="button" data-copy-target='[data-hcb="yaml-code"]'>In Zwischenablage kopieren</button>
     </div>
 
     </div>

@@ -27,6 +27,7 @@ theme:
     - navigation.tabs
     - navigation.indexes
     - content.action.edit
+    - content.code.copy
     - search.suggest
 
 nav:

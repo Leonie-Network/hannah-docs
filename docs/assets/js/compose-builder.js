@@ -363,6 +363,27 @@
     URL.revokeObjectURL(url);
   }
 
+  // Universeller Kopieren-Button — <button data-copy-target="CSS-Selektor"> kopiert
+  // den Text des referenzierten Elements in die Zwischenablage. Unabhängig vom
+  // Compose-Builder nutzbar, überall wo dieses Skript eingebunden ist (siehe
+  // extra_javascript in mkdocs.yml, gilt für alle Seiten).
+  function initCopyButtons() {
+    document.querySelectorAll("[data-copy-target]").forEach(function (btn) {
+      var defaultLabel = btn.textContent;
+      btn.addEventListener("click", function () {
+        var target = document.querySelector(btn.getAttribute("data-copy-target"));
+        if (!target) return;
+        var text = "value" in target ? target.value : target.textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Kopiert!";
+          setTimeout(function () {
+            btn.textContent = defaultLabel;
+          }, 1500);
+        });
+      });
+    });
+  }
+
   function init() {
     var root = document.getElementById("hannah-compose-builder");
     if (!root) return;
@@ -418,6 +439,11 @@
     });
   }
 
-  if (document.readyState !== "loading") init();
-  else document.addEventListener("DOMContentLoaded", init);
+  function boot() {
+    initCopyButtons();
+    init();
+  }
+
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
 })();
