@@ -48,6 +48,8 @@
     sel.dbPass = root.querySelector('[data-hcb="db-pass"]').value.trim();
     sel.dbName = root.querySelector('[data-hcb="db-name"]').value.trim();
 
+    sel.webuiTls = root.querySelector('[data-hcb="webui-tls"]').checked;
+
     sel.telegramToken = root.querySelector('[data-hcb="telegram-token"]').value.trim();
     sel.telegramWebuiUrl = root.querySelector('[data-hcb="telegram-webui-url"]').value.trim();
     sel.hostLanIp = root.querySelector('[data-hcb="host-lan-ip"]').value.trim();
@@ -178,13 +180,13 @@
     lines.push('      - "5000:5000"');
     lines.push("    volumes:");
     lines.push("      - webui_data:/data");
-    lines = lines.concat(
-      envBlock("    ", [
-        ["HANNAH_WEBUI_SECRET_KEY", secrets.webuiSecretKey],
-        ["HANNAH_WEBUI_GRPC_HOST", "hannah-core"],
-        ["HANNAH_WEBUI_GRPC_PORT", "50051"],
-      ])
-    );
+    var webuiEnv = [
+      ["HANNAH_WEBUI_SECRET_KEY", secrets.webuiSecretKey],
+      ["HANNAH_WEBUI_GRPC_HOST", "hannah-core"],
+      ["HANNAH_WEBUI_GRPC_PORT", "50051"],
+    ];
+    if (sel.webuiTls) webuiEnv.push(["HANNAH_WEBUI_TLS_ENABLED", "true"]);
+    lines = lines.concat(envBlock("    ", webuiEnv));
 
     // --- hannah-telegram -------------------------------------------------
     if (sel.telegram) {

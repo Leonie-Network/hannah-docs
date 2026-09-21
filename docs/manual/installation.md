@@ -44,9 +44,15 @@ Installations-Script pro Komponente.
     .hannah-compose-builder [data-hcb="download-compose"]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px}
     .hannah-compose-builder [data-hcb="errors"]{background:#fdecea;color:#611a15;border-radius:8px;padding:12px 16px;margin:12px 0}
     .hannah-compose-builder pre{max-height:420px;overflow:auto}
+    .hannah-compose-builder .admonition:first-child{margin-top:0}
     </style>
 
     <div class="hannah-compose-builder" id="hannah-compose-builder">
+
+    <div class="admonition tip">
+    <p class="admonition-title">🧩 Interaktiver Builder</p>
+    <p>Häkchen setzen, Felder ausfüllen — unten direkt die passende <code>docker-compose.yml</code> herunterladen.</p>
+    </div>
 
     <p><strong>Core</strong> und <strong>WebUI</strong> sind immer dabei — alles andere ist optional.</p>
 
@@ -58,6 +64,7 @@ Installations-Script pro Komponente.
     <legend>Komponenten</legend>
     <label><input type="checkbox" checked disabled> Core (immer dabei)</label>
     <label><input type="checkbox" checked disabled> WebUI (immer dabei)</label>
+    <label style="margin-left:24px"><input type="checkbox" data-hcb="webui-tls"> TLS aktivieren (selbstsigniertes Zertifikat, z.B. für Telegram-Login-Widget)</label>
     <label><input type="checkbox" data-hcb="component-telegram"> Telegram — Hannah per Chat ansprechen</label>
     <div data-hcb="telegram-fields" hidden style="margin-left:24px">
     <label>Bot-Token (von <a href="https://core.telegram.org/bots#how-do-i-create-a-bot">@BotFather</a>)<input type="text" data-hcb="telegram-token" placeholder="123456:ABC-DEF..."></label>
