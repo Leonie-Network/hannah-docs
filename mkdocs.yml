@@ -55,6 +55,7 @@ nav:
           - Satellit:
               - Übersicht: components/satellite/index.md
               - Konfiguration: components/satellite/configuration.md
+              - Lite-Satellit (PC): components/satellite/lite.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md
@@ -63,6 +64,9 @@ nav:
               - Übersicht: components/telegram/index.md
               - Installation: components/telegram/installation.md
               - Konfiguration: components/telegram/configuration.md
+          - Chat (Terminal):
+              - Übersicht: components/chat/index.md
+              - Installation: components/chat/installation.md
           - VoiceID:
               - Übersicht: components/voiceid/index.md
               - Installation: components/voiceid/installation.md
