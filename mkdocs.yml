@@ -63,6 +63,9 @@ nav:
               - Übersicht: components/telegram/index.md
               - Installation: components/telegram/installation.md
               - Konfiguration: components/telegram/configuration.md
+          - Chat (Terminal):
+              - Übersicht: components/chat/index.md
+              - Installation: components/chat/installation.md
           - VoiceID:
               - Übersicht: components/voiceid/index.md
               - Installation: components/voiceid/installation.md

@@ -115,6 +115,7 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
 | [Satellit](satellite/index.md) | ESP32-S3-Hardware, nimmt Sprachbefehle auf | Ja (mind. einer) |
 | [Proxy](proxy/index.md) | Nimmt Core die UDP-Audio-Verarbeitung der Satelliten ab — sinnvoll, wenn viele Satelliten Core sonst zu sehr belasten würden | Nein |
 | [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Nein |
+| [Chat (Terminal)](chat/index.md) | Hannah am PC per Tastatur schreiben, direkt im Terminal | Nein |
 | [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Nein |
 | [Timer](timer/index.md) | Timer und Wecker | Nein |
 | [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Nein |
