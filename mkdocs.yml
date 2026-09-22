@@ -54,6 +54,7 @@ nav:
           - Satellit:
               - Übersicht: components/satellite/index.md
               - Konfiguration: components/satellite/configuration.md
+              - Lite-Satellit (PC): components/satellite/lite.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md
