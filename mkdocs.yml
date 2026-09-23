@@ -52,6 +52,7 @@ nav:
               - Installation: components/webui/installation.md
               - Konfiguration: components/webui/configuration.md
               - Telegram-Verknüpfung einrichten: components/webui/telegram-login.md
+              - Microsoft-Entra-Verknüpfung einrichten: components/webui/entra-login.md
           - Satellit:
               - Übersicht: components/satellite/index.md
               - Konfiguration: components/satellite/configuration.md

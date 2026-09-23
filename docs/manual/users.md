@@ -109,25 +109,44 @@ unterschiedlichen Stellen, je nachdem worum es geht:
   verknüpft: pro Nutzer ein Dropdown mit den vom Residents-Adapter gemeldeten Personen +
   "Verknüpfen"-Button. Ein Resident taucht dort erst auf, sobald ioBroker mindestens
   einmal ein Anwesenheits-Update für ihn geschickt hat.
-- **Telegram** (aktuell der einzige verfügbare Anbieter — weitere sind technisch
-  vorbereitet, aber noch nicht in der Oberfläche freigeschaltet) — läuft **nicht** über
-  die Nutzerverwaltung, sondern **Self-Service**: jeder Nutzer verknüpft sein eigenes
-  Telegram-Konto selbst, auf seiner eigenen Profilseite (**Mein Konto** → "Verknüpfte
-  Konten" → "Verbinden"). Das startet den offiziellen Telegram-Login-Widget-Flow. Ist
-  die [Telegram-Komponente](../components/telegram/index.md) serverseitig nicht
-  eingerichtet, taucht der Button gar nicht erst auf.
-
-!!! warning "Wichtig: Domain + HTTPS nötig"
-    Der "Verbinden"-Button funktioniert nur, wenn du die WebUI über eine **Domain**
-    aufrufst (nicht per IP-Adresse) und die Verbindung **HTTPS** nutzt — beides
-    verlangt Telegram für den Login-Widget-Flow. Bei einer frischen Installation ist
-    das meist noch nicht eingerichtet. Schritt-für-Schritt-Anleitung:
-    [Telegram-Verknüpfung einrichten](../components/webui/telegram-login.md).
+- **Telegram** und **Microsoft Entra** — laufen **nicht** über die Nutzerverwaltung,
+  sondern **Self-Service**: jeder Nutzer verknüpft seine eigenen Konten selbst, auf seiner
+  eigenen Profilseite (**Mein Konto** → "Verknüpfte Konten" → "Verbinden").
 
 ![Verknüpfte Konten auf „Mein Konto" mit einem verbundenen Telegram-Account](../assets/screenshots/manual/me-linked-accounts.png)
 
 Ein externes Konto lässt sich immer nur mit **einem** Hannah-Nutzer verknüpfen. Sein
 eigenes Konto trennt jeder selbst; ein fremdes zu trennen braucht Trust-Level ≥ 10.
+
+### Telegram
+
+Läuft die [Telegram-Komponente](../components/telegram/index.md), zeigt **Mein Konto**
+bei Telegram einen "Verbinden"-Button. Ein Klick öffnet einen Link zum Hannah-Bot in
+Telegram; dort drückst du auf **Start**, und der Bot bestätigt die Verknüpfung. **Mein
+Konto** aktualisiert sich währenddessen von selbst, sobald die Verknüpfung steht.
+
+Der Link gilt zehn Minuten und nur ein einziges Mal. Ist er abgelaufen, sagt dir der Bot
+das — dann in der WebUI einfach noch einmal auf "Verbinden" klicken. Eine Domain, HTTPS
+oder eigene Telegram-Einstellungen in der WebUI brauchst du dafür nicht.
+
+!!! note "Kein Button zu sehen?"
+    Dann ist die Telegram-Komponente gerade nicht mit Hannah verbunden — nicht
+    installiert, gestoppt oder noch in einer älteren Version. Ohne laufenden Bot ergibt
+    eine Verknüpfung ohnehin keinen Sinn, deshalb blendet die WebUI den Button in dem Fall
+    bewusst aus.
+
+    Als Rückfallebene kennt die WebUI noch das Telegram-Login-Widget. Das braucht
+    allerdings Domain und HTTPS, siehe
+    [Telegram-Verknüpfung einrichten](../components/webui/telegram-login.md).
+
+### Microsoft Entra
+
+Ist in der WebUI eine Microsoft-Entra-Anmeldung eingerichtet (siehe
+[Microsoft-Entra-Verknüpfung einrichten](../components/webui/entra-login.md)), zeigt
+**Mein Konto** bei "Microsoft Entra" einen "Verbinden"-Button. Ein Klick leitet zur
+Microsoft-Anmeldung weiter; nach dem Login landest du wieder auf **Mein Konto**, und das
+Konto ist verknüpft. Ist die Anmeldung nicht eingerichtet, steht dort statt des Buttons nur
+ein Hinweis.
 
 ## Presence-Quellen (Anwesenheit)
 

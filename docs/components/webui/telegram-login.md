@@ -1,11 +1,17 @@
 # Telegram-Verknüpfung einrichten
 
-Diese Seite brauchst du nur, wenn der "Verbinden"-Button unter **Mein Konto** →
-"Verknüpfte Konten" → Telegram bei dir nicht funktioniert (siehe
-[Verknüpfte Konten](../../manual/users.md#verknupfte-konten)). Grund ist fast immer
-derselbe: Telegrams Login-Widget verlangt zwingend eine **echte Domain** (keine
-IP-Adresse) und **HTTPS** — beides ist bei einer frischen Installation noch nicht
-eingerichtet.
+!!! success "Diese Seite brauchst du normalerweise nicht"
+    Läuft die [Telegram-Komponente](../telegram/index.md), verknüpft **Mein Konto**
+    Telegram über einen Link zum Hannah-Bot — ganz ohne Domain und HTTPS (siehe
+    [Verknüpfte Konten](../../manual/users.md#verknupfte-konten)).
+
+!!! warning "Nur für die Rückfallebene"
+    Die Einrichtung hier betrifft nur das Telegram-Login-Widget, das die WebUI anbietet,
+    solange keine Telegram-Komponente mit Hannah verbunden ist — etwa weil sie noch in einer
+    älteren Version läuft. Das Widget verlangt zwingend eine **echte Domain** (keine
+    IP-Adresse) und **HTTPS**, außerdem `telegram_bot_token` und `telegram_bot_username` in
+    der [Konfiguration](configuration.md). Nichts davon ist bei einer frischen Installation
+    eingerichtet.
 
 Von außerhalb deines eigenen Netzwerks muss dabei niemand auf die WebUI zugreifen
 können — die komplette Einrichtung hier bleibt innerhalb deines LAN, keine
