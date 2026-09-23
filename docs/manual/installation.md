@@ -65,7 +65,7 @@ Installations-Script pro Komponente.
     <legend>Komponenten</legend>
     <label><input type="checkbox" checked disabled> Core (immer dabei)</label>
     <label><input type="checkbox" checked disabled> WebUI (immer dabei)</label>
-    <label style="margin-left:24px"><input type="checkbox" data-hcb="webui-tls"> TLS aktivieren (selbstsigniertes Zertifikat, z.B. für Telegram-Login-Widget)</label>
+    <label style="margin-left:24px"><input type="checkbox" data-hcb="webui-tls"> TLS aktivieren (selbstsigniertes Zertifikat, z.B. für Microsoft-Entra-Verknüpfung oder Telegram-Login-Widget)</label>
     <label><input type="checkbox" data-hcb="component-telegram"> Telegram — Hannah per Chat ansprechen</label>
     <div data-hcb="telegram-fields" hidden style="margin-left:24px">
     <label>Bot-Token (von <a href="https://core.telegram.org/bots#how-do-i-create-a-bot">@BotFather</a>)<input type="text" data-hcb="telegram-token" placeholder="123456:ABC-DEF..."></label>
@@ -183,8 +183,8 @@ Installations-Script pro Komponente.
               HANNAH_WEBUI_SECRET_KEY: "change-me-to-a-random-string"
               HANNAH_WEBUI_GRPC_HOST: "hannah-core"
               HANNAH_WEBUI_GRPC_PORT: "50051"
-              # Optional: natives TLS fürs Telegram-Login-Widget, siehe
-              # Telegram-Verknüpfung einrichten (WebUI-Komponente)
+              # Optional: natives TLS, z.B. für die Microsoft-Entra-Verknüpfung
+              # oder das Telegram-Login-Widget (siehe WebUI-Komponente)
               # HANNAH_WEBUI_TLS_ENABLED: "true"
 
           hannah-telegram:
