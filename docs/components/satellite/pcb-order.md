@@ -134,6 +134,9 @@ Die Lötflächen sind groß, das klappt auch ohne viel Löterfahrung.
     **300–350 °C**. Die GND-Fläche hängt an einer großen Massefläche, die viel Wärme
     ableitet. Fließt das Lot nicht richtig, dreh die Temperatur etwas hoch.
 
+    Ein Lötkolben mit etwa **48 W** reicht dafür aus. Schwache Lötkolben (z. B. 15–25 W)
+    kommen gegen die Massefläche kaum an, auch wenn die eingestellte Temperatur stimmt.
+
 ## Wie geht es weiter?
 
 - Gehäuse drucken: [Enclosure](../../hardware/enclosure.md)
