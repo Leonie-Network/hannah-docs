@@ -26,12 +26,19 @@ serielle Schnittstelle J4**. Die Platine hat keinen USB-Anschluss für Daten, da
 angelötete USB-Kabel dient nur der Stromversorgung. Alle späteren Updates kommen
 kabellos per OTA über den [Update-Server](../update-server/index.md).
 
+!!! warning "Zuerst die Antenne anschließen"
+    Steck die U.FL-Antenne auf den Antennenanschluss des ESP32-Moduls, **bevor** du den
+    Satelliten zum ersten Mal mit Strom versorgst. Das ESP32-S3-WROOM-1U hat keine
+    eingebaute Antenne. Ohne externe Antenne findet der Satellit nach dem Flash kein
+    WLAN und kann sich nicht bei Hannah melden.
+
 ### Was du brauchst
 
 - einen **USB-UART-Wandler** mit 3,3-V-Pegel, z. B.
   [diesen hier](https://www.amazon.de/dp/B0BN3MRQXF)
-- **Chrome oder Edge** (für WebSerial) und den
-  [Satellite Manager im ioBroker-Adapter](../iobroker-adapter/usage.md#satellite-manager)
+- den [Satellite Manager im ioBroker-Adapter](../iobroker-adapter/usage.md#satellite-manager)
+  zum Erzeugen des Images
+- **Chrome oder Edge** für den Web-Flasher (WebSerial)
 
 !!! danger "Nie gleichzeitig USB-Strom und UART anschließen"
     Während des Flashens wird der Satellit über den UART-Wandler versorgt. Das
@@ -74,11 +81,49 @@ Damit der ESP32 neue Firmware annimmt, muss er im Download-Modus starten:
 
 Der ESP32 wartet jetzt auf die Firmware.
 
+### Image erzeugen
+
+Im [Satellite Manager](../iobroker-adapter/usage.md#satellite-manager) des
+ioBroker-Adapters auf **Flash new satellite** klicken, Gerätename, Raum und Zugangsdaten
+eintragen und dann **Download image** wählen. Du bekommst eine Datei
+`hannah-satellite-<gerätename>.bin`. Sie enthält die Firmware und alle Einstellungen,
+und der Satellit ist damit bereits bei Hannah angemeldet.
+
+!!! note "Ein Image pro Satellit"
+    Das Image gehört fest zu dem Gerätenamen, den du eingetragen hast. Für jeden weiteren
+    Satelliten erzeugst du ein eigenes Image.
+
 ### Flashen
 
-Im Satellite Manager des ioBroker-Adapters über **Flash new satellite** Gerätename,
-Raum und Zugangsdaten eintragen und direkt aus dem Browser flashen. Wähle dabei den
-COM-Port deines UART-Wandlers.
+Das Image spielst du mit dem Web-Flasher von Espressif auf:
+[espressif.github.io/esptool-js](https://espressif.github.io/esptool-js/)
+
+1. Seite in **Chrome oder Edge** öffnen. Im Abschnitt **Program** die Baudrate auf
+   `921600` lassen, *WebUSB (CH340)* nicht anhaken, und auf **Connect** klicken. Dann
+   den COM-Port deines UART-Wandlers auswählen (der Name hängt vom Wandler ab, z. B.
+   *CP2102 USB to UART Bridge Controller*).
+2. Nach dem Verbinden erscheint eine Zeile mit **Flash Address** und **File**. Die
+   Adresse ist mit `0x1000` vorbelegt, **ändere sie auf `0x0000`**, und wähle die
+   heruntergeladene `.bin`-Datei aus. *Flash Mode*, *Flash Frequency* und *Flash Size*
+   bleiben auf `keep`.
+3. Auf **Program** klicken und warten, bis der Vorgang abgeschlossen ist.
+
+![esptool-js vor dem Verbinden: Abschnitt Program mit Baudrate und Connect-Button](../../assets/screenshots/manual/esptool-js-connect.png)
+
+![Browser-Dialog zur Auswahl des seriellen Ports mit dem UART-Wandler (CP2102)](../../assets/screenshots/manual/esptool-js-port.png)
+
+![esptool-js nach dem Verbinden: Flash Address auf 0x0000 geändert, Dateiauswahl und Program-Button](../../assets/screenshots/manual/esptool-js-program.png)
+
+Bricht das Verbinden oder Flashen ab, versuch es mit einer niedrigeren Baudrate, z. B.
+`115200`. Das dauert länger, ist aber bei knapper Spannung oder längeren Kabeln
+zuverlässiger.
+
+??? info "Direkt aus ioBroker flashen"
+    Der Satellite Manager kann auch direkt flashen (Button neben **Download image**),
+    ohne Umweg über eine Datei. Dafür braucht der Browser aber WebSerial, und das
+    funktioniert nur, wenn ioBroker Admin per **HTTPS** oder über `http://localhost`
+    aufgerufen wird. Bei einem normalen `http://<ip>:8081` steht WebSerial nicht zur
+    Verfügung.
 
 Nach dem Flash:
 
