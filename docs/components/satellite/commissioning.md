@@ -26,6 +26,12 @@ serielle Schnittstelle J4**. Die Platine hat keinen USB-Anschluss für Daten, da
 angelötete USB-Kabel dient nur der Stromversorgung. Alle späteren Updates kommen
 kabellos per OTA über den [Update-Server](../update-server/index.md).
 
+!!! warning "Zuerst die Antenne anschließen"
+    Steck die U.FL-Antenne auf den Antennenanschluss des ESP32-Moduls, **bevor** du den
+    Satelliten zum ersten Mal mit Strom versorgst. Das ESP32-S3-WROOM-1U hat keine
+    eingebaute Antenne. Ohne externe Antenne findet der Satellit nach dem Flash kein
+    WLAN und kann sich nicht bei Hannah melden.
+
 ### Was du brauchst
 
 - einen **USB-UART-Wandler** mit 3,3-V-Pegel, z. B.
