@@ -6,7 +6,8 @@ verarbeitet nur, was bei ihr ankommt, nimmt selbst aber nichts auf.
 Die ESP32-S3-Geräte, die Sprachbefehle per Wake-Word oder PTT aufnehmen und an Hannah
 Core (bzw. den [Proxy](../proxy/index.md)) senden. Eigene Firmware, eigene Hardware —
 siehe [Hardware-Übersicht](../../hardware/overview.md) für PCB und Bauteile. Die Platine
-kannst du fertig bestückt bei PCBWay bestellen, siehe [Platine bestellen](pcb-order.md).
+kannst du fertig bestückt bei PCBWay bestellen, siehe [Platine bestellen](pcb-order.md);
+Anschlüsse und erster Flash stehen unter [Inbetriebnahme](commissioning.md).
 
 Jeder Satellit hat eine eigene, lokale Web-Oberfläche (`http://<satellit-ip>/settings`)
 für WLAN, MQTT und ein paar Audio-Parameter — unabhängig von Core/WebUI/Adapter. Die IP
