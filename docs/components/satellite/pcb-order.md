@@ -113,6 +113,9 @@ auf der Unterseite gelötet, die Beschriftung zeigt, welcher Draht wohin gehört
 - **5V:** Plus-Leitung des Kabels
 - **GND:** Masse-Leitung des Kabels
 
+Hat dein Kabel weitere Adern (z. B. Datenleitungen), werden sie nicht angeschlossen. Isoliere
+sie einzeln, damit sie nichts berühren.
+
 ![Lötflächen 5V und GND auf der Platinen-Unterseite](../../assets/screenshots/manual/satellite-power-pads.png)
 
 Die Lötflächen sind groß, das klappt auch ohne viel Löterfahrung.
@@ -134,5 +137,5 @@ Die Lötflächen sind groß, das klappt auch ohne viel Löterfahrung.
 ## Wie geht es weiter?
 
 - Gehäuse drucken: [Enclosure](../../hardware/enclosure.md)
-- Firmware aufspielen: [Satellite Manager im ioBroker-Adapter](../iobroker-adapter/usage.md#satellite-manager)
+- Anschlüsse und erster Flash: [Inbetriebnahme](commissioning.md)
 - Satellit einrichten: [Konfiguration](configuration.md)
