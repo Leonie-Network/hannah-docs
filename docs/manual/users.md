@@ -113,7 +113,7 @@ unterschiedlichen Stellen, je nachdem worum es geht:
   sondern **Self-Service**: jeder Nutzer verknüpft seine eigenen Konten selbst, auf seiner
   eigenen Profilseite (**Mein Konto** → "Verknüpfte Konten" → "Verbinden").
 
-![Verknüpfte Konten auf „Mein Konto" mit einem verbundenen Telegram-Account](../assets/screenshots/manual/me-linked-accounts.png)
+![Verknüpfte Konten auf „Mein Konto" mit verbundenem Telegram- und Microsoft-Entra-Konto](../assets/screenshots/manual/me-linked-accounts.png)
 
 Ein externes Konto lässt sich immer nur mit **einem** Hannah-Nutzer verknüpfen. Sein
 eigenes Konto trennt jeder selbst; ein fremdes zu trennen braucht Trust-Level ≥ 10.
