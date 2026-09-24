@@ -55,6 +55,7 @@ nav:
               - Microsoft-Entra-Verknüpfung einrichten: components/webui/entra-login.md
           - Satellit:
               - Übersicht: components/satellite/index.md
+              - Platine bestellen: components/satellite/pcb-order.md
               - Konfiguration: components/satellite/configuration.md
               - Lite-Satellit (PC): components/satellite/lite.md
           - Proxy:
