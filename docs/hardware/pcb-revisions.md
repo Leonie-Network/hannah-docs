@@ -13,7 +13,7 @@
 Same footprint as Rev. 4 (88mm round), fits the existing enclosure. Changes:
 
 - **Chip:** ESP32-S3-**WROOM-1U**-N16R8 (external antenna) — Rev. 4 used the internal-antenna variant
-- **Microphones:** 4× SPH0641LU4H-1 (PDM) → **ADAU7118** (PDM→TDM converter) → TDM straight into the ESP32-S3's I2S peripheral, enabling beamforming
+- **Microphones:** 4× SPH0655LM4H-1-8 (PDM) → **ADAU7118** (PDM→TDM converter) → TDM straight into the ESP32-S3's I2S peripheral, enabling beamforming
 - **Buttons remapped:** the TDM mic lines took over GPIOs previously used for PTT/Vol+/Vol− — rewired to PTT=GPIO40, Vol+=GPIO39, Vol−=GPIO18 (Mute stays GPIO11)
 - **Status LED:** its own pin (GPIO1); a second, purely passive power LED was added, wired directly to 3.3V/GND
 - **LED ring:** SK6812MINI-RV (was SK6812MINI-E on Rev. 4), driven through a level shifter — unlike the plain 3.3V-compatible SK6812-Mini-E used before it
