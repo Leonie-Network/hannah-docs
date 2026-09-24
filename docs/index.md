@@ -15,6 +15,11 @@ Sprachbefehle aufnehmen und an Hannah weiterleiten.
 Wer mehr über den Aufbau von Hannah wissen möchte oder mitentwickeln will, findet unter
 **[Entwickler](architecture/overview.md)** die technische Dokumentation (auf Englisch).
 
+## Hilfe und Austausch
+
+- [Hannah-Thread im ioBroker-Forum](https://forum.iobroker.net/topic/84378/hannah-open-source-smart-home-sprachassistentin) — Fragen, Erfahrungen, Ideen
+- [Issues auf GitHub](https://github.com/NurPech/hannah/issues) — Fehler melden
+
 ## Repositories
 
 - [hannah](https://github.com/NurPech/hannah) — Core, Satelliten-Firmware und weitere Dienste (öffentlicher Mirror)
