@@ -134,8 +134,10 @@ Die Lötflächen sind groß, das klappt auch ohne viel Löterfahrung.
     **300–350 °C**. Die GND-Fläche hängt an einer großen Massefläche, die viel Wärme
     ableitet. Fließt das Lot nicht richtig, dreh die Temperatur etwas hoch.
 
-    Ein Lötkolben mit etwa **48 W** reicht dafür aus. Schwache Lötkolben (z. B. 15–25 W)
-    kommen gegen die Massefläche kaum an, auch wenn die eingestellte Temperatur stimmt.
+    Ein Lötkolben mit **48 W** funktioniert erprobt gut. Halte die Spitze aber erst etwa
+    10–20 Sekunden auf die Lötfläche, bis sie richtig warm ist, sonst schmilzt das Zinn
+    nicht. Mit mehr Leistung geht es schneller. Schwache Lötkolben (z. B. 15–25 W) kommen
+    gegen die Massefläche kaum an, auch wenn die eingestellte Temperatur stimmt.
 
 ## Wie geht es weiter?
 
