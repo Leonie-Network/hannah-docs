@@ -1,9 +1,9 @@
 # Lite-Satellit (PC)
 
-**Optional — nur zum Ausprobieren und Testen.** Du brauchst ihn nur, wenn du Hannah
+**Bei Bedarf — nur zum Ausprobieren und Testen.** Du brauchst ihn nur, wenn du Hannah
 ohne ESP32-Hardware ansprechen willst, z. B. um eine frische Installation zu testen,
 bevor die Satelliten-Platine da ist. Er ist **kein Ersatz** für einen echten
-[Satelliten](index.md) im Alltag.
+[Satelliten](index.md) im Alltag und wird für den produktiven Einsatz nicht unterstützt.
 
 Der Lite-Satellit ist ein kleines Programm für deinen PC (Windows oder Linux). Er
 benutzt dessen Mikrofon und Lautsprecher und meldet sich bei Hannah genau so an wie ein
