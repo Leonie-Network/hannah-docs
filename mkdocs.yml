@@ -81,6 +81,10 @@ nav:
               - Übersicht: components/autodeploy/index.md
               - Installation: components/autodeploy/installation.md
               - Konfiguration: components/autodeploy/configuration.md
+          - LogCollector:
+              - Übersicht: components/logcollector/index.md
+              - Installation: components/logcollector/installation.md
+              - Konfiguration: components/logcollector/configuration.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
           - ioBroker-Adapter:
