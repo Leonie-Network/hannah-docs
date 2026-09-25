@@ -23,7 +23,7 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
 <div class="hannah-system-map">
   <figure style="margin:0">
     <div class="diagram-scroll">
-      <svg viewBox="0 0 950 380" role="img" aria-label="Übersicht: Satelliten sprechen mit Core, wahlweise über den Proxy. Core verbindet sich mit WebUI, ioBroker-Adapter, Telegram und Chat, VoiceID, Timer und dem LogCollector.">
+      <svg viewBox="0 0 950 380" role="img" aria-label="Übersicht: Satelliten sprechen mit Core, wahlweise über den Proxy. Core verbindet sich mit WebUI, ioBroker-Adapter, Telegram, Chat und Teams, VoiceID, Timer und dem LogCollector.">
         <defs>
           <marker id="hsm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <polygon points="0,0 10,5 0,10" fill="#8a97a6" />
@@ -73,7 +73,7 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
 
         <line class="hsm-line" x1="640" y1="182" x2="720" y2="186" marker-start="url(#hsm-arrow)" marker-end="url(#hsm-arrow)" />
         <rect class="hsm-box" x="720" y="160" width="200" height="52" rx="9" />
-        <text class="hsm-title" x="820" y="182"><a class="hsm-link" href="telegram/">Telegram</a> / <a class="hsm-link" href="chat/">Chat</a></text>
+        <text class="hsm-title" x="820" y="182"><a class="hsm-link" href="telegram/">Telegram</a> / <a class="hsm-link" href="chat/">Chat</a> / <a class="hsm-link" href="msteams/">Teams</a></text>
         <text class="hsm-sub" x="820" y="200">Hannah per Text</text>
 
         <line class="hsm-line" x1="640" y1="200" x2="720" y2="256" marker-end="url(#hsm-arrow)" />
@@ -105,6 +105,7 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
 | [Proxy](proxy/index.md) | Nimmt Core die UDP-Audio-Verarbeitung der Satelliten ab — sinnvoll, wenn viele Satelliten Core sonst zu sehr belasten würden | Bei Bedarf |
 | [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Bei Bedarf |
 | [Chat (Terminal)](chat/index.md) | Hannah am PC per Tastatur schreiben, direkt im Terminal | Bei Bedarf |
+| [Microsoft Teams](msteams/index.md) | Hannah per Teams-Chat anschreiben — muss aus dem Internet erreichbar sein | Bei Bedarf |
 | [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Bei Bedarf (hilfreich aber immer) |
 | [Timer](timer/index.md) | Timer und Wecker | Empfohlen |
 | [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Empfohlen |
