@@ -74,6 +74,7 @@ Installations-Script pro Komponente.
     <label><input type="checkbox" data-hcb="component-proxy"> Proxy — nimmt Core die UDP-Verarbeitung ab</label>
     <label><input type="checkbox" data-hcb="component-voiceid"> VoiceID — erkennt wer spricht</label>
     <label><input type="checkbox" data-hcb="component-timer"> Timer — Timer und Wecker</label>
+    <label><input type="checkbox" data-hcb="component-logcollector"> LogCollector — sammelt Logs aller anderen Komponenten</label>
     </fieldset>
 
     <fieldset>
@@ -229,6 +230,26 @@ Installations-Script pro Komponente.
               - ./voiceid-config.yaml:/etc/hannah-voiceid/config.yaml:ro
               - hannah_mem:/mnt/hannah_mem
 
+          hannah-logcollector:
+            image: quay.io/m1kad0/hannah-logcollector:latest
+            container_name: hannah-logcollector
+            restart: unless-stopped
+            pull_policy: always
+            profiles: ["full", "with-logcollector"]
+            depends_on:
+              - hannah-core
+            networks:
+              - hannah_network
+            ports:
+              - "50060:50060"
+            environment:
+              HANNAH_LOGCOLLECTOR_HANNAH_ADDRESS: "hannah-core:50051"
+              # IP-Adresse des Docker-Hosts — nötig, damit auch Komponenten außerhalb
+              # dieses Docker-Netzes (native Installationen) ihre Logs abliefern können
+              HANNAH_LOGCOLLECTOR_SERVER_ADVERTISE_HOST: "192.168.x.x"
+            volumes:
+              - logcollector_data:/app/data
+
           hannah-timer:
             image: quay.io/m1kad0/hannah-timer:latest
             container_name: hannah-timer
@@ -290,6 +311,7 @@ Installations-Script pro Komponente.
           core_audio_dumps:
           webui_data:
           timer_data:
+          logcollector_data:
           mysql_data:
           mosquitto_data:
           mosquitto_log:

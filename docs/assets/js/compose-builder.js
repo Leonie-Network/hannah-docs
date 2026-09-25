@@ -30,7 +30,7 @@
 
   function readSelection(root) {
     var sel = {};
-    ["telegram", "proxy", "voiceid", "timer"].forEach(function (key) {
+    ["telegram", "proxy", "voiceid", "timer", "logcollector"].forEach(function (key) {
       sel[key] = root.querySelector('[data-hcb="component-' + key + '"]').checked;
     });
 
@@ -241,7 +241,37 @@
       lines.push("      - hannah_network");
       lines.push("    volumes:");
       lines.push("      - hannah_mem:/mnt/hannah_mem");
+      var voiceidEnv = [
+        ["HANNAH_VOICEID_RECOGNITION__UNKNOWN_THRESHOLD", "0.25"],
+        ["HANNAH_VOICEID_RECOGNITION__UNCERTAIN_THRESHOLD", "0.40"],
+      ];
+      if (sel.logcollector) voiceidEnv.unshift(["HANNAH_VOICEID_HANNAH__ADDRESS", "hannah-core:50051"]);
+      lines = lines.concat(envBlock("    ", voiceidEnv));
       volumes.push("hannah_mem");
+    }
+
+    // --- hannah-logcollector -----------------------------------------------
+    if (sel.logcollector) {
+      lines.push("  hannah-logcollector:");
+      lines.push("    image: quay.io/m1kad0/hannah-logcollector:latest");
+      lines.push("    container_name: hannah-logcollector");
+      lines.push("    restart: unless-stopped");
+      lines.push("    pull_policy: always");
+      lines.push("    depends_on:");
+      lines.push("      - hannah-core");
+      lines.push("    networks:");
+      lines.push("      - hannah_network");
+      lines.push("    ports:");
+      lines.push('      - "50060:50060"');
+      lines.push("    volumes:");
+      lines.push("      - logcollector_data:/app/data");
+      lines = lines.concat(
+        envBlock("    ", [
+          ["HANNAH_LOGCOLLECTOR_HANNAH_ADDRESS", "hannah-core:50051"],
+          ["HANNAH_LOGCOLLECTOR_SERVER_ADVERTISE_HOST", sel.hostLanIp],
+        ])
+      );
+      volumes.push("logcollector_data");
     }
 
     // --- hannah-timer ------------------------------------------------------
