@@ -88,6 +88,7 @@ nav:
               - Übersicht: components/logcollector/index.md
               - Installation: components/logcollector/installation.md
               - Konfiguration: components/logcollector/configuration.md
+              - Logs herunterladen: components/logcollector/usage.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
           - ioBroker-Adapter:
