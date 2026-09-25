@@ -1,6 +1,6 @@
 # AutoDeploy
 
-**Optional, aber empfehlenswert.** Ohne AutoDeploy musst du jede Komponente von Hand
+**Empfohlen.** Ohne AutoDeploy musst du jede Komponente von Hand
 aktualisieren (Install-Script erneut ausführen); mit AutoDeploy passiert das automatisch
 im Hintergrund.
 

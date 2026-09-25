@@ -1,6 +1,6 @@
 # Chat (Terminal)
 
-**Optional.** Hannah funktioniert auch komplett ohne — hannah-chat ist ein kleines
+**Bei Bedarf.** Hannah funktioniert auch komplett ohne — hannah-chat ist ein kleines
 Programm, mit dem du Hannah am PC per Tastatur schreibst statt sprichst. Praktisch, wenn
 du am Rechner sitzt, gerade nicht sprechen möchtest, oder schnell etwas ausprobieren
 willst. Vom Prinzip her wie der [Telegram-Bot](../telegram/index.md), nur ohne Telegram:

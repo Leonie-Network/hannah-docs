@@ -1,6 +1,6 @@
 # VoiceID
 
-**Optional.** Ohne VoiceID funktioniert Hannah normal, kennt aber nicht, *wer* gerade
+**Bei Bedarf — hilfreich ist sie aber immer.** Ohne VoiceID funktioniert Hannah normal, kennt aber nicht, *wer* gerade
 spricht — nur *was* gesagt wurde.
 
 Mit VoiceID erkennt Hannah Sprecher durch Abgleich mit hinterlegten Voiceprints. Wird

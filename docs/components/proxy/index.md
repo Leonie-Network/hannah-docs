@@ -1,6 +1,6 @@
 # Proxy
 
-**Optional.** Ohne Proxy verbinden sich Satelliten direkt per UDP mit Core — für die
+**Bei Bedarf.** Ohne Proxy verbinden sich Satelliten direkt per UDP mit Core — für die
 meisten Setups reicht das. Sinnvoll wird der Proxy erst, wenn viele Satelliten Core sonst
 zu sehr belasten würden, oder wenn Satelliten Core aus dem Netzwerk heraus nicht direkt
 per UDP erreichen können.
