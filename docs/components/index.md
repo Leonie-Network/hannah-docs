@@ -97,21 +97,35 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
   </figure>
 </div>
 
-| Komponente | Zweck | Brauche ich das? |
-|---|---|---|
-| [Core](core/index.md) | Das Herzstück: STT, NLU, TTS, Geräte-Steuerung, Orchestrierung. Alle anderen Komponenten sprechen mit ihr. | Ja |
-| [WebUI](webui/index.md) | Web-Oberfläche zur Steuerung und Konfiguration | Ja |
-| [Satellit](satellite/index.md) | ESP32-S3-Hardware, nimmt Sprachbefehle auf | Ja (mind. einer) |
-| [Proxy](proxy/index.md) | Nimmt Core die UDP-Audio-Verarbeitung der Satelliten ab — sinnvoll, wenn viele Satelliten Core sonst zu sehr belasten würden | Bei Bedarf |
-| [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Bei Bedarf |
-| [Chat (Terminal)](chat/index.md) | Hannah am PC per Tastatur schreiben, direkt im Terminal | Bei Bedarf |
-| [Microsoft Teams](msteams/index.md) | Hannah per Teams-Chat anschreiben — muss aus dem Internet erreichbar sein | Bei Bedarf |
-| [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Bei Bedarf (hilfreich aber immer) |
-| [Timer](timer/index.md) | Timer und Wecker | Empfohlen |
-| [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Empfohlen |
-| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen, AutoDeploy und die Satelliten-Firmware ihre Releases beziehen | — (kein eigener nötig) |
-| [LogCollector](logcollector/index.md) | Sammelt die Logs aller Komponenten an einem Ort — erleichtert die Fehlersuche | Empfohlen |
-| [ioBroker-Adapter](iobroker-adapter/index.md) | Bindet Hannah an ioBroker an — ohne ihn keine Smart-Home-Steuerung | Ja (für Smart-Home-Steuerung) |
+| Komponente | Zweck | Brauche ich das? | Aktuelle Version |
+|---|---|---|---|
+| [Core](core/index.md) | Das Herzstück: STT, NLU, TTS, Geräte-Steuerung, Orchestrierung. Alle anderen Komponenten sprechen mit ihr. | Ja | <span data-version="core">–</span> |
+| [WebUI](webui/index.md) | Web-Oberfläche zur Steuerung und Konfiguration | Ja | <span data-version="webui">–</span> |
+| [Satellit](satellite/index.md) | ESP32-S3-Hardware, nimmt Sprachbefehle auf | Ja (mind. einer) | <span data-version="satellite-esp">–</span> |
+| [Proxy](proxy/index.md) | Nimmt Core die UDP-Audio-Verarbeitung der Satelliten ab — sinnvoll, wenn viele Satelliten Core sonst zu sehr belasten würden | Bei Bedarf | <span data-version="proxy">–</span> |
+| [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Bei Bedarf | <span data-version="telegram">–</span> |
+| [Chat (Terminal)](chat/index.md) | Hannah am PC per Tastatur schreiben, direkt im Terminal | Bei Bedarf | <span data-version="chat">–</span> |
+| [Microsoft Teams](msteams/index.md) | Hannah per Teams-Chat anschreiben — muss aus dem Internet erreichbar sein | Bei Bedarf | <span data-version="msteams">–</span> |
+| [VoiceID](voiceid/index.md) | Erkennt, *wer* spricht, nicht nur *was* gesagt wurde | Bei Bedarf (hilfreich aber immer) | <span data-version="voiceid">–</span> |
+| [Timer](timer/index.md) | Timer und Wecker | Empfohlen | <span data-version="timer">–</span> |
+| [AutoDeploy](autodeploy/index.md) | Hält die anderen Komponenten automatisch aktuell | Empfohlen | <span data-version="autodeploy">–</span> |
+| [Update-Server](update-server/index.md) | Die Quelle, von der Installationen, AutoDeploy und die Satelliten-Firmware ihre Releases beziehen | — (kein eigener nötig) | – |
+| [LogCollector](logcollector/index.md) | Sammelt die Logs aller Komponenten an einem Ort — erleichtert die Fehlersuche | Empfohlen | <span data-version="logcollector">–</span> |
+| [ioBroker-Adapter](iobroker-adapter/index.md) | Bindet Hannah an ioBroker an — ohne ihn keine Smart-Home-Steuerung | Ja (für Smart-Home-Steuerung) | <span data-version="iobroker-adapter">–</span> |
+
+<script>
+(function () {
+  fetch("https://hannah-versions.leonie.network/versions")
+    .then(function (res) { return res.json(); })
+    .then(function (versions) {
+      document.querySelectorAll("[data-version]").forEach(function (el) {
+        var key = el.getAttribute("data-version");
+        if (versions[key]) el.textContent = versions[key];
+      });
+    })
+    .catch(function () { /* leave the "–" placeholders on failure */ });
+})();
+</script>
 
 !!! note "macOS"
     Native Installation unter macOS gibt es bislang nur für [AutoDeploy](autodeploy/index.md)
