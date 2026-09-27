@@ -1,20 +1,14 @@
 # Installation
 
-Der Asset Server gibt es nur als Quellcode zum selbst bauen (kein fertiges öffentliches
-Image, kein natives `install.sh`) — Sourcecode: [github.com/NurPech/hannah-asset-server](https://github.com/NurPech/hannah-asset-server).
-
-```bash
-git clone https://github.com/NurPech/hannah-asset-server.git
-cd hannah-asset-server
-docker build -t hannah-asset-server .
-```
+Der Asset Server gibt es nur als Docker-Image (`quay.io/m1kad0/hannah-asset-server`) — kein
+natives `install.sh`. Quellcode: [github.com/NurPech/hannah-asset-server](https://github.com/NurPech/hannah-asset-server).
 
 ## Docker Compose
 
 ```yaml
 services:
   hannah-asset-server:
-    image: hannah-asset-server  # per `docker build` oben selbst erstellt
+    image: quay.io/m1kad0/hannah-asset-server:latest
     ports:
       - "8080:8080"
     volumes:
