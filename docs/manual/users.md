@@ -41,11 +41,14 @@ Nutzer an (oder änderst direkt das Admin-Passwort, siehe
 ## Trust-Level
 
 Jeder Nutzer hat ein **Trust-Level von 0 bis 10**. Es ist keine Alters- oder
-Rollenbezeichnung, sondern eine reine Zahl, die an genau zwei Stellen wirkt:
+Rollenbezeichnung, sondern eine reine Zahl, die an drei Stellen wirkt:
 
 1. **Berechtigung** — viele Aktionen in der WebUI (und ein paar Sprachbefehle) sind erst
    ab einem bestimmten Trust-Level sichtbar bzw. ausführbar.
-2. **Gesprächskontext** — Hannahs LLM bekommt das Trust-Level der sprechenden Person als
+2. **Geschützte Geräte** — einzelne Geräte lassen sich so einstellen, dass nur Nutzer ab
+   einem bestimmten Trust-Level sie schalten dürfen, egal ob per Sprache, Telegram oder
+   Chat (siehe [Geräte schützen](smart-home-integration.md#gerate-schutzen)).
+3. **Gesprächskontext** — Hannahs LLM bekommt das Trust-Level der sprechenden Person als
    Teil des System-Prompts mit (`Vertrauenslevel: X/10`). Es beeinflusst also potenziell
    auch, *wie* Hannah antwortet, nicht nur, was sie zulässt.
 
@@ -71,8 +74,10 @@ Die wichtigsten Schwellenwerte in der WebUI:
     [Wecker](alarms.md) sind bewusst **nicht** trust-gated — Details dazu auf der
     [Wecker-Seite](alarms.md#wichtig-kein-trust-level-schutz).
 
-Für unbekannte oder nicht angemeldete Anfragen (z. B. Systemprozesse) gilt intern kein
-Trust-Level-Check — das betrifft nur Hannah selbst, nicht reguläre Nutzer.
+Für Hannahs eigene Abläufe (z. B. Trigger und Routinen) gilt intern kein
+Trust-Level-Check — das betrifft nur Hannah selbst, nicht reguläre Nutzer. Personen, die
+Hannah nicht erkennt (fremde Stimme, nicht verknüpftes Telegram- oder Chat-Konto),
+behandelt sie bei geschützten Geräten wie einen Gast mit Trust-Level 0.
 
 ## Nutzer anlegen und bearbeiten
 

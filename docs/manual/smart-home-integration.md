@@ -66,12 +66,42 @@ lässt er sich frei setzen:
   `level`, `current`, …)
 - **shutterInverted** (nur bei Kategorie `blind`) — dreht die Prozentkonvention um,
   siehe unten
+- **Mindest-Vertrauensstufe** (nur auf State-Ebene) — wer diesen State über Hannah
+  schalten darf, siehe [Geräte schützen](#gerate-schutzen)
 
 Ein State-Override sticht einen Geräte-Override, der wiederum die automatische
 Erkennung sticht — du kannst also gezielt nur einen einzelnen State korrigieren, ohne
 das ganze Gerät anzufassen.
 
-![Hannah-Override-Tab an einem ioBroker-State mit Name, Gerätekategorie und canonicalKey](../assets/screenshots/manual/iobroker-override-tab.png)
+![Hannah-Override-Tab an einem ioBroker-State mit Name, Gerätekategorie, canonicalKey und Mindest-Vertrauensstufe](../assets/screenshots/manual/iobroker-override-tab.png)
+
+### Geräte schützen
+
+Manche Geräte soll nicht jeder schalten dürfen — ein Türschloss zum Beispiel, oder die
+Heizung. Dafür trägst du am jeweiligen State im Hannah-Reiter eine
+**Mindest-Vertrauensstufe** von 0 bis 10 ein. Hannah schaltet diesen State dann nur noch
+für Nutzer, deren [Trust-Level](users.md#trust-level) mindestens so hoch ist. Leer lassen
+heißt: keine Einschränkung, wie bisher.
+
+Was du dabei wissen solltest:
+
+- **Nur Schalten ist geschützt, Fragen nie.** "Ist die Haustür zu?" beantwortet Hannah
+  jedem.
+- **Wer nicht erkannt wird, zählt als Gast** (Trust-Level 0). Das betrifft Stimmen, die
+  Hannah [keiner Person zuordnen](../components/voiceid/index.md) kann, und Telegram- oder Chat-Konten, die
+  mit keinem Nutzer [verknüpft](users.md#verknupfte-konten) sind.
+- **Bei Sammelbefehlen** wie "alle Lichter im Flur aus" schaltet Hannah alle Geräte, die
+  du schalten darfst, und sagt dir, welche sie ausgelassen hat.
+- **Befehle über den `textCommand`-State des Adapters sind nicht eingeschränkt.** Wer
+  diesen State in ioBroker beschreiben kann, kann das Gerät dort ohnehin direkt schalten.
+- Die Einstellung wirkt **sofort**, ohne den Adapter neu zu starten.
+
+!!! warning "Hannah Core muss das unterstützen"
+    Die Mindest-Vertrauensstufe braucht einen aktuellen Hannah Core. Ist er zu alt,
+    schaltet er geschützte Geräte weiterhin für jeden. Der Adapter merkt das und zeigt in
+    ioBroker eine Benachrichtigung ("Hannah Core does not support trust levels per state
+    yet") — dann Hannah Core aktualisieren. Nach dem Update verschwindet die
+    Benachrichtigung von selbst.
 
 ## Die Hannah-Kategorien im Detail
 
