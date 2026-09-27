@@ -59,6 +59,9 @@ nav:
               - Inbetriebnahme: components/satellite/commissioning.md
               - Konfiguration: components/satellite/configuration.md
               - Lite-Satellit (PC): components/satellite/lite.md
+          - Asset Server:
+              - Übersicht: components/asset-server/index.md
+              - Installation: components/asset-server/installation.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md
