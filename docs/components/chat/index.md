@@ -37,4 +37,7 @@ viel ein Nutzer bei Hannah darf (siehe [Nutzerverwaltung](../../manual/users.md)
 Mit `/login` meldest du dich mit denselben Zugangsdaten an wie in der WebUI.
 
 **Im `/devices`-Menü** tippst du einfach die angezeigte Nummer: erst den Raum, dann das
-Gerät, dann die Aktion. `0` geht eine Ebene zurück bzw. schließt das Menü.
+Gerät, dann die Aktion. `0` geht eine Ebene zurück bzw. schließt das Menü. Hat ein Gerät
+eine [Mindest-Vertrauensstufe](../../manual/smart-home-integration.md#gerate-schutzen),
+schaltet Hannah es nur, wenn du angemeldet bist und dein Trust-Level reicht — sonst
+bekommst du eine Absage.
