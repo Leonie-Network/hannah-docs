@@ -93,6 +93,12 @@ und der Satellit ist damit bereits bei Hannah angemeldet.
     Das Image gehört fest zu dem Gerätenamen, den du eingetragen hast. Für jeden weiteren
     Satelliten erzeugst du ein eigenes Image.
 
+!!! tip "Eigener Asset Server? Vorher als Default eintragen"
+    Trägst du URL und Token deines eigenen [Asset Servers](../asset-server/index.md) unter
+    [Satellite Defaults](../iobroker-adapter/configuration.md#satellite-defaults) ein,
+    **bevor** du den ersten Satelliten erzeugst, übernimmt jedes weitere Image das
+    automatisch — kein nachträgliches Umstellen pro Gerät nötig.
+
 ### Flashen
 
 Das Image spielst du mit dem Web-Flasher von Espressif auf:

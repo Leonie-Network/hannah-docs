@@ -10,8 +10,24 @@ Satelliten nur die Information, *welchen* Sound er abspielen soll.
 
 Standardmäßig zeigen alle Satelliten auf Leonies eigene Instanz. Willst du deine eigenen
 Sound-Assets verwalten oder unabhängig von ihrer Instanz sein, kannst du den Asset Server
-selbst betreiben — pro Satellit lässt sich URL, Token und Namespace in dessen eigener
-Web-Oberfläche umstellen, ganz ohne Firmware-Neubau.
+selbst betreiben — ganz ohne Firmware-Neubau.
+
+Vier Wege, das umzustellen:
+
+- **Für alle künftigen Satelliten auf einmal:** URL und Token unter
+  [Satellite Defaults](../iobroker-adapter/configuration.md#satellite-defaults) im
+  ioBroker-Adapter eintragen, **bevor** du den ersten Satelliten flasht — jedes neu
+  erzeugte Image übernimmt die Werte automatisch.
+- **Für einen einzelnen neuen Satelliten, abweichend vom Default:** im
+  "Flash new satellite"-Dialog den Abschnitt "Configuration" aufklappen — er ist mit
+  den Defaults vorbefüllt, lässt sich aber vor dem Flashen für genau dieses Gerät
+  überschreiben.
+- **Für einen bereits laufenden Satelliten, ohne physischen Zugriff:** im
+  [Satellite Manager](../iobroker-adapter/usage.md#satellite-manager) über den
+  NVS-Dialog — kabellos lässt sich nur der Token ändern, die URL braucht ein
+  USB-Kabel (WebSerial).
+- **Direkt am Gerät:** in der [lokalen Web-Oberfläche des Satelliten](../satellite/configuration.md)
+  selbst, Abschnitt "Asset Server" (URL, Token, Namespace).
 
 !!! note "Seltene Updates sind normal"
     Der Asset Server ist seit Monaten feature-complete und bekommt nur alle paar Monate ein
