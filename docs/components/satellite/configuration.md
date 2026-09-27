@@ -54,7 +54,7 @@ Defaults zeigen bereits auf Leonies offenen Update-Server.
 
 | Feld | Zweck | Default |
 |---|---|---|
-| URL / Token | Siehe [Asset Server](../../services/asset-server.md) | — |
+| URL / Token | Siehe [Asset Server](../asset-server/index.md) | — |
 | Namespace | Leer = `satellite` | — |
 
 ## Syslog

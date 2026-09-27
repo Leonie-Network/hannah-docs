@@ -102,6 +102,7 @@ a.hsm-link:hover .hsm-title{text-decoration:underline}
 | [Core](core/index.md) | Das Herzstück: STT, NLU, TTS, Geräte-Steuerung, Orchestrierung. Alle anderen Komponenten sprechen mit ihr. | Ja | <span data-version="core">–</span> |
 | [WebUI](webui/index.md) | Web-Oberfläche zur Steuerung und Konfiguration | Ja | <span data-version="webui">–</span> |
 | [Satellit](satellite/index.md) | ESP32-S3-Hardware, nimmt Sprachbefehle auf | Ja (mind. einer) | <span data-version="satellite-esp">–</span> |
+| [Asset Server](asset-server/index.md) | Liefert Sound-Assets (Klingeln, Hinweistöne) an die Satelliten aus | Ja (für Sound-Feedback) | <span data-version="asset-server">–</span> |
 | [Proxy](proxy/index.md) | Nimmt Core die UDP-Audio-Verarbeitung der Satelliten ab — sinnvoll, wenn viele Satelliten Core sonst zu sehr belasten würden | Bei Bedarf | <span data-version="proxy">–</span> |
 | [Telegram](telegram/index.md) | Hannah per Telegram-Chat ansprechen, als eigener Prozess | Bei Bedarf | <span data-version="telegram">–</span> |
 | [Chat (Terminal)](chat/index.md) | Hannah am PC per Tastatur schreiben, direkt im Terminal | Bei Bedarf | <span data-version="chat">–</span> |
