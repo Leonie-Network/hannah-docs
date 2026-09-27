@@ -55,7 +55,7 @@ Vorbelegte Werte beim Flashen oder Neuschreiben des NVS eines Satelliten — pro
 | WiFi SSID / Password | WLAN-Zugangsdaten für neue Satelliten |
 | MQTT Broker / Port / User / Password | MQTT-Zugangsdaten für neue Satelliten |
 | OTA URL / Channel / Token | Update-Server-URL, Kanal und Bearer-Token für OTA-Updates |
-| Asset Server URL / Token | Asset-Server-URL und Bearer-Token (Sound-Assets) |
+| Asset Server URL / Token | [Asset-Server](../asset-server/index.md)-URL und Bearer-Token (Sound-Assets) |
 | NVS Update API Token | Bearer-Token für den satelliteneigenen `POST /nvs`-Endpunkt — separat vom OTA-Token. Leer deaktiviert Remote-NVS-Updates auf dem Satelliten |
 | Disable TLS certificate validation | Nur für selbstsignierte Zertifikate — schaltet TLS-Prüfung komplett ab, unsicher |
 | Your Hannah User ID | Numerische Hannah-User-ID (Trust-Level 10), als Requestor für Admin-Aktionen aus diesem Panel (z. B. Satellit umbenennen). Leer deaktiviert diese Aktionen |
