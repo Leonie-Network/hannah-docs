@@ -101,11 +101,11 @@ Satelliten enthält (`alarm_ring`, `connect`, `message_chime` und `timer_jingle`
 
 3. Mit **Import** bestätigen. Der Dialog zeigt dir danach, was eingespielt wurde:
 
-    ![Import-Ergebnis: Target satellite, Imported (3): connect, message_chime, timer_jingle](../../assets/img/asset-server/import-result.png)
+    ![Import-Ergebnis: Target satellite, Imported (4): alarm_ring, connect, message_chime, timer_jingle](../../assets/img/asset-server/import-result.png)
 
 Im Tab **Assets** siehst du die Sounds jetzt, wenn du den Namespace `satellite` auswählst:
 
-![Asset-Liste des Namespace satellite mit connect, message_chime und timer_jingle](../../assets/img/asset-server/assets-list.png)
+![Asset-Liste des Namespace satellite mit alarm_ring, connect, message_chime und timer_jingle](../../assets/img/asset-server/assets-list.png)
 
 !!! note "Bereits vorhandene Sounds"
     Hast du einen Sound mit demselben Namen schon selbst angelegt, ersetzt der Import ihn nur,
