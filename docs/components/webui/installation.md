@@ -50,7 +50,8 @@ sudo bash /opt/hannah/webui/deploy/install.sh --uninstall
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
 **Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen.**
 
-Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
+Den passenden Eintrag bekommst du am einfachsten im [Config-Builder](../autodeploy/configuration.md#config-builder):
+Häkchen setzen, kopieren, fertig. Wenn du ihn lieber selbst einträgst, sieht er so aus:
 
 ```yaml
   - name: webui
