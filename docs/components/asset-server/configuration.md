@@ -67,6 +67,12 @@ Wurzel, darunter `core` und `satellite`. Sie vererben nach unten:
 - Gibt es dasselbe Asset auf mehreren Ebenen, gewinnt die spezifischste — ein `play` in
   `satellite` überschreibt also ein `play` in `shared`.
 
+!!! note "`core` wird aktuell nicht genutzt"
+    Der Namespace `core` ist für Assets gedacht, die Hannah Core selbst braucht. Core holt
+    derzeit keine Assets vom Asset Server, der Namespace bleibt also leer. Er wird trotzdem
+    angelegt, falls Core später wieder Assets bekommt — löschen musst du ihn nicht. Alle
+    Sounds, die du brauchst, gehören in `satellite`.
+
 ![Tab Namespaces mit shared, darunter core und satellite](../../assets/img/asset-server/namespaces.png)
 
 Du kannst weitere Namespaces anlegen, z. B. `satellite-test` als Kind von `satellite`, um
