@@ -44,7 +44,8 @@ Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt
 Proxy selbst zwar ohne `post_install`, aber relevant, sobald du weitere Komponenten über
 dieselbe AutoDeploy-Instanz verwaltest).
 
-Eintrag für AutoDeploy (`/etc/hannah/autodeploy.yaml`):
+Den passenden Eintrag bekommst du am einfachsten im [Config-Builder](../autodeploy/configuration.md#config-builder):
+Häkchen setzen, kopieren, fertig. Wenn du ihn lieber selbst einträgst, sieht er so aus:
 
 ```yaml
   - name: proxy

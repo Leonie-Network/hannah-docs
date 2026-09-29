@@ -60,15 +60,21 @@ sudo bash /opt/hannah/voiceid/deploy/install-macos.sh --uninstall
 
 Optional — nur relevant, wenn du [AutoDeploy](../autodeploy/index.md) einsetzt.
 **Vorher den [Sicherheitshinweis zu `post_install`](../autodeploy/index.md) lesen.**
-Eintrag mit macOS-Pfaden/Service-Namen:
+Den passenden Eintrag bekommst du am einfachsten im [Config-Builder](../autodeploy/configuration.md#config-builder):
+Häkchen setzen, kopieren, fertig. Wenn du ihn lieber selbst einträgst, sieht er so aus:
+
+```yaml title="Linux (/etc/hannah/autodeploy.yaml)"
+  - name: voiceid
+    channel: voiceid-stable
+    install_dir: /opt/hannah/voiceid
+    service: hannah-voiceid
+    post_install: "/opt/hannah/voiceid/venv/bin/pip install --upgrade -q -r /opt/hannah/voiceid/requirements.txt"
+```
 
 ```yaml title="macOS (/opt/hannah/etc/autodeploy.yaml)"
   - name: voiceid
     channel: voiceid-stable
     install_dir: /opt/hannah/voiceid
     service: com.hannah.voiceid
-    post_install: "/opt/hannah/voiceid/venv/bin/pip install -q -r /opt/hannah/voiceid/requirements.txt"
+    post_install: "/opt/hannah/voiceid/venv/bin/pip install --upgrade -q -r /opt/hannah/voiceid/requirements.txt"
 ```
-
-Unter Linux gilt dasselbe Format wie bei den anderen Komponenten (`service` als
-systemd-Name statt `com.hannah.*`, Config in `/etc/hannah/autodeploy.yaml`).
