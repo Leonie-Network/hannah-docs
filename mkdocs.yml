@@ -62,6 +62,7 @@ nav:
           - Asset Server:
               - Übersicht: components/asset-server/index.md
               - Installation: components/asset-server/installation.md
+              - Konfiguration: components/asset-server/configuration.md
           - Proxy:
               - Übersicht: components/proxy/index.md
               - Installation: components/proxy/installation.md

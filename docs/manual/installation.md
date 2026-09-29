@@ -120,7 +120,7 @@ Installations-Script pro Komponente.
     <p data-hcb="asset-note" hidden><strong>Asset Server:</strong> Er ist nach dem Start noch leer.
     Melde dich unter <code>http://&lt;deine-IP&gt;:8080</code> als <code>admin</code> an (Passwort:
     <code>ADMIN_PASSWORD</code> aus der Datei) und richte den Zugang für die Satelliten ein —
-    siehe <a href="../../components/asset-server/installation/#zugang-fur-die-satelliten-einrichten">Asset Server → Installation</a>.</p>
+    siehe <a href="../../components/asset-server/configuration/#zugang-fur-die-satelliten-einrichten">Asset Server → Konfiguration</a>.</p>
     <pre><code data-hcb="yaml-code"></code></pre>
     <button type="button" data-hcb="download-compose">docker-compose.yml herunterladen</button>
     <button type="button" data-copy-target='[data-hcb="yaml-code"]'>In Zwischenablage kopieren</button>
