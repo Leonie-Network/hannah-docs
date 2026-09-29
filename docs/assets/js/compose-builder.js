@@ -30,7 +30,7 @@
 
   function readSelection(root) {
     var sel = {};
-    ["telegram", "proxy", "voiceid", "timer", "logcollector"].forEach(function (key) {
+    ["telegram", "proxy", "voiceid", "timer", "logcollector", "assetserver"].forEach(function (key) {
       sel[key] = root.querySelector('[data-hcb="component-' + key + '"]').checked;
     });
 
@@ -128,6 +128,7 @@
       webuiSecretKey: randomHex(32),
       mysqlRootPassword: randomHex(16),
       mysqlUserPassword: randomHex(16),
+      assetServerAdminPassword: randomHex(16),
     };
 
     var lines = [];
@@ -164,16 +165,6 @@
     lines.push("      - core_data:/app/data");
     lines.push("      - core_activity_audio:/app/activity_audio");
     lines.push("      - core_audio_dumps:/app/audio_dumps");
-    // Meldet "healthy", sobald der gRPC-Port offen ist — die abhängigen Dienste
-    // warten darauf, statt nur auf den Container-Start
-    lines.push("    healthcheck:");
-    lines.push(
-      "      test: [\"CMD\", \"python\", \"-c\", \"import socket; socket.create_connection(('localhost', 50051), 2)\"]"
-    );
-    lines.push("      interval: 5s");
-    lines.push("      timeout: 5s");
-    lines.push("      retries: 12");
-    lines.push("      start_period: 60s");
     lines = lines.concat(envBlock("    ", buildCoreEnv(sel, secrets)));
 
     // --- hannah-webui --------------------------------------------------------
@@ -310,6 +301,32 @@
         ])
       );
       volumes.push("timer_data");
+    }
+
+    // --- hannah-asset-server -----------------------------------------------
+    // Bewusst ohne depends_on und ohne hannah_network: der Asset Server kennt weder
+    // Core noch den Rest des Stacks — die Satelliten holen ihre Sounds direkt über
+    // die URL, die sie in ihrer eigenen Web-Oberfläche eingetragen haben.
+    // INSECURE_COOKIE ist nötig, weil der Login-Cookie sonst nur über HTTPS gesetzt
+    // wird — hier läuft alles über HTTP.
+    if (sel.assetserver) {
+      lines.push("  hannah-asset-server:");
+      lines.push("    image: quay.io/m1kad0/hannah-asset-server:latest");
+      lines.push("    container_name: hannah-asset-server");
+      lines.push("    restart: unless-stopped");
+      lines.push("    pull_policy: always");
+      lines.push("    ports:");
+      lines.push('      - "8080:8080"');
+      lines.push("    volumes:");
+      lines.push("      - asset_server_data:/data");
+      lines = lines.concat(
+        envBlock("    ", [
+          ["STORAGE_PATH", "/data"],
+          ["ADMIN_PASSWORD", secrets.assetServerAdminPassword],
+          ["INSECURE_COOKIE", "true"],
+        ])
+      );
+      volumes.push("asset_server_data");
     }
 
     // --- mysql-db (nur bei mitgelieferter Aktivitäts-Log-DB) ----------------
@@ -457,6 +474,7 @@
     var errorBox = root.querySelector('[data-hcb="errors"]');
     var output = root.querySelector('[data-hcb="output"]');
     var yamlCode = root.querySelector('[data-hcb="yaml-code"]');
+    var assetNote = root.querySelector('[data-hcb="asset-note"]');
     var lastResult = null;
 
     root.querySelector('[data-hcb="generate"]').addEventListener("click", function () {
@@ -475,6 +493,7 @@
 
       errorBox.hidden = true;
       lastResult = buildCompose(sel);
+      assetNote.hidden = !sel.assetserver;
       yamlCode.textContent = lastResult.compose;
       output.hidden = false;
       output.scrollIntoView({ behavior: "smooth", block: "nearest" });

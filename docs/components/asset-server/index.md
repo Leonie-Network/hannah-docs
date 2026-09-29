@@ -8,11 +8,11 @@ Läuft als eigener Dienst. Jeder Satellit lädt sich seine Sounds selbst per HTT
 cacht sie lokal — Core spricht den Asset Server nicht direkt an, sondern schickt dem
 Satelliten nur die Information, *welchen* Sound er abspielen soll.
 
-Standardmäßig zeigen alle Satelliten auf Leonies eigene Instanz. Willst du deine eigenen
-Sound-Assets verwalten oder unabhängig von ihrer Instanz sein, kannst du den Asset Server
-selbst betreiben — ganz ohne Firmware-Neubau.
+Ohne eigenen Asset Server bekommen die Satelliten keine Sounds — die Instanz der
+Entwicklerin ist von außen nicht erreichbar. Deshalb lohnt es sich, einen zu betreiben,
+ganz ohne Firmware-Neubau: du trägst nur seine Adresse in die Satelliten ein.
 
-Vier Wege, das umzustellen:
+Vier Wege, das einzutragen:
 
 - **Für alle künftigen Satelliten auf einmal:** URL und Token unter
   [Satellite Defaults](../iobroker-adapter/configuration.md#satellite-defaults) im
@@ -44,7 +44,7 @@ fehlt jeweils nur das genannte Signal, der Rest von Hannah funktioniert normal.
 | `connect` | Sound | `satellite` | Spielt der Satellit selbst beim Boot/Registrieren, unabhängig von Core |
 | `message_chime` | Sound | `satellite` | Neue Mailbox-Nachricht |
 | `timer_jingle` | Sound | `satellite` | Timer/Wecker-Ablauf |
-| `alarm_ring` | Sound | `shared` | Wird wiederholt abgespielt, solange ein Wecker klingelt |
+| `alarm_ring` | Sound | `satellite` | Wird wiederholt abgespielt, solange ein Wecker klingelt |
 | `wakeword` | Modell (kein Sound) | `satellite` | Override des Wakeword-Erkennungsmodells (TFLite Micro) |
 
 `connect` und `wakeword` lädt die Firmware immer; `alarm_ring`, `timer_jingle` und
