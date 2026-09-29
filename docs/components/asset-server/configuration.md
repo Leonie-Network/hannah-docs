@@ -75,10 +75,39 @@ Web-Oberfläche dieses Satelliten ein.
 
 ![Dialog New Namespace mit Name und der Auswahl des übergeordneten Namespace](../../assets/img/asset-server/new-namespace.png)
 
-## Assets hochladen
+## Sounds einspielen
 
-Ein frisch installierter Server enthält keine Sounds — die Satelliten bleiben stumm, bis du
-welche hochlädst. Das geht entweder über die Verwaltungs-Oberfläche des Servers oder per
+Ein frisch installierter Server enthält keine Sounds — die Satelliten bleiben stumm, bis
+welche da sind. Am schnellsten geht es mit dem Starter-Paket, das die Standard-Sounds der
+Satelliten enthält (`connect`, `message_chime` und `timer_jingle`):
+
+[hannah-assets.tar.gz herunterladen](../../assets/download/hannah-assets.tar.gz)
+
+1. Melde dich als `admin` an und öffne den Tab **Assets**. Oben rechts findest du die
+   Schaltflächen **Export**, **Import** und **Upload**.
+
+    ![Tab Assets mit der Namespace-Auswahl und den Schaltflächen Export, Import und Upload](../../assets/img/asset-server/assets-toolbar.png)
+
+2. Klicke auf **Import**, wähle die heruntergeladene Datei und lass als Ziel **As named in
+   the bundle** stehen. Der Namespace `satellite` wird bei Bedarf angelegt.
+
+    ![Dialog Import Assets mit der ausgewählten Datei hannah-assets.tar.gz](../../assets/img/asset-server/import-dialog.png)
+
+3. Mit **Import** bestätigen. Der Dialog zeigt dir danach, was eingespielt wurde:
+
+    ![Import-Ergebnis: Target satellite, Imported (3): connect, message_chime, timer_jingle](../../assets/img/asset-server/import-result.png)
+
+Im Tab **Assets** siehst du die Sounds jetzt, wenn du den Namespace `satellite` auswählst:
+
+![Asset-Liste des Namespace satellite mit connect, message_chime und timer_jingle](../../assets/img/asset-server/assets-list.png)
+
+!!! note "Bereits vorhandene Sounds"
+    Hast du einen Sound mit demselben Namen schon selbst angelegt, ersetzt der Import ihn nur,
+    wenn du **Overwrite assets whose content differs** ankreuzt.
+
+### Eigene Sounds
+
+Eigene Sounds lädst du entweder über **Upload** in der Verwaltungs-Oberfläche hoch oder per
 Kommandozeile mit dem im [Quellcode](https://github.com/NurPech/hannah-asset-server)
 enthaltenen `scripts/asset-cli.ps1` (PowerShell 7+). Zum Hochladen braucht der Account
 `write` auf dem Ziel-Namespace — das ist der `admin`, nicht der Satelliten-Account.
