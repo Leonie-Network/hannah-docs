@@ -44,7 +44,7 @@ fehlt jeweils nur das genannte Signal, der Rest von Hannah funktioniert normal.
 | `connect` | Sound | `satellite` | Spielt der Satellit selbst beim Boot/Registrieren, unabhängig von Core |
 | `message_chime` | Sound | `satellite` | Neue Mailbox-Nachricht |
 | `timer_jingle` | Sound | `satellite` | Timer/Wecker-Ablauf |
-| `alarm_ring` | Sound | `shared` | Wird wiederholt abgespielt, solange ein Wecker klingelt |
+| `alarm_ring` | Sound | `satellite` | Wird wiederholt abgespielt, solange ein Wecker klingelt |
 | `wakeword` | Modell (kein Sound) | `satellite` | Override des Wakeword-Erkennungsmodells (TFLite Micro) |
 
 `connect` und `wakeword` lädt die Firmware immer; `alarm_ring`, `timer_jingle` und

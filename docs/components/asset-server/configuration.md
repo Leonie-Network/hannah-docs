@@ -85,7 +85,7 @@ Web-Oberfläche dieses Satelliten ein.
 
 Ein frisch installierter Server enthält keine Sounds — die Satelliten bleiben stumm, bis
 welche da sind. Am schnellsten geht es mit dem Starter-Paket, das die Standard-Sounds der
-Satelliten enthält (`connect`, `message_chime` und `timer_jingle`):
+Satelliten enthält (`alarm_ring`, `connect`, `message_chime` und `timer_jingle`):
 
 [hannah-assets.tar.gz herunterladen](../../assets/download/hannah-assets.tar.gz)
 
