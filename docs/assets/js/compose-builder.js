@@ -164,6 +164,16 @@
     lines.push("      - core_data:/app/data");
     lines.push("      - core_activity_audio:/app/activity_audio");
     lines.push("      - core_audio_dumps:/app/audio_dumps");
+    // Meldet "healthy", sobald der gRPC-Port offen ist — die abhängigen Dienste
+    // warten darauf, statt nur auf den Container-Start
+    lines.push("    healthcheck:");
+    lines.push(
+      "      test: [\"CMD\", \"python\", \"-c\", \"import socket; socket.create_connection(('localhost', 50051), 2)\"]"
+    );
+    lines.push("      interval: 5s");
+    lines.push("      timeout: 5s");
+    lines.push("      retries: 12");
+    lines.push("      start_period: 60s");
     lines = lines.concat(envBlock("    ", buildCoreEnv(sel, secrets)));
 
     // --- hannah-webui --------------------------------------------------------
@@ -173,7 +183,8 @@
     lines.push("    restart: unless-stopped");
     lines.push("    pull_policy: always");
     lines.push("    depends_on:");
-    lines.push("      - hannah-core");
+    lines.push("      hannah-core:");
+    lines.push("        condition: service_healthy");
     lines.push("    networks:");
     lines.push("      - hannah_network");
     lines.push("    ports:");
@@ -196,7 +207,8 @@
       lines.push("    restart: unless-stopped");
       lines.push("    pull_policy: always");
       lines.push("    depends_on:");
-      lines.push("      - hannah-core");
+      lines.push("      hannah-core:");
+      lines.push("        condition: service_healthy");
       lines.push("    networks:");
       lines.push("      - hannah_network");
       var telegramEnv = [
@@ -216,7 +228,8 @@
       lines.push("    restart: unless-stopped");
       lines.push("    pull_policy: always");
       lines.push("    depends_on:");
-      lines.push("      - hannah-core");
+      lines.push("      hannah-core:");
+      lines.push("        condition: service_healthy");
       lines.push("    networks:");
       lines.push("      - hannah_network");
       lines.push("    ports:");
@@ -236,7 +249,8 @@
       lines.push("    restart: unless-stopped");
       lines.push("    pull_policy: always");
       lines.push("    depends_on:");
-      lines.push("      - hannah-core");
+      lines.push("      hannah-core:");
+      lines.push("        condition: service_healthy");
       lines.push("    networks:");
       lines.push("      - hannah_network");
       lines.push("    volumes:");
@@ -258,7 +272,8 @@
       lines.push("    restart: unless-stopped");
       lines.push("    pull_policy: always");
       lines.push("    depends_on:");
-      lines.push("      - hannah-core");
+      lines.push("      hannah-core:");
+      lines.push("        condition: service_healthy");
       lines.push("    networks:");
       lines.push("      - hannah_network");
       lines.push("    ports:");
@@ -282,7 +297,8 @@
       lines.push("    restart: unless-stopped");
       lines.push("    pull_policy: always");
       lines.push("    depends_on:");
-      lines.push("      - hannah-core");
+      lines.push("      hannah-core:");
+      lines.push("        condition: service_healthy");
       lines.push("    networks:");
       lines.push("      - hannah_network");
       lines.push("    volumes:");
