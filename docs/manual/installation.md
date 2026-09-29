@@ -75,6 +75,7 @@ Installations-Script pro Komponente.
     <label><input type="checkbox" data-hcb="component-voiceid"> VoiceID — erkennt wer spricht</label>
     <label><input type="checkbox" data-hcb="component-timer"> Timer — Timer und Wecker</label>
     <label><input type="checkbox" data-hcb="component-logcollector"> LogCollector — sammelt Logs aller anderen Komponenten</label>
+    <label><input type="checkbox" data-hcb="component-assetserver"> Asset Server — liefert Sounds (Jingles, Benachrichtigungen) an die Satelliten. Ohne ihn läuft Hannah, die Satelliten bleiben aber stumm</label>
     </fieldset>
 
     <fieldset>
@@ -116,6 +117,10 @@ Installations-Script pro Komponente.
     <p>Danach kurz <code>docker compose logs -f hannah-core</code> prüfen — beim
     allerersten Start steht dort dein generierter Admin-Login, siehe
     <a href="../users/#erster-login">Nutzerverwaltung → Erster Login</a>.</p>
+    <p data-hcb="asset-note" hidden><strong>Asset Server:</strong> Er ist nach dem Start noch leer.
+    Melde dich unter <code>http://&lt;deine-IP&gt;:8080</code> als <code>admin</code> an (Passwort:
+    <code>ADMIN_PASSWORD</code> aus der Datei) und richte den Zugang für die Satelliten ein —
+    siehe <a href="../../components/asset-server/installation/#zugang-fur-die-satelliten-einrichten">Asset Server → Installation</a>.</p>
     <pre><code data-hcb="yaml-code"></code></pre>
     <button type="button" data-hcb="download-compose">docker-compose.yml herunterladen</button>
     <button type="button" data-copy-target='[data-hcb="yaml-code"]'>In Zwischenablage kopieren</button>
@@ -280,6 +285,27 @@ Installations-Script pro Komponente.
             volumes:
               - timer_data:/app/data
 
+          hannah-asset-server:
+            image: quay.io/m1kad0/hannah-asset-server:latest
+            container_name: hannah-asset-server
+            restart: unless-stopped
+            pull_policy: always
+            profiles: ["full", "with-asset-server"]
+            # Eigenständig: kennt weder Core noch den Rest des Stacks, daher weder
+            # depends_on noch hannah_network — Satelliten holen ihre Sounds direkt per URL
+            ports:
+              - "8080:8080"
+            volumes:
+              - asset_server_data:/data
+            environment:
+              # Muss gesetzt sein, wird aber nur für Reverse-Proxy-Routing und OIDC gebraucht
+              BASE_URL: "192.168.x.x"
+              STORAGE_PATH: "/data"
+              # Legt beim allerersten Start den Benutzer "admin" an
+              ADMIN_PASSWORD: "change-me"
+              # Nötig, solange du ihn ohne HTTPS betreibst (sonst klappt der Login nicht)
+              INSECURE_COOKIE: "true"
+
           mysql-db:
             image: mysql:8.0
             container_name: hannah-db
@@ -326,6 +352,7 @@ Installations-Script pro Komponente.
           webui_data:
           timer_data:
           logcollector_data:
+          asset_server_data:
           mysql_data:
           mosquitto_data:
           mosquitto_log:
@@ -339,7 +366,7 @@ Installations-Script pro Komponente.
     !!! warning "Passwörter ändern"
         Alle Platzhalter, die mit `change-me` beginnen, vor dem produktiven Einsatz durch
         eigene, zufällige Werte ersetzen — die MySQL-Passwörter (dort steht wörtlich
-        `change-me`) und der WebUI-Secret-Key (dort steht `change-me-to-a-random-string`).
+        `change-me`), das Asset-Server-Admin-Passwort (`change-me`) und der WebUI-Secret-Key (dort steht `change-me-to-a-random-string`).
 
     ### Config-Dateien anlegen
 
@@ -401,6 +428,7 @@ Installations-Script pro Komponente.
     | `with-voiceid` | Speaker-ID |
     | `with-timer` | Timer/Wecker-Service |
     | `telegram` | Telegram-Bot |
+    | `with-asset-server` | Asset Server (Sounds für die Satelliten, siehe [Asset Server](../components/asset-server/installation.md)) |
     | `with-db` | MySQL (Activity-Log) |
     | `with-mqtt` | Mosquitto (falls du keinen eigenen MQTT-Broker hast) |
     | `full` | alles zusammen |
