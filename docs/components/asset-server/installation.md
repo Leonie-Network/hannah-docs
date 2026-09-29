@@ -28,7 +28,6 @@ services:
     volumes:
       - asset-data:/data
     environment:
-      - BASE_URL=192.168.x.x
       - STORAGE_PATH=/data
       - ADMIN_PASSWORD=change-me
       - INSECURE_COOKIE=true
@@ -40,10 +39,6 @@ volumes:
 
 - **`ADMIN_PASSWORD`** legt beim allerersten Start den Benutzer `admin` an. Ohne diese
   Variable gibt es keinen Benutzer und du kommst nicht in die Verwaltungs-Oberfläche.
-- **`BASE_URL`** muss gesetzt sein, sonst startet der Server nicht. Der Inhalt ist im
-  Heimnetz aber nebensächlich (die IP des Docker-Hosts oder ein beliebiger Hostname
-  reicht) — gebraucht wird er nur für Reverse-Proxy-Routing (z. B. Traefik) und für die
-  optionale OIDC-Anmeldung.
 - **`INSECURE_COOKIE=true`** brauchst du, solange du den Server ohne HTTPS betreibst. Der
   Login-Cookie wird sonst nur über HTTPS akzeptiert, und die Anmeldung im Browser
   funktioniert nicht. Hast du einen Reverse Proxy mit Zertifikat davor, lässt du die

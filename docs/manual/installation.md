@@ -171,14 +171,6 @@ Installations-Script pro Komponente.
               - core_audio_dumps:/app/audio_dumps
               - core_data:/app/data
               - ./core-config.yaml:/etc/hannah/config.yaml:ro
-            # Meldet "healthy", sobald der gRPC-Port offen ist — die anderen Dienste
-            # warten darauf, statt nur auf den Container-Start
-            healthcheck:
-              test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 50051), 2)"]
-              interval: 5s
-              timeout: 5s
-              retries: 12
-              start_period: 60s
 
           hannah-webui:
             image: quay.io/m1kad0/hannah-webui:latest
@@ -298,8 +290,6 @@ Installations-Script pro Komponente.
             volumes:
               - asset_server_data:/data
             environment:
-              # Muss gesetzt sein, wird aber nur für Reverse-Proxy-Routing und OIDC gebraucht
-              BASE_URL: "192.168.x.x"
               STORAGE_PATH: "/data"
               # Legt beim allerersten Start den Benutzer "admin" an
               ADMIN_PASSWORD: "change-me"

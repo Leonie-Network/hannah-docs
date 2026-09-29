@@ -165,16 +165,6 @@
     lines.push("      - core_data:/app/data");
     lines.push("      - core_activity_audio:/app/activity_audio");
     lines.push("      - core_audio_dumps:/app/audio_dumps");
-    // Meldet "healthy", sobald der gRPC-Port offen ist — die abhängigen Dienste
-    // warten darauf, statt nur auf den Container-Start
-    lines.push("    healthcheck:");
-    lines.push(
-      "      test: [\"CMD\", \"python\", \"-c\", \"import socket; socket.create_connection(('localhost', 50051), 2)\"]"
-    );
-    lines.push("      interval: 5s");
-    lines.push("      timeout: 5s");
-    lines.push("      retries: 12");
-    lines.push("      start_period: 60s");
     lines = lines.concat(envBlock("    ", buildCoreEnv(sel, secrets)));
 
     // --- hannah-webui --------------------------------------------------------
@@ -317,9 +307,8 @@
     // Bewusst ohne depends_on und ohne hannah_network: der Asset Server kennt weder
     // Core noch den Rest des Stacks — die Satelliten holen ihre Sounds direkt über
     // die URL, die sie in ihrer eigenen Web-Oberfläche eingetragen haben.
-    // BASE_URL muss gesetzt sein (sonst startet er nicht), wird aber nur für
-    // Reverse-Proxy-Routing und OIDC gebraucht. INSECURE_COOKIE ist nötig, weil der
-    // Login-Cookie sonst nur über HTTPS gesetzt wird — hier läuft alles über HTTP.
+    // INSECURE_COOKIE ist nötig, weil der Login-Cookie sonst nur über HTTPS gesetzt
+    // wird — hier läuft alles über HTTP.
     if (sel.assetserver) {
       lines.push("  hannah-asset-server:");
       lines.push("    image: quay.io/m1kad0/hannah-asset-server:latest");
@@ -332,7 +321,6 @@
       lines.push("      - asset_server_data:/data");
       lines = lines.concat(
         envBlock("    ", [
-          ["BASE_URL", sel.hostLanIp],
           ["STORAGE_PATH", "/data"],
           ["ADMIN_PASSWORD", secrets.assetServerAdminPassword],
           ["INSECURE_COOKIE", "true"],
