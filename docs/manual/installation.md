@@ -166,6 +166,14 @@ Installations-Script pro Komponente.
               - core_audio_dumps:/app/audio_dumps
               - core_data:/app/data
               - ./core-config.yaml:/etc/hannah/config.yaml:ro
+            # Meldet "healthy", sobald der gRPC-Port offen ist — die anderen Dienste
+            # warten darauf, statt nur auf den Container-Start
+            healthcheck:
+              test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 50051), 2)"]
+              interval: 5s
+              timeout: 5s
+              retries: 12
+              start_period: 60s
 
           hannah-webui:
             image: quay.io/m1kad0/hannah-webui:latest
@@ -173,7 +181,8 @@ Installations-Script pro Komponente.
             restart: unless-stopped
             pull_policy: always
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             ports:
@@ -195,7 +204,8 @@ Installations-Script pro Komponente.
             pull_policy: always
             profiles: ["full", "integrations", "telegram"]
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             volumes:
@@ -210,7 +220,8 @@ Installations-Script pro Komponente.
             # Nutzt du with-proxy: hier "- \"7775:7775/udp\"" ergänzen und dieselbe
             # Zeile bei hannah-core entfernen (Port-Konflikt sonst, siehe Warnhinweis oben)
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             volumes:
@@ -223,7 +234,8 @@ Installations-Script pro Komponente.
             pull_policy: always
             profiles: ["full", "with-voiceid"]
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             volumes:
@@ -237,7 +249,8 @@ Installations-Script pro Komponente.
             pull_policy: always
             profiles: ["full", "with-logcollector"]
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             ports:
@@ -257,7 +270,8 @@ Installations-Script pro Komponente.
             pull_policy: always
             profiles: ["full", "with-timer"]
             depends_on:
-              - hannah-core
+              hannah-core:
+                condition: service_healthy
             networks:
               - hannah_network
             environment:
