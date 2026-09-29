@@ -1,0 +1,115 @@
+/* Schalter statt Standard-Checkboxen in den Buildern (Compose + AutoDeploy).
+   Aus = grau, An = grün. Die ganze Zeile (label) ist klickbar. */
+
+.hannah-compose-builder label:has(> input[type="checkbox"]),
+.hannah-autodeploy-builder label:has(> input[type="checkbox"]) {
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.hannah-compose-builder input[type="checkbox"],
+.hannah-autodeploy-builder input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  flex: none;
+  width: 46px;
+  height: 26px;
+  margin: 0 12px 0 0;
+  border-radius: 13px;
+  background: #8b96a3;
+  cursor: pointer;
+  transition: background .18s ease;
+}
+
+.hannah-compose-builder input[type="checkbox"]::after,
+.hannah-autodeploy-builder input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+  transition: transform .18s ease;
+}
+
+.hannah-compose-builder input[type="checkbox"]:checked,
+.hannah-autodeploy-builder input[type="checkbox"]:checked {
+  background: #2e9d5b;
+}
+
+.hannah-compose-builder input[type="checkbox"]:checked::after,
+.hannah-autodeploy-builder input[type="checkbox"]:checked::after {
+  transform: translateX(20px);
+}
+
+.hannah-compose-builder input[type="checkbox"]:focus-visible,
+.hannah-autodeploy-builder input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--md-accent-fg-color--transparent, rgba(91, 79, 209, .45));
+  outline-offset: 2px;
+}
+
+/* "Immer dabei"-Schalter: an, aber sichtbar nicht bedienbar */
+.hannah-compose-builder input[type="checkbox"]:disabled,
+.hannah-autodeploy-builder input[type="checkbox"]:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* Zwei-Wege-Auswahl (Plattform, Architektur): nebeneinander, mit gleitender Markierung */
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 6px 0;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--md-default-fg-color--lightest, #c7d0da);
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--md-primary-fg-color, #5b4fd1);
+  transition: transform .2s ease;
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg:has(label:nth-child(2) input:checked)::before {
+  transform: translateX(100%);
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg label {
+  position: relative;
+  margin: 0;
+  padding: 8px 20px;
+  border-radius: 999px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg label:has(input:checked) {
+  color: #fff;
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+:is(.hannah-compose-builder, .hannah-autodeploy-builder) .seg label:has(input:focus-visible) {
+  outline: 3px solid var(--md-accent-fg-color--transparent, rgba(91, 79, 209, .45));
+  outline-offset: 2px;
+}

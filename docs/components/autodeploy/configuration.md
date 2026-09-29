@@ -59,8 +59,11 @@ aus, unten steht dann die fertige Konfiguration — einfach kopieren und so einf
 <div class="hannah-autodeploy-builder" id="hannah-autodeploy-builder">
 <fieldset>
 <legend>Plattform</legend>
-<label><input type="radio" name="had-platform" value="linux" checked> Linux (alle Komponenten)</label>
-<label><input type="radio" name="had-platform" value="mac"> macOS (nur VoiceID)</label>
+<div class="seg">
+<label><input type="radio" name="had-platform" value="linux" checked>Linux</label>
+<label><input type="radio" name="had-platform" value="mac">macOS</label>
+</div>
+<p><em>Unter Linux stehen alle Komponenten zur Verfügung, unter macOS nur VoiceID.</em></p>
 </fieldset>
 <fieldset>
 <legend>Komponenten</legend>
@@ -75,8 +78,10 @@ aus, unten steht dann die fertige Konfiguration — einfach kopieren und so einf
 </fieldset>
 <fieldset data-had="arch-fields" hidden>
 <legend>Prozessor deines Rechners (wichtig für Proxy und LogCollector)</legend>
-<label><input type="radio" name="had-arch" value="arm64" checked> arm64 (z. B. Raspberry Pi)</label>
-<label><input type="radio" name="had-arch" value="amd64"> amd64 (x86_64)</label>
+<div class="seg">
+<label><input type="radio" name="had-arch" value="arm64" checked>arm64 (z. B. Raspberry Pi)</label>
+<label><input type="radio" name="had-arch" value="amd64">amd64 (x86_64)</label>
+</div>
 </fieldset>
 <p>Das kommt in die Datei <code data-had="path"></code>:</p>
 <pre><code data-had="yaml-code"></code></pre>

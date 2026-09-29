@@ -126,6 +126,9 @@ nav:
           - Update Server: services/update-server.md
           - WebUI: services/webui.md
 
+extra_css:
+  - assets/css/builder.css
+
 extra_javascript:
   - assets/js/compose-builder.js
   - assets/js/autodeploy-builder.js

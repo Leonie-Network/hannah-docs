@@ -80,8 +80,11 @@ Installations-Script pro Komponente.
 
     <fieldset>
     <legend>MQTT-Broker (kein Optional-Teil — Core braucht immer einen)</legend>
-    <label><input type="radio" name="hcb-mqtt-mode" value="bundled" checked> Mitgelieferten Mosquitto nutzen (einfachster Fall, ohne Auth)</label>
-    <label><input type="radio" name="hcb-mqtt-mode" value="own"> Eigenen Broker verwenden</label>
+    <div class="seg">
+    <label><input type="radio" name="hcb-mqtt-mode" value="bundled" checked>Mitgelieferter Mosquitto</label>
+    <label><input type="radio" name="hcb-mqtt-mode" value="own">Eigener Broker</label>
+    </div>
+    <p><em>Der mitgelieferte Mosquitto ist der einfachste Fall (ohne Anmeldung).</em></p>
     <div data-hcb="mqtt-own-fields" hidden style="margin-left:24px">
     <label>Adresse<input type="text" data-hcb="mqtt-host" placeholder="192.168.1.1"></label>
     <label>Port (optional, Default 1883)<input type="text" data-hcb="mqtt-port"></label>
@@ -94,8 +97,10 @@ Installations-Script pro Komponente.
     <legend>Aktivitäts-Log</legend>
     <label><input type="checkbox" data-hcb="activity-log-enabled"> Aktivitäts-Log aktivieren</label>
     <div data-hcb="db-fields" hidden style="margin-left:24px">
-    <label><input type="radio" name="hcb-db-mode" value="bundled" checked> Mitgelieferte Datenbank verwenden</label>
-    <label><input type="radio" name="hcb-db-mode" value="own"> Bestehende Datenbank verwenden</label>
+    <div class="seg">
+    <label><input type="radio" name="hcb-db-mode" value="bundled" checked>Mitgelieferte Datenbank</label>
+    <label><input type="radio" name="hcb-db-mode" value="own">Bestehende Datenbank</label>
+    </div>
     <div data-hcb="db-own-fields" hidden style="margin-left:24px">
     <label>Adresse<input type="text" data-hcb="db-host" placeholder="192.168.1.X"></label>
     <label>Port (optional, Default 3306)<input type="text" data-hcb="db-port"></label>
