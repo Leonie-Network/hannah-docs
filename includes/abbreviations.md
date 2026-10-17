@@ -10,3 +10,5 @@
 *[Beamforming]: kombiniert die Signale mehrerer Mikrofone, um bevorzugt aus einer Richtung zu hören
 *[PTT]: Push-to-Talk – Sprechtaste gedrückt halten, statt auf ein Wake-Word zu warten
 *[Voiceprints]: digitale Stimmabdrücke, die beim Enrollment aufgenommen werden
+*[mDNS]: Verfahren, mit dem sich Geräte im lokalen Netz automatisch finden, wie bei Druckern oder Chromecasts
+*[Echo-Unterdrückung]: rechnet die eigene Musik aus der Mikrofonaufnahme heraus

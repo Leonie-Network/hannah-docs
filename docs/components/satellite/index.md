@@ -17,6 +17,8 @@ kein WLAN konfiguriert ist — `192.168.4.1` im eigenen Access-Point-Modus des S
 Firmware-Verteilung (Erstflash + laufende OTA-Updates) läuft über den
 [Update-Server](../update-server/index.md).
 
+Optional spielt ein Satellit auch Musik aus [Music Assistant](../../manual/music.md) ab.
+
 !!! tip "Noch keine Hardware?"
     Zum Ausprobieren gibt es den [Lite-Satelliten](lite.md) — ein kleines Programm, das
     deinen PC mit Mikrofon und Lautsprecher zum Satelliten macht. Kein Ersatz für einen

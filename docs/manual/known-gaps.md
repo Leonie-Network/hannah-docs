@@ -15,6 +15,20 @@ gehört. Es gibt dafür aktuell kein
 Langfristig soll das eingeschränkt werden, sodass fremde Wecker nicht mehr ohne
 Weiteres per Sprache beendet werden können.
 
+## Musik und Sprache gleichzeitig
+
+Spielt ein Satellit [Musik aus Music Assistant](music.md) über seinen eigenen Lautsprecher,
+erkennt Hannah das Wake-Word schlechter, und Sprachbefehle per PTT kommen oft nicht richtig an.
+Das Mikrofon nimmt die Musik mit auf. Ohne Musik funktioniert beides wie gewohnt.
+
+Langfristig soll eine Echo-Unterdrückung die eigene Musik aus der Aufnahme herausrechnen.
+Bis dahin hilft es, die Musik kurz anzuhalten, bevor du mit Hannah sprichst.
+
+## Musik: keine Sprachsteuerung
+
+Musik lässt sich nur in Music Assistant steuern. Hannah per Sprache zu bitten, Musik zu
+starten oder zu wechseln, geht noch nicht.
+
 ## Trigger: global statt pro Nutzer
 
 [Trigger](triggers.md) wirken aktuell global — sie gelten für das ganze Haus, nicht für
