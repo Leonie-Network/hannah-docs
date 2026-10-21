@@ -96,6 +96,7 @@ nav:
               - Logs herunterladen: components/logcollector/usage.md
           - Update-Server:
               - Übersicht: components/update-server/index.md
+              - Update-Server nutzen: components/update-server/usage.md
           - ioBroker-Adapter:
               - Übersicht: components/iobroker-adapter/index.md
               - Installation: components/iobroker-adapter/installation.md

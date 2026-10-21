@@ -145,8 +145,11 @@ Installationsdateien direkt vom [Update-Server](../update-server/index.md#instal
 Der Satellit hat dann noch keine Einstellungen und richtet sich über sein eigenes
 Setup-WLAN ein.
 
-1. Lade die Installationsdateien herunter:
-   `https://hannah-update.sgessinger.de/releases/latest?channel=satellite-esp-stable-init-rev5`.
+1. Lade die Installationsdateien aus dem Kanal `satellite-esp-stable-init-rev5` vom
+   [Update-Server](../update-server/index.md) herunter. Dafür brauchst du ein Konto und
+   einen Token, siehe [Update-Server nutzen](../update-server/usage.md). Der Download geht im
+   Browser über das Download-Symbol oder
+   [auf der Kommandozeile](../update-server/usage.md#dateien-manuell-herunterladen).
    Der Browser speichert eine Datei `<version>.bin`, es ist aber ein ZIP. Benenne sie in
    `.zip` um und entpacke sie.
 2. Verbinde den UART-Wandler und aktiviere den Download-Modus wie oben beschrieben, dann

@@ -93,7 +93,7 @@ aus, unten steht dann die fertige Konfiguration — einfach kopieren und so einf
 
 ```yaml
 server_url: https://hannah-update.sgessinger.de
-#token: your-bearer-token-here
+token: your-bearer-token-here
 poll_interval: 300  # seconds
 
 # Name of this agent's own systemd unit — triggers self-restart after self-update.
@@ -106,7 +106,7 @@ components:
 | Schlüssel | Zweck |
 |---|---|
 | `server_url` | Basis-URL des Update-Servers |
-| `token` | Optional, nur für nicht-öffentliche Kanäle nötig |
+| `token` | Bearer-Token des Update-Servers, siehe [Update-Server nutzen](../update-server/usage.md). Ab dem 30.11.2026 Pflicht, bis dahin geht es noch ohne |
 | `poll_interval` | Sekunden zwischen zwei Versions-Checks |
 | `self_service` | Name von AutoDeploys eigenem Service (systemd/launchd) — löst nach einem Update von AutoDeploy selbst einen Self-Restart aus |
 | `components` | Liste der verwalteten Komponenten, siehe unten |

@@ -66,7 +66,7 @@
     var selfService = COMPONENTS.autodeploy.service[mac ? "mac" : "linux"];
     var head = [
       "server_url: https://hannah-update.sgessinger.de",
-      "#token: your-bearer-token-here",
+      "token: your-bearer-token-here",
       "poll_interval: 300  # seconds",
       "",
       "# Name of this agent's own service — triggers self-restart after self-update.",

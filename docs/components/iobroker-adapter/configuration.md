@@ -40,7 +40,7 @@ flashst oder deren OTA-Updates auslöst.
 | Feld | Zweck |
 |---|---|
 | Firmware Source URL | URL zur Firmware-ZIP (Hannah Update Server, GitHub/GitLab-Release oder jede direkte URL) — muss ein `manifest.json` plus die Binärdateien enthalten |
-| Auth Token | Optional, als Bearer-Token gesendet. Leer lassen, wenn die URL öffentlich ist |
+| Auth Token | Bearer-Token des Update-Servers, siehe [Update-Server nutzen](../update-server/usage.md). Braucht Rechte auf den Kanal `satellite-esp-stable-init-rev5`. Leer lassen nur bei einer öffentlichen URL |
 
 Wird beim Flashen/Neuflashen eines Satelliten über die Satellite-Manager-Oberfläche im
 Adapter-Tab verwendet.
@@ -54,7 +54,7 @@ Vorbelegte Werte beim Flashen oder Neuschreiben des NVS eines Satelliten — pro
 |---|---|
 | WiFi SSID / Password | WLAN-Zugangsdaten für neue Satelliten |
 | MQTT Broker / Port / User / Password | MQTT-Zugangsdaten für neue Satelliten |
-| OTA URL / Channel / Token | Update-Server-URL, Kanal und Bearer-Token für OTA-Updates |
+| OTA URL / Channel / Token | Update-Server-URL, Kanal und Bearer-Token für OTA-Updates. Der Adapter schreibt sie beim Flashen in die Einstellungen des Satelliten, der Token braucht Rechte auf `satellite-esp-stable-rev5`, siehe [Update-Server nutzen](../update-server/usage.md) |
 | Asset Server URL / Token | [Asset-Server](../asset-server/index.md)-URL und Bearer-Token (Sound-Assets) |
 | NVS Update API Token | Bearer-Token für den satelliteneigenen `POST /nvs`-Endpunkt — separat vom OTA-Token. Leer deaktiviert Remote-NVS-Updates auf dem Satelliten |
 | Disable TLS certificate validation | Nur für selbstsignierte Zertifikate — schaltet TLS-Prüfung komplett ab, unsicher |

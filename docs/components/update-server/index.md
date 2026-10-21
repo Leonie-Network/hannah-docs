@@ -2,8 +2,14 @@
 
 **Kein eigener nötig.** Die Quelle, von der `install.sh`-Installationen und AutoDeploy
 ihre Releases beziehen. Du brauchst hier nichts selbst zu betreiben — Leonies
-Update-Server ist für Dritte geöffnet, genau zu diesem Zweck: sie ist praktisch die
-einzige, die die Release-Pakete überhaupt bereitstellen kann.
+Update-Server steht Dritten zur Verfügung, genau zu diesem Zweck: sie ist praktisch die
+einzige, die die Release-Pakete überhaupt bereitstellen kann. Du brauchst dafür ein
+kostenloses Konto und einen Token, siehe [Update-Server nutzen](usage.md).
+
+!!! warning "Umstellung auf Anmeldung"
+    Ab dem **22.10.2026** läuft der Update-Server mit Anmeldung. Die bisherigen öffentlichen
+    Kanäle sind ab diesem Datum **veraltet** und werden am **30.11.2026** abgeschaltet.
+    Was du dafür tun musst, steht unter [Update-Server nutzen](usage.md).
 
 Standard-URL: `https://hannah-update.sgessinger.de` (per `UPDATE_SERVER_URL`
 überschreibbar, falls du doch einen eigenen betreiben willst).
@@ -21,12 +27,15 @@ ESP32-S3-Satelliten-Firmware. Für die Platine Rev. 5 gibt es zwei Kanäle:
 Der `-init`-Kanal liefert ein **ZIP** mit den Installationsdateien (eine `manifest.json` und
 vier Binärdateien), der OTA-Kanal die Firmware als einzelne Binärdatei. Die
 Installationsdateien brauchst du für die Inbetriebnahme eines neuen Satelliten. Auch der
-Satellite Manager im ioBroker-Adapter nutzt sie. Du kannst sie direkt herunterladen (der
-Browser speichert die Datei als `<version>.bin`, es ist aber ein ZIP):
+Satellite Manager im ioBroker-Adapter nutzt sie. Die Adresse der neuesten Version:
 
 ```text
 https://hannah-update.sgessinger.de/releases/latest?channel=satellite-esp-stable-init-rev5
 ```
+
+Wie du sie mit deinem Token lädst, steht unter
+[Dateien manuell herunterladen](usage.md#dateien-manuell-herunterladen). Der Browser
+speichert die Datei als `<version>.bin`, es ist aber ein ZIP.
 
 Zwei getrennte Wege nutzen das:
 
@@ -36,7 +45,8 @@ Zwei getrennte Wege nutzen das:
 - **Erstflash/WebFlash** (neuer Satellit): der [ioBroker-Adapter](../iobroker-adapter/configuration.md#firmware)
   lädt über seine konfigurierbare „Firmware Source URL" (zeigt standardmäßig auf den
   `-init`-Kanal dieses Servers) das WebFlash-Paket für den Satellite Manager im Adapter-Tab.
-  Ein Direkt-Download über dieselbe URL ist auch möglich, falls du manuell flashen willst.
+  Ein Direkt-Download über dieselbe URL (mit Token) ist auch möglich, falls du manuell
+  flashen willst.
 
 ### Installationsdateien manuell flashen
 

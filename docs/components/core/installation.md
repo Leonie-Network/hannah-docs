@@ -54,7 +54,7 @@ Steuerbar über Umgebungsvariablen:
 | Variable | Zweck | Default |
 |---|---|---|
 | `UPDATE_SERVER_URL` | Basis-URL des Update-Servers | `https://hannah-update.sgessinger.de` |
-| `UPDATE_SERVER_TOKEN` | Bearer-Token, nur für nicht-öffentliche Kanäle nötig | — |
+| `UPDATE_SERVER_TOKEN` | Bearer-Token des Update-Servers, siehe [Update-Server nutzen](../update-server/usage.md). Ab dem 30.11.2026 Pflicht, bis dahin geht es noch ohne | — |
 | `CORE_CHANNEL` | Release-Kanal | `core-stable` |
 
 ## Automatisch aktuell halten

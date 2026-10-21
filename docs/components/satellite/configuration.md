@@ -41,14 +41,15 @@ zeigt dabei nach links — die Richtung nach oben ist 0°.
 
 ## Firmware
 
-Optional — steuert nur, woher der Satellit seine automatischen OTA-Updates bezieht. Die
-Defaults zeigen bereits auf Leonies offenen Update-Server.
+Steuert, woher der Satellit seine automatischen OTA-Updates bezieht. Die Defaults zeigen
+bereits auf Leonies Update-Server. Für die Updates braucht der Satellit einen Token, den
+du dort einträgst, siehe [Update-Server nutzen](../update-server/usage.md).
 
 | Feld | Zweck | Default |
 |---|---|---|
 | Update-Server URL | Siehe [Update-Server](../update-server/index.md) | `https://hannah-update.sgessinger.de` |
 | Update-Channel | Leer = `stable` | — |
-| Update-Server Token | Nur für nicht-öffentliche Kanäle nötig | — |
+| Update-Server Token | Bearer-Token des Update-Servers. Ab dem 30.11.2026 Pflicht, bis dahin geht es noch ohne | — |
 
 ## Asset Server
 

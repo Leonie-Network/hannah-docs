@@ -15,7 +15,7 @@ starten.
     System gerade konfiguriert ist. Ein kompromittiertes oder böswilliges Paket dort
     (Supply-Chain-Angriff) hätte damit vollen Zugriff auf deinen Server, nicht nur auf
     Hannah. Nutze nur Update-Kanäle, denen du vertraust — z. B.
-    [Leonies offenen Update-Server](../update-server/index.md) als Standard-Quelle.
+    [Leonies Update-Server](../update-server/index.md) als Standard-Quelle.
     Eine hundertprozentige Garantie gegen Supply-Chain-Angriffe gibt es dabei nie, aber
     ein bekannter, seriös betriebener Kanal ist deutlich risikoärmer als eine beliebige
     dritte Quelle.
