@@ -96,14 +96,17 @@ du kannst die Bestellung im Warenkorb bezahlen. Bis dahin ist noch nichts bezahl
 ## Was du zusätzlich brauchst
 
 Diese Teile sind **nicht** auf der Platine und müssen separat besorgt werden. Die Links
-sind Beispiele, die im Einsatz sind:
+sind Beispiele, die im Einsatz sind. Produktlinks (vor allem bei Marktplätzen wie Amazon)
+veralten schnell und sind manchmal nicht mehr lieferbar. Entscheidend ist darum die Spalte
+**Worauf es ankommt**: Suche danach, nicht nach dem konkreten Angebot.
 
-| Teil | Hinweis | Beispiel |
+| Teil | Worauf es ankommt | Beispiel |
 |---|---|---|
-| U.FL-Antenne | Das ESP32-S3-WROOM-1U hat keine eingebaute Antenne, ohne externe Antenne kein WLAN | [Amazon](https://www.amazon.de/dp/B0816W5DLP) |
-| Lautsprecher | Dayton Audio RS75-4 (4 Ω) | [Soundimports](https://www.soundimports.eu/de/dayton-audio-rs75-4.html) |
-| Lautsprecherkabel | **2-polig, Stecker PH2.0** — andere Stecker passen nicht | [AliExpress](https://de.aliexpress.com/item/1005009087160808.html) |
+| Antenne | **U.FL (auch IPEX)**, für **2,4 GHz**. Das ESP32-S3-WROOM-1U hat keine eingebaute Antenne, ohne externe Antenne kein WLAN. Nimm eine flache **PCB-Antenne** (Platinen-Antenne mit Klebefläche), keine schraubbare Stabantenne. Suchbegriff: „u.fl ipex antenne 2.4ghz“ | [Amazon](https://www.amazon.de/dp/B0816W5DLP) |
+| Lautsprecher | 4 Ω, passend zum Verstärker auf der Platine | Dayton Audio RS75-4: [Soundimports](https://www.soundimports.eu/de/dayton-audio-rs75-4.html) |
+| Lautsprecherkabel | **2-polig, Stecker PH2.0**. Andere Stecker passen nicht | [AliExpress](https://de.aliexpress.com/item/1005009087160808.html) |
 | USB-Kabel | Zur Stromversorgung, wird an die Platine gelötet (siehe unten) | [Amazon](https://www.amazon.de/dp/B0CDC1X4BY) |
+| USB-UART-Wandler | Für den ersten Flash. **Muss 3,3 V** liefern (5 V zerstören das Modul), Details unter [Inbetriebnahme](commissioning.md#was-du-brauchst). Kostet etwa 10 €. Du brauchst ihn nur einmal und kannst ihn für jeden weiteren Satelliten und für andere ESP-Projekte (zum Beispiel ESPHome) wiederverwenden | [Amazon](https://www.amazon.de/dp/B0BN3MRQXF) |
 
 ## USB-Kabel anlöten
 

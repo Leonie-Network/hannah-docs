@@ -138,6 +138,65 @@ Nach dem Flash:
 
 Der Satellit startet mit der neuen Firmware und meldet sich bei Hannah an.
 
+### Ohne Satellite Manager flashen und einrichten
+
+Hast du keinen ioBroker-Adapter, oder flashst du Satelliten für jemand anderen, nimmst du die
+Installationsdateien direkt vom [Update-Server](../update-server/index.md#installationsdateien-manuell-flashen).
+Der Satellit hat dann noch keine Einstellungen und richtet sich über sein eigenes
+Setup-WLAN ein.
+
+1. Lade die Installationsdateien herunter:
+   `https://hannah-update.sgessinger.de/releases/latest?channel=satellite-esp-stable-init-rev5`.
+   Der Browser speichert eine Datei `<version>.bin`, es ist aber ein ZIP. Benenne sie in
+   `.zip` um und entpacke sie.
+2. Verbinde den UART-Wandler und aktiviere den Download-Modus wie oben beschrieben, dann
+   öffne den Web-Flasher und verbinde dich mit dem Satelliten.
+3. Lege im Abschnitt **Program** über **Add File** vier Zeilen an, jeweils mit der
+   Adresse und der passenden Datei aus dem ZIP:
+
+    | Adresse | Datei |
+    |---|---|
+    | `0x0` | `bootloader.bin` |
+    | `0x8000` | `partition-table.bin` |
+    | `0xE000` | `ota_data_initial.bin` |
+    | `0x10000` | `hannah_satellite.bin` |
+
+4. Auf **Program** klicken, danach UART-Wandler abziehen und das USB-Stromkabel einstecken.
+
+Weil der Satellit keine WLAN-Zugangsdaten hat, startet er im **AP-Modus**:
+
+1. Verbinde dich mit dem WLAN **Hannah-Setup-xxxx** (die vier Zeichen am Ende stammen von
+   der Hardware-Adresse des Satelliten, das WLAN hat kein Passwort).
+2. Öffne im Browser `http://192.168.4.1/` und wechsle auf **Einstellungen**.
+3. Trage deine WLAN-Zugangsdaten ein (mit **Scan** findest du dein Netz) sowie die Daten
+   deines MQTT-Brokers: Broker, Port, Benutzer und Passwort. Die übrigen Felder sind
+   vorbelegt.
+4. Speichern. Der Satellit verbindet sich mit deinem WLAN, findet Hannah über MQTT und
+   meldet sich bei ihr an.
+
+Im Gegensatz zu einem Satelliten aus dem Satellite Manager hat er dann noch keinen Besitzer
+und keinen Raum. Beides weist du ihm danach in der [WebUI unter Satelliten](../../manual/satellites.md)
+zu.
+
+## Satelliten zurücksetzen
+
+Willst du einen Satelliten in ein anderes WLAN umziehen oder weitergeben, löschst du seine
+WLAN-Zugangsdaten:
+
+1. Satelliten vom Strom trennen.
+2. Taster **Mute** gedrückt halten und dabei die Stromversorgung wieder anschließen.
+3. Mute erst loslassen, wenn der Satellit gestartet ist.
+
+Der Satellit startet dann im **AP-Modus**: Er spannt ein eigenes WLAN auf und wartet auf
+die Einrichtung. Gelöscht werden dabei **nur WLAN-Name und -Passwort**. Die übrigen
+Einstellungen (zum Beispiel die Zugangsdaten für den MQTT-Broker) bleiben gespeichert,
+bis du sie bei der Einrichtung überschreibst.
+
+!!! note "Der Satellit bleibt in Hannah angelegt"
+    Das Zurücksetzen ändert nichts an Hannahs Seite. Gibst du den Satelliten weiter oder
+    baust ihn nicht mehr ein, [löschst du ihn in der WebUI](../../manual/satellites.md)
+    unter **Satelliten** (ab Trust-Level 10).
+
 ## Externer Verstärker (J3)
 
 Standardmäßig treibt der eingebaute Verstärker (MAX98357A) den Lautsprecher an J2. An
