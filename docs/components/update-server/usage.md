@@ -76,8 +76,9 @@ Beispiel einen für deine Satelliten und einen für AutoDeploy.
    Damit darf der Service Account auf neue Versionen prüfen und sie herunterladen, mehr
    brauchst du normalerweise nicht. Wähle unter **On which channels?** die Kanäle aus, die du
    brauchst (eine Übersicht steht [unten](#welche-rechte-brauche-ich)). Mit dem Feld **Filter**
-   findest du Kanäle schneller, mit **Select all** wählst du alle aus. Speichere die Auswahl
-   mit dem grünen Button unter der Liste.
+   findest du Kanäle schneller, mit **Select all** wählst du alle aus. Klicke danach auf
+   **Save**. Solange du keinen Kanal ausgewählt hast, steht dort „No channel selected: this
+   account has no access“, der Service Account hat dann keinen Zugriff.
 
     ![Rechte eines Service Accounts: Preset Get updates und Auswahl der Kanäle](../../assets/screenshots/update-server/ota-sa-permissions.png)
 
