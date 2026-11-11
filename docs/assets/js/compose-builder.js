@@ -246,6 +246,7 @@
       lines.push("      - hannah_network");
       lines.push("    volumes:");
       lines.push("      - hannah_mem:/mnt/hannah_mem");
+      lines.push("      - hannah_voiceid_profiles:/var/lib/hannah-voiceid/profiles");
       var voiceidEnv = [
         ["HANNAH_VOICEID_RECOGNITION__UNKNOWN_THRESHOLD", "0.25"],
         ["HANNAH_VOICEID_RECOGNITION__UNCERTAIN_THRESHOLD", "0.40"],
@@ -253,6 +254,7 @@
       if (sel.logcollector) voiceidEnv.unshift(["HANNAH_VOICEID_HANNAH__ADDRESS", "hannah-core:50051"]);
       lines = lines.concat(envBlock("    ", voiceidEnv));
       volumes.push("hannah_mem");
+      volumes.push("hannah_voiceid_profiles");
     }
 
     // --- hannah-logcollector -----------------------------------------------

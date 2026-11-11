@@ -243,6 +243,7 @@ Installations-Script pro Komponente.
             volumes:
               - ./voiceid-config.yaml:/etc/hannah-voiceid/config.yaml:ro
               - hannah_mem:/mnt/hannah_mem
+              - hannah_voiceid_profiles:/var/lib/hannah-voiceid/profiles
 
           hannah-logcollector:
             image: quay.io/m1kad0/hannah-logcollector:latest
@@ -352,6 +353,7 @@ Installations-Script pro Komponente.
           mosquitto_data:
           mosquitto_log:
           hannah_mem:
+          hannah_voiceid_profiles:
 
         networks:
           hannah_network:
