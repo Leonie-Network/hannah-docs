@@ -13,6 +13,10 @@ nachlesen kannst, was Hannah tut. Verstehen muss ihn niemand, lesen kann ihn jed
 - **Keine Garantie.** Hannah ist ein privates Projekt. Es gibt weder Garantie noch
   Gewährleistung, und es besteht keine Verpflichtung zu Support, Updates oder
   Fehlerbehebung. Du betreibst Hannah auf eigene Verantwortung.
+- **Keine Hardware zu kaufen.** Von Leonie gibt es keine fertigen Satelliten und keinen
+  Verkauf. Die Platine bestellt jeder selbst, siehe
+  [Platine bestellen](../../components/satellite/pcb-order.md). Es gibt also keine
+  Kundenbeziehung.
 - **Nichts davon ist Pflicht.** Update-Server, Satelliten-Updates, AutoDeploy und die
   Cloud-Dienste sind optional. Hannah läuft auch ohne jeden davon.
 - **Du kannst dich aus der Kette herausnehmen.** Wer niemandem außer sich selbst vertrauen
