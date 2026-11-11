@@ -15,8 +15,8 @@ spielt dabei keine Rolle.
 - **Quay scannt die Images** und zeigt die gefundenen Schwachstellen an. Du kannst sie dort
   selbst einsehen. Die meisten Meldungen betreffen Abhängigkeiten von Abhängigkeiten, die
   sich nicht selbst beheben lassen, einzelne auch direkte Abhängigkeiten.
-- **Core, Telegram, VoiceID und Proxy laufen nicht als root.** Ein Fehler in einem
-  Container gibt keinen Vollzugriff.
+- **Die Container von Core, WebUI, Telegram, Proxy, VoiceID, LogCollector, Timer und
+  Teams laufen nicht als root.** Ein Fehler in einem Container gibt keinen Vollzugriff.
 - **Was du tun kannst:** Nimm eine feste Version oder einen Digest statt `latest` mit
   `pull_policy: always`, dann kommt nur an, was du bewusst aktualisierst. Spiel neue
   Versionen ein paar Tage später ein, dann haben andere schon Erfahrungen gesammelt.
