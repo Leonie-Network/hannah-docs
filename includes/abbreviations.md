@@ -12,3 +12,7 @@
 *[Voiceprints]: digitale Stimmabdrücke, die beim Enrollment aufgenommen werden
 *[mDNS]: Verfahren, mit dem sich Geräte im lokalen Netz automatisch finden, wie bei Druckern oder Chromecasts
 *[Echo-Unterdrückung]: rechnet die eigene Musik aus der Mikrofonaufnahme heraus
+*[VLAN]: per Router oder Switch abgetrenntes Teilnetz, das Geräte voneinander trennt
+*[MQTT]: einfaches Nachrichtenprotokoll, über das Hannah und die Satelliten Befehle und Zustände austauschen
+*[SBOM]: Liste aller Pakete, die in einer Software stecken
+*[TLS]: Verschlüsselung für Netzwerkverbindungen, bekannt von https

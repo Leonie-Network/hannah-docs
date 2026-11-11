@@ -102,6 +102,12 @@ nav:
               - Installation: components/iobroker-adapter/installation.md
               - Konfiguration: components/iobroker-adapter/configuration.md
               - Nutzung: components/iobroker-adapter/usage.md
+      - Sicherheit und Vertrauen:
+          - Überblick: manual/security/index.md
+          - Satelliten und das Mikrofon: manual/security/satellites.md
+          - Daten und Verbindungen: manual/security/data.md
+          - Lieferkette: manual/security/supply-chain.md
+          - Netzwerk und Firewall: manual/security/network.md
       - Known Gaps: manual/known-gaps.md
   - Entwickler:
       - Architecture:
