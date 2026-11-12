@@ -6,7 +6,7 @@ Update-Server steht Dritten zur Verfügung, genau zu diesem Zweck: sie ist prakt
 einzige, die die Release-Pakete überhaupt bereitstellen kann. Du brauchst dafür ein
 kostenloses Konto und einen Token, siehe [Update-Server nutzen](usage.md).
 
-Nutzt du Docker, so erhältst du die Software-Komponenten von Hannah über per Container-Registry. Dennoch benötigst du den Update Server in diesem Fall für die Firmware-Updates deiner Satelliten.
+Nutzt du Docker, so erhältst du die Software-Komponenten von Hannah über die Container-Registry. Dennoch benötigst du den Update Server in diesem Fall für die Firmware-Updates deiner Satelliten.
 
 !!! warning "Umstellung auf Anmeldung"
     Ab dem **22.10.2026** läuft der Update-Server mit Anmeldung. Die bisherigen öffentlichen
