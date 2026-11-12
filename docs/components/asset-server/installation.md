@@ -44,6 +44,27 @@ volumes:
   funktioniert nicht. Hast du einen Reverse Proxy mit Zertifikat davor, lässt du die
   Variable weg.
 
+## Container-Benutzer
+
+Ab **Version 0.7.0** läuft der Server-Prozess als Benutzer `1000:1000`, nicht mehr als
+root. Frühere Versionen liefen als root.
+
+Für bestehende Installationen musst du nichts anpassen. Das Image startet kurz als root,
+übergibt das Datenverzeichnis `/data` (samt Inhalt) an `1000:1000` und wechselt dann den
+Benutzer, noch bevor Datenbank und Webserver starten. Das passiert automatisch beim ersten
+Start nach dem Update auf 0.7.0, es gehen keine Daten verloren. Im Log siehst du dann
+`changed ownership of … entries` und `dropped privileges to uid=1000 gid=1000`. Bei
+späteren Starts wird nichts mehr geändert. Neue Volumes gehören von Anfang an
+`1000:1000`.
+
+!!! warning "Wenn der Wechsel nicht klappt"
+    Das Volume muss die Besitzänderung zulassen. Das scheitert zum Beispiel bei einem
+    NFS-Share mit `root_squash`. Der Server läuft dann mit einer Warnung im Log
+    (`cannot switch to uid 1000`) weiter als root, damit nach dem Update nichts ausfällt.
+    Setz in dem Fall einmal die Rechte direkt auf dem Speicher:
+    `chown -R 1000:1000` auf das Datenverzeichnis. Mit `REQUIRE_NON_ROOT=true` bricht der
+    Server stattdessen mit einer Fehlermeldung ab, wenn er nicht wechseln kann.
+
 ## Erster Login
 
 Öffne `http://<IP-des-Docker-Hosts>:8080` und melde dich als `admin` mit deinem

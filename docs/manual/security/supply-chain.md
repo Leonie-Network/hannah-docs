@@ -15,8 +15,12 @@ spielt dabei keine Rolle.
 - **Quay scannt die Images** und zeigt die gefundenen Schwachstellen an. Du kannst sie dort
   selbst einsehen. Die meisten Meldungen betreffen Abhängigkeiten von Abhängigkeiten, die
   sich nicht selbst beheben lassen, einzelne auch direkte Abhängigkeiten.
-- **Die Container von Core, WebUI, Telegram, Proxy, VoiceID, LogCollector, Timer und
-  Teams laufen nicht als root.** Ein Fehler in einem Container gibt keinen Vollzugriff.
+- **Die Container von Core, WebUI, Telegram, Proxy, VoiceID, LogCollector, Timer, Teams
+  und Asset Server laufen nicht als root.** Ein Fehler in einem Container gibt keinen
+  Vollzugriff. Beim Asset Server gilt das ab Version 0.7.0 für den Server-Prozess: Beim
+  ersten Start nach dem Update übernimmt er kurz als root das Datenverzeichnis und wechselt
+  dann auf den Benutzer `1000:1000`
+  ([Details](../../components/asset-server/installation.md#container-benutzer)).
 - **Was du tun kannst:** Nimm eine feste Version oder einen Digest statt `latest` mit
   `pull_policy: always`, dann kommt nur an, was du bewusst aktualisierst. Spiel neue
   Versionen ein paar Tage später ein, dann haben andere schon Erfahrungen gesammelt.
