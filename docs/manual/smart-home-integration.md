@@ -39,39 +39,117 @@ wichtigsten Fälle:
 | `level.color*` | `light` | `color` |
 | `switch`/`switch.power` (schreibbar) | `socket` (Steckdose) | `on` |
 | `level.blind`/`level.curtain` | `blind` (Rollladen) | `level` |
-| `sensor.window` | `window` | `open` |
-| `sensor.door`/`indicator.open` | `door` | `open` |
+| `sensor.window` | `window` (Fenster) | `open` |
+| `sensor.door`/`indicator.open` | `door` (Tür) | `open` |
 | `level.temperature` | `thermostat` | `expected` (Soll-Temperatur) |
-| `value.temperature` | `temperature_sensor` bzw. `thermostat`-`current` | `current` |
-| `value.humidity` | `humidity_sensor` | `current` |
-| `value.brightness` | `illuminance_sensor` | `illuminance` |
+| `value.temperature` | `temperature_sensor` (Temperatursensor), an einem Thermostat `thermostat` | `current` |
+| `value.humidity` | `humidity_sensor` (Feuchtesensor) | `current` |
+| `value.brightness` | `illuminance_sensor` (Helligkeitssensor) | `illuminance` |
 
 Findet sich keine passende Rolle, schaut Hannah ersatzweise auf den Namen der
 **Funktion** (z. B. "Heizung"/"Therm" → Thermostat, "Fenster" → Fenster) — weniger
 zuverlässig als eine saubere Rolle, aber ein brauchbarer Fallback.
 
+### Klassen und Slots
+
+Seit Hannah Core 0.94.0 und dem ioBroker-Adapter 1.5.3 beschreibt der Adapter jedes Gerät als
+**Klasse** mit **Slots**. Eine Klasse ist die Art des Geräts: Lampe, Steckdose, einfacher
+Schalter, Thermostat, Klimaanlage, Rollladen, Sensor, Kontakt (Fenster/Tür) oder
+"Sonstiges". Ein Slot ist ein einzelner Wert oder eine Funktion daran, mit fester Skala:
+`on` (an/aus), `brightness` (0–100 %), `color` (RGB), `color_temperature` (Kelvin),
+`position` (100 % = offen), `target_temperature` (°C) und so weiter, die vollständige
+Liste steht [unten](#slots).
+
+Was ein Gerät kann, ergibt sich allein aus seinen Slots: Eine Lampe ohne `brightness`
+lässt sich nicht dimmen, und Hannah sagt dir das, statt still nichts zu tun. Die Klasse
+folgt aus den Slots, nicht umgekehrt. Die "Kategorie" und der "canonical key" aus dem
+Abschnitt davor sind das ältere Vokabular für dasselbe, die Override-Felder benutzen
+es noch.
+
+Ein paar Regeln, die man kennen sollte:
+
+- **Ein Gerät ist der Kanal oder Geräteordner**, in dem die States liegen. Mehrere Kanäle
+  eines Geräts fasst der Adapter nur zusammen, wenn sie im selben Raum und in derselben
+  Funktion liegen und kein Slot doppelt vorkäme. Die Relais einer Mehrfachsteckdose
+  bleiben deshalb eigene Geräte.
+- **Was nicht erkannt wird, bleibt als generischer Slot am Gerät.** Ein Gerät, von dem
+  Hannah gar nichts erkennt (z. B. ein reiner Konfigurationskanal), wird nicht gemeldet.
+- **Trägst du ein ganzes Gerät in Raum und Funktion ein, kommen alle States darunter an**,
+  auch Timer, Grenzwerte und andere Einstellungen. Willst du nur eine Funktion, trag nur
+  diesen einen State in Raum und Funktion ein, dann kennt Hannah nur ihn.
+- **Der Diagnose-Tab des Adapters zeigt, was bei Hannah ankommt** und warum ein State
+  oder Gerät fehlt, siehe [Diagnostics](../components/iobroker-adapter/configuration.md#diagnostics).
+  Der Weg dahin: erst dort nachsehen, dann am Override drehen.
+
 ### Von Hand korrigieren
 
 Ordnet Hannah ein Gerät falsch ein (z. B. weil ein Adapter eine unübliche Rolle
 verwendet), musst du nicht den ioBroker-State selbst umbauen: In den
-**Objekt-Eigenschaften** jedes States/Kanals/Geräts gibt es einen eigenen
-"Hannah"-Reiter mit einem "Override für Hannah aktivieren"-Schalter. Einmal aktiviert,
-lässt er sich frei setzen:
+**benutzerdefinierten Einstellungen** eines States (Reiter "Objekte" im Admin, Zahnrad am
+State) gibt es einen Abschnitt für die Adapterinstanz, z. B. `hannah.0`, mit dem Schalter
+"Override für Hannah". Einmal aktiviert, lassen sich die folgenden Felder setzen. Ohne den
+Schalter wird nichts davon gelesen.
 
-- **Name** — wie Hannah das Gerät bei der Spracherkennung nennt/erkennt, ohne den
-  ioBroker-Objektnamen zu ändern
-- **Typ** — überschreibt die automatisch geratene Kategorie (z. B. erzwinge `light`
-  statt einer falsch erkannten Kategorie)
-- **canonicalKey** (nur auf State-Ebene) — überschreibt, welcher Wert das ist (`on`,
-  `level`, `current`, …)
-- **shutterInverted** (nur bei Kategorie `blind`) — dreht die Prozentkonvention um,
-  siehe unten
-- **Mindest-Vertrauensstufe** (nur auf State-Ebene) — wer diesen State über Hannah
-  schalten darf, siehe [Geräte schützen](#gerate-schutzen)
+| Feld | Schlüssel | Wirkung |
+|---|---|---|
+| Override für Hannah | `enabled` | Schaltet den Override ein |
+| Name für Sprachsteuerung | `name` | Wie Hannah das Gerät bei Sprachbefehlen und Ansagen nennt, ohne den ioBroker-Objektnamen zu ändern |
+| Gerätekategorie | `type` | Ein Hinweis, was für ein Gerät das ist. Kein Befehl: Was das Gerät ist, ergibt sich aus seinen Slots, der Hinweis entscheidet in Zweifelsfällen (ein Schalter, der eine Lampe ist, ein Pegel, der eine Rollladenposition ist) |
+| Kanonischer State-Key | `canonicalKey` | Was dieser State bedeutet, im älteren Vokabular (`on`, `level`, `current`, …). Mit Hannah Core ab 0.94.0 besser **Slot** nehmen |
+| Slot | `slot` | Welchen Slot des Geräts dieser State belegt. Gilt vor Hannahs eigener Einschätzung nach Rolle, Einheit und Name. Braucht Hannah Core ab 0.94.0 und den ioBroker-Adapter ab 1.8.0 |
+| Invertierter Rollladen | `shutterInverted` | Für Rollläden, deren Prozentwert 0 % = auf bedeutet, siehe [unten](#die-hannah-kategorien-im-detail) |
+| Mindest-Vertrauensstufe | `neededTrust` | Wer diesen State über Hannah schalten darf (0–10), siehe [Geräte schützen](#gerate-schutzen) |
 
-Ein State-Override sticht einen Geräte-Override, der wiederum die automatische
-Erkennung sticht — du kannst also gezielt nur einen einzelnen State korrigieren, ohne
-das ganze Gerät anzufassen.
+**Gerätekategorie** (`type`): `light` (Lampe), `socket` (Steckdose), `climate` (Klimaanlage),
+`blind` (Rollladen), `window` (Fenster), `door` (Tür), `thermostat`, `temperature_sensor`
+(Temperatursensor), `humidity_sensor` (Feuchtesensor), `illuminance_sensor`
+(Helligkeitssensor), `air_quality_sensor` (Luftqualitätssensor). Eigene Werte kannst du tippen.
+
+**Kanonischer State-Key** (`canonicalKey`): `on`, `level`, `color`, `colorTemp`, `current`,
+`expected`, `illuminance`, `open`, `iaq`, `co2_equiv`, `voc_equiv`, `power`. Eigene Werte
+kannst du tippen.
+
+<a id="slots"></a>
+
+**Slot** (`slot`):
+
+| Slot | Bedeutung |
+|---|---|
+| `on` | an oder aus |
+| `brightness` | Helligkeit, 0–100 % |
+| `color` | Farbe (RGB) |
+| `color_temperature` | Farbtemperatur in Kelvin |
+| `position` | Stellung eines Rollladens, 100 % = offen |
+| `tilt` | Lamellenneigung eines Rollladens |
+| `stop` | Stopp-Befehl eines Rollladens |
+| `target_temperature` | Soll-Temperatur eines Thermostats oder einer Klimaanlage, in °C |
+| `temperature` | gemessene Temperatur, in °C |
+| `humidity` | relative Luftfeuchte |
+| `illuminance` | Umgebungshelligkeit |
+| `pressure` | Luftdruck |
+| `co2` | CO₂-Wert |
+| `iaq` | Luftqualitätsindex |
+| `voc` | VOC-Wert |
+| `power` | Leistung, in W |
+| `energy` | Energie, in kWh |
+| `voltage` | Spannung, in V |
+| `current` | Strom, in A |
+| `open` | Kontakt offen oder zu (Fenster, Tür) |
+| `motion` | Bewegung erkannt |
+| `valve` | Stellung eines Ventils |
+| `mode` | Betriebsart einer Klimaanlage |
+| `fan_speed` | Lüfterstufe einer Klimaanlage |
+
+Die Einstellungen gelten **nur am State selbst**, nicht an Kanal oder Gerät — ioBroker
+bietet sie dort nicht an. Ein Override schlägt immer die automatische Erkennung, du kannst
+also gezielt nur einen einzelnen State korrigieren, ohne das ganze Gerät anzufassen.
+
+Für Werte, die ein ganzes Gerät betreffen, gilt: Der Wert darf an **jedem** State des Geräts
+stehen. Das trifft `name`. Tragen mehrere States denselben Wert ein, ist das ein Override.
+Tragen sie verschiedene Werte ein, gilt keiner, das Gerät behält seinen ioBroker-Namen, und
+der Diagnose-Tab sagt dir, welche States sich widersprechen. Benennen mehrere States
+denselben **Slot**, wird ebenfalls keiner benutzt, und der Diagnose-Tab meldet es. Ein Slot,
+den es nicht gibt, wird ignoriert und gemeldet.
 
 ![Hannah-Override-Tab an einem ioBroker-State mit Name, Gerätekategorie, canonicalKey und Mindest-Vertrauensstufe](../assets/screenshots/manual/iobroker-override-tab.png)
 
@@ -113,12 +191,12 @@ Pro Kategorie kennt Hannah feste "canonical keys" mit definiertem Wertebereich:
 | `socket` (Steckdose) | `on` (an/aus) · `power` (Watt, nur lesend) |
 | `climate` (Klimaanlage) | `on` (an/aus) · `mode` (`cool`/`heat`/`dry`/`fan_only`/`auto`, auf Deutsch angesagt) · `current`/`expected` (°C) · `fanSpeed` (`low`/`medium`/`high`/`auto`) |
 | `blind` (Rollladen) | `level` (0–100 %, **0 = zu, 100 = auf** — Hannahs Standardkonvention) |
-| `window` / `door` | `open` (offen/geschlossen) |
+| `window` / `door` (Fenster / Tür) | `open` (offen/geschlossen) |
 | `thermostat` | `current`/`expected` (°C) |
-| `temperature_sensor` | `current` (°C) |
-| `humidity_sensor` | `current` (0–100 %) |
-| `illuminance_sensor` | `illuminance` (Lux, nach oben offen) |
-| `air_quality_sensor` | `iaq` (Luftqualitätsindex 0–500, siehe unten) · `co2_equiv`/`voc_equiv` (ppm) |
+| `temperature_sensor` (Temperatursensor) | `current` (°C) |
+| `humidity_sensor` (Feuchtesensor) | `current` (0–100 %) |
+| `illuminance_sensor` (Helligkeitssensor) | `illuminance` (Lux, nach oben offen) |
+| `air_quality_sensor` (Luftqualitätssensor) | `iaq` (Luftqualitätsindex 0–500, siehe unten) · `co2_equiv`/`voc_equiv` (ppm) |
 
 **Rollladen-Sonderfall**: manche Aktoren (z. B. bestimmte Homematic-/KNX-Antriebe)
 melden ihre Position genau andersherum (0 % = offen). Statt jedes Mal "andersherum"
