@@ -87,12 +87,12 @@ Ordnet Hannah ein Gerät falsch ein (z. B. weil ein Adapter eine unübliche Roll
 verwendet), musst du nicht den ioBroker-State selbst umbauen: In den
 **benutzerdefinierten Einstellungen** eines States (Reiter "Objekte" im Admin, Zahnrad am
 State) gibt es einen Abschnitt für die Adapterinstanz, z. B. `hannah.0`, mit dem Schalter
-"Override für Hannah". Einmal aktiviert, lassen sich die folgenden Felder setzen. Ohne den
-Schalter wird nichts davon gelesen.
+"Aktiviert". Sobald du ihn setzt, erscheinen die folgenden Felder. Ohne den Schalter wird
+nichts davon gelesen.
 
 | Feld | Schlüssel | Wirkung |
 |---|---|---|
-| Override für Hannah | `enabled` | Schaltet den Override ein |
+| Aktiviert | `enabled` | Schaltet den Override ein. Den Schalter liefert ioBroker selbst |
 | Name für Sprachsteuerung | `name` | Wie Hannah das Gerät bei Sprachbefehlen und Ansagen nennt, ohne den ioBroker-Objektnamen zu ändern |
 | Gerätekategorie | `type` | Ein Hinweis, was für ein Gerät das ist. Kein Befehl: Was das Gerät ist, ergibt sich aus seinen Slots, der Hinweis entscheidet in Zweifelsfällen (ein Schalter, der eine Lampe ist, ein Pegel, der eine Rollladenposition ist) |
 | Kanonischer State-Key | `canonicalKey` | Was dieser State bedeutet, im älteren Vokabular (`on`, `level`, `current`, …). Mit Hannah Core ab 0.94.0 besser **Slot** nehmen |
