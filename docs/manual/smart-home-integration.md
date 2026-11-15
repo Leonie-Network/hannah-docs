@@ -151,7 +151,7 @@ der Diagnose-Tab sagt dir, welche States sich widersprechen. Benennen mehrere St
 denselben **Slot**, wird ebenfalls keiner benutzt, und der Diagnose-Tab meldet es. Ein Slot,
 den es nicht gibt, wird ignoriert und gemeldet.
 
-![Hannah-Override-Tab an einem ioBroker-State mit Name, Gerätekategorie, canonicalKey und Mindest-Vertrauensstufe](../assets/screenshots/manual/iobroker-override-tab.png)
+![Benutzerdefinierte Einstellungen eines ioBroker-States mit dem Schalter Aktiviert und den Feldern Name, Gerätekategorie, Kanonischer State-Key, Slot, Invertierter Rolladen und Mindest-Vertrauensstufe](../assets/screenshots/manual/iobroker-override-tab.png)
 
 ### Geräte schützen
 
