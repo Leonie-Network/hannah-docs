@@ -45,6 +45,26 @@ flashst oder deren OTA-Updates auslöst.
 Wird beim Flashen/Neuflashen eines Satelliten über die Satellite-Manager-Oberfläche im
 Adapter-Tab verwendet.
 
+### Zwei Stellen für die Update-Server-Adresse
+
+Die Adresse des Update-Servers steht an zwei Stellen, und an beiden gehört etwas anderes hinein.
+Die eine Adresse nutzt der Adapter selbst, um das Installationspaket zu laden. Die andere
+schreibt der Adapter in den Satelliten, damit der sich später selbst aktualisiert.
+
+| Wo | Feld | Was hineingehört | Wofür |
+|---|---|---|---|
+| Tab **Firmware** | Firmware Source URL | der **vollständige Link** zum Installationspaket, z. B. `https://hannah-update.sgessinger.de/releases/latest?channel=satellite-esp-stable-init-rev5` | Der Adapter lädt damit das Paket für den Erstflash |
+| Tab **Firmware** | Auth Token | Token mit Recht auf den Kanal `satellite-esp-stable-init-rev5` | für diesen Download |
+| Tab **Satellite Defaults** (und im Flash-Dialog eines Satelliten) | OTA URL | nur die **Adresse des Servers**, ohne Pfad: `https://hannah-update.sgessinger.de` | wird in den Satelliten geschrieben, er hängt `/latest?channel=…` selbst an |
+| Tab **Satellite Defaults** | OTA Channel | `satellite-esp-stable-rev5` | Kanal, aus dem der Satellit seine Updates holt |
+| Tab **Satellite Defaults** | OTA Token | Token mit Recht auf den Kanal `satellite-esp-stable-rev5` | für die Updates des Satelliten |
+
+Ein Token darf für beides dasselbe sein, wenn er Rechte auf beide Kanäle hat.
+
+Trägst du in „Firmware Source URL“ nur die Adresse des Servers ein (ohne `/releases/latest?channel=…`),
+bekommt der Adapter statt des Pakets die Weboberfläche des Servers zurück und meldet
+„Downloaded file is not a valid ZIP archive“.
+
 ## Satellite Defaults
 
 Vorbelegte Werte beim Flashen oder Neuschreiben des NVS eines Satelliten — pro Gerät
