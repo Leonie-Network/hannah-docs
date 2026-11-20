@@ -124,6 +124,7 @@ nav:
           - Enclosure: hardware/enclosure.md
       - Development:
           - Getting Started: development/getting-started.md
+          - Signed Firmware (own key): development/signed-firmware.md
       - Services:
           - Overview: services/overview.md
           - Proxy: services/proxy.md

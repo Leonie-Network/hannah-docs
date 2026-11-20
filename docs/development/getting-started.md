@@ -35,4 +35,6 @@ idf.py -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.rev5" build
 
 Use `rev5` for the current custom PCB or `devkit` for a dev kit. The CI build additionally merges a `sdkconfig.ci` that holds server tokens; it is generated in the pipeline and does not exist in a local checkout, so leave it out.
 
+A build from the GitHub source is unsigned. If your satellites should accept only firmware signed with a key you hold, see [Signed firmware (own key)](signed-firmware.md).
+
 *(Step-by-step setup instructions to follow.)*

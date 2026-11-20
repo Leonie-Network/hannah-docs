@@ -40,7 +40,9 @@ die Installation ohne Docker.
   signiert ist, egal ob es über den Update-Server oder über die Weboberfläche des
   Satelliten kommt. Satelliten mit älterer Firmware prüfen
   noch nichts, die Prüfung beginnt mit dem ersten signierten Release, das sie übernehmen.
-  Wer Hannah selbst baut, bekommt standardmäßig eine Firmware ohne Signatur und ohne Prüfung.
+  Wer Hannah selbst baut, bekommt standardmäßig eine Firmware ohne Signatur und ohne
+  Prüfung. Wie du die Prüfung mit einem eigenen Schlüssel einschaltest, steht unter
+  [Signed firmware (own key)](../../development/signed-firmware.md).
 - **Die Prüfsumme bei AutoDeploy** kommt vom selben Server wie das Archiv. Sie schützt vor
   Übertragungsfehlern, nicht vor einem kompromittierten Server.
 - **Was du tun kannst:** AutoDeploy weglassen, bei den Satelliten die *Update-Server URL*
