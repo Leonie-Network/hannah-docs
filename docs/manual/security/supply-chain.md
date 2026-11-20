@@ -32,10 +32,41 @@ die Installation ohne Docker.
 
 - **HTTPS mit Token.** Der Satellit prüft das Zertifikat des Servers. Startet eine neue
   Firmware nicht, fällt er auf die alte zurück.
+- **Die Firmware der Satelliten ist signiert.** Seit Version 0.105.0 trägt die Firmware
+  jedes Releases eine Signatur, die ihre Echtheit bestätigt. Den Schlüssel dazu verwaltet
+  HashiCorp Vault, siehe
+  [Wie der Signaturschlüssel geschützt ist](#wie-der-signaturschlussel-geschutzt-ist). Ein
+  Satellit mit signierter Firmware nimmt ein Update nur an, wenn es mit demselben Schlüssel
+  signiert ist, egal ob es über den Update-Server oder über die Weboberfläche des
+  Satelliten kommt. Satelliten mit älterer Firmware prüfen
+  noch nichts, die Prüfung beginnt mit dem ersten signierten Release, das sie übernehmen.
+  Wer Hannah selbst baut, bekommt standardmäßig eine Firmware ohne Signatur und ohne Prüfung.
 - **Die Prüfsumme bei AutoDeploy** kommt vom selben Server wie das Archiv. Sie schützt vor
   Übertragungsfehlern, nicht vor einem kompromittierten Server.
 - **Was du tun kannst:** AutoDeploy weglassen, bei den Satelliten die *Update-Server URL*
   leeren und alles von Hand aktualisieren.
+
+### Wie der Signaturschlüssel geschützt ist
+
+Den Schlüssel, mit dem die Firmware signiert wird, verwaltet
+[HashiCorp Vault](https://www.vaultproject.io/). Das ist ein weit verbreiteter Tresor für
+Geheimnisse, gebaut nach dem Prinzip *Zero Trust*: Zugriff bekommt nur, wer sich für genau
+diese eine Aufgabe ausweist, und nur für die Dauer dieser Aufgabe.
+
+- **Der Schlüssel verlässt Vault nie.** Er wurde in Vault erzeugt und lässt sich nicht
+  herausholen, auch nicht für die Build-Pipeline. Sie schickt nur den Fingerabdruck der
+  Firmware hin und bekommt die Signatur zurück.
+- **Vault speichert alles verschlüsselt.** Mit einer gestohlenen Datenbank allein lässt
+  sich der Schlüssel nicht auslesen.
+- **Signieren darf nur ein Release-Bau.** Dafür stellt Vault der Pipeline ein Token aus, das
+  nur 15 Minuten gilt und nur für dieses Projekt und nur bei einem geschützten
+  Versions-Tag. Mit dem Token darf die Pipeline signieren, den Schlüssel aber weder
+  verändern noch herausholen.
+
+**Was bleibt:** Die Pipeline und das GitLab-Konto, das einen Release auslöst, sind die Stelle,
+der du vertraust. Wer sie übernimmt, könnte beim nächsten Release eine eigene Firmware
+signieren lassen. Das ist eine Hürde, die ein Angreifer erst finden und überwinden müsste,
+und sie liegt vor dem Update-Server, nicht dahinter.
 
 ### Was passiert, wenn der Update-Server kompromittiert wird
 
@@ -45,10 +76,14 @@ fein abgestuft. Ausschließen lässt es sich trotzdem nicht. Er ist außerdem di
 Komponente, die nicht Open Source ist. Wer ihn prüfen oder auditieren möchte, kann sich bei
 Leonie melden.
 
-Ein Angreifer könnte im schlimmsten Fall manipulierte Satelliten-Updates und
-AutoDeploy-Releases ausliefern. AutoDeploy führt Updates mit Root-Rechten aus, siehe den
-[Sicherheitshinweis](../../components/autodeploy/index.md). Der Container-Weg ist davon
-nicht betroffen, er hängt stattdessen an Quay.
+Ein Angreifer könnte im schlimmsten Fall manipulierte AutoDeploy-Releases ausliefern.
+AutoDeploy führt Updates mit Root-Rechten aus, siehe den
+[Sicherheitshinweis](../../components/autodeploy/index.md). Bei den Satelliten reicht der
+Update-Server allein dafür nicht mehr: Die Firmware muss mit dem Schlüssel signiert sein,
+der in Vault liegt, und darauf hat der Update-Server keinen Zugriff. Ein Satellit mit
+signierter Firmware lehnt eine manipulierte also ab. Das gilt noch nicht für
+Satelliten mit älterer, unsignierter Firmware. Der Container-Weg ist von alledem nicht
+betroffen, er hängt stattdessen an Quay.
 
 ## Für beide Wege
 
@@ -63,12 +98,14 @@ nicht betroffen, er hängt stattdessen an Quay.
 ## Was es nicht gibt
 
 - **Keine durchgängige Überwachung der Kette:** keine SBOM (Liste aller enthaltenen
-  Pakete), keine signierten Images, keine Build-Provenance (kryptografischer Nachweis,
-  woraus gebaut wurde).
+  Pakete), keine signierten Container-Images, keine Build-Provenance (kryptografischer
+  Nachweis, woraus gebaut wurde). Signiert ist nur die Firmware der Satelliten.
 - **Keine bitgleich reproduzierbaren Builds.** Du kannst jedes Release nachbauen, bekommst
   aber nicht zwingend dasselbe Image: Die Python-Pakete sind nur mit Mindestversion
   festgelegt, ein späterer Bau kann also neuere Versionen ziehen. Das soll sich ändern, die
   Versionen sollen festgelegt werden.
 
-**Bewusst nicht vorgesehen** sind eine Signatur der Satelliten-Firmware und Secure Boot.
-Das ist eine Entscheidung und keine Lücke.
+**Bewusst nicht vorgesehen** ist Secure Boot. Die Signatur der Satelliten-Firmware prüft nur
+Updates, die auf einen Satelliten kommen. Sie schützt nicht vor jemandem, der den
+Satelliten in der Hand hat und ihn über den UART-Header neu beschreibt. Das ist eine
+Entscheidung und keine Lücke.

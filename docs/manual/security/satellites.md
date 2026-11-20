@@ -30,12 +30,18 @@ Es gibt drei Wege, und bei allen steht am Anfang ein Zugriff, den du dir nicht w
 
 1. **Eine manipulierte Firmware.** Wer eine andere Firmware auf den Satelliten bringt,
    bestimmt, was er tut. Möglich ist das über den Update-Server (falls der kompromittiert
-   wird, siehe [Lieferkette](supply-chain.md)), über jemanden, der in deinem Netz ist, oder
-   über physischen Zugriff auf den UART-Header und die beiden Tasten auf der Unterseite
-   der Platine. Wer in deinem lokalen Netz ist, hat dabei allerdings ganz andere
-   Möglichkeiten, als einen Satelliten umzuprogrammieren. Firmware-Signatur und Secure Boot
-   sind bewusst nicht vorgesehen. Der Schutz ist dein Netz und dein Vertrauen in den
-   Update-Weg.
+   wird und der Satellit noch eine ältere, unsignierte Firmware hat, siehe
+   [Lieferkette](supply-chain.md)), über jemanden, der in deinem Netz ist, oder über
+   physischen Zugriff auf den UART-Header und die beiden Tasten auf der Unterseite der
+   Platine. Wer in deinem lokalen Netz ist, hat dabei allerdings ganz andere Möglichkeiten,
+   als einen Satelliten umzuprogrammieren.
+
+   Seit Version 0.105.0 ist die Firmware der Releases signiert. Ein Satellit mit einer
+   solchen Firmware nimmt Updates nur mit passender Signatur an, ein kompromittierter
+   Update-Server oder ein Fremder im Netz kann ihm also keine eigene Firmware unterschieben.
+   Secure Boot ist dagegen bewusst nicht vorgesehen: Wer den Satelliten in der Hand hat,
+   kann ihn weiterhin über den UART-Header neu beschreiben. Dagegen hilft nur, dass
+   niemand Unbefugtes an den Satelliten herankommt.
 2. **Befehle an den Satelliten.** Satelliten nehmen Steuerbefehle über MQTT an. Der
    MQTT-Broker gehört daher nur ins interne Netz. Dann gilt dasselbe wie oben: Wer dort
    hinkommt, hat andere Möglichkeiten.

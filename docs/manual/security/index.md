@@ -30,7 +30,7 @@ nachlesen kannst, was Hannah tut. Verstehen muss ihn niemand, lesen kann ihn jed
 |---|---|---|
 | **Der Quellcode** (Leonie) | Dass Hannah tut, was sie soll, und nichts Schädliches enthält | Du kannst ihn lesen, er liegt offen auf GitHub |
 | **Build und Veröffentlichung** | Dass die Releases aus genau diesem Code gebaut sind | Ja, selbst bauen: jedes Release ist ein Git-Tag |
-| **Update-Server** | Dass er dir nur echte Releases ausliefert (Satelliten-Updates, AutoDeploy). Er ist nicht Open Source, auf Anfrage aber prüfbar | Ja, die Updates abschalten |
+| **Update-Server** | Dass er dir nur echte Releases ausliefert (AutoDeploy, Satelliten-Updates). Bei der Satelliten-Firmware prüft der Satellit zusätzlich die Signatur. Der Server ist nicht Open Source, auf Anfrage aber prüfbar | Ja, die Updates abschalten |
 | **Container-Registry** (Quay) | Dass die Images so ankommen, wie sie veröffentlicht wurden | Ja, selbst bauen |
 | **Fremde Software** (Python-Pakete, Basis-Images, Sprachmodelle) | Dass sie sauber ist | Nur teilweise, siehe [Lieferkette](supply-chain.md) |
 | **Cloud-Dienste, die du einschaltest** | Dass der Anbieter ordentlich mit deinen Daten umgeht | Ja, der Standard ist lokal, siehe [Daten und Verbindungen](data.md) |
