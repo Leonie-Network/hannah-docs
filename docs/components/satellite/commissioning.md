@@ -186,8 +186,8 @@ zu.
 Die Firmware ist so gewachsen, dass sie mit ihrer Signatur nicht mehr in die bisherigen
 Update-Bereiche des Satelliten passt (je 2 MB). Die neue Aufteilung, die **Partitionstabelle**,
 hat zwei Bereiche von je 3 MB. Alle Satelliten, die mit einer Firmware bis einschließlich
-0.106.x geflasht wurden, haben noch die kleine Aufteilung. Die Release Notes nennen die erste
-Version, die die größere braucht.
+0.106.x geflasht wurden, haben noch die kleine Aufteilung. Die erste Version mit der größeren
+Aufteilung ist 0.107.0.
 
 Die Partitionstabelle steht an einer festen Stelle im Flash-Speicher und ändert sich durch ein
 Update übers Netz nicht. Dafür musst du jeden Satelliten **einmal flashen**, mit dem
