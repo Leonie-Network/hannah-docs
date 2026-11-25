@@ -118,6 +118,33 @@ llm:
 | `audio.*` | Erwartetes Audioformat für eingehende Streams |
 | `llm.*` | Ollama/Cloud-LLM für Smalltalk. `system_prompt` liegt in den DB-Settings, nicht hier |
 
+### Sprachausgabe im Container
+
+Ohne `tts.model` (Piper) oder ein Cloud-Backend startet Core ohne Stimme, im Log steht
+`TTS deaktiviert (kein Backend konfiguriert).` — Hannah führt dann Befehle aus, antwortet
+aber nie hörbar. Der Pfad in `tts.model` muss **im Container** gelten. Fehlt die Datei,
+lädt Core die Stimme beim ersten Start selbst herunter (rund 60 MB, Internet nötig) und
+legt sie neben `tts.model` ab. Der Download legt dabei keinen Ordner an, die Datei muss
+also in einem vorhandenen Ordner liegen, im Container direkt in `/app/data` (Volume
+`core_data`, bleibt über Neustarts erhalten):
+
+```yaml
+tts:
+  backend: piper
+  model: "/app/data/de_DE-thorsten-medium.onnx"
+```
+
+Ohne Config-Datei, nur per Umgebungsvariable in der `docker-compose.yml` (der
+[Compose-Builder](../../manual/installation.md) setzt sie für dich):
+
+| Variable | Wert |
+|---|---|
+| `HANNAH_CORE_TTS__BACKEND` | `piper` oder `azure` |
+| `HANNAH_CORE_TTS__MODEL` | Piper: `/app/data/de_DE-thorsten-medium.onnx` |
+| `HANNAH_CORE_TTS__AZURE_KEY` | Azure: Schlüssel der Speech-Ressource |
+| `HANNAH_CORE_TTS__AZURE_REGION` | Azure: Region, z. B. `germanywestcentral` |
+| `HANNAH_CORE_TTS__AZURE_VOICE` | Azure: Stimme, optional. Ohne Angabe `de-DE-KatjaNeural`, Alternative `de-DE-ConradNeural` |
+
 ## Sonstiges
 
 ```yaml

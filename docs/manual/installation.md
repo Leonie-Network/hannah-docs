@@ -46,6 +46,7 @@ Installations-Script pro Komponente.
     .hannah-compose-builder [data-hcb="download-compose"],
     .hannah-compose-builder [data-copy-target]{background:var(--md-default-fg-color--lightest,#c7d0da);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;margin-top:8px;margin-right:8px}
     .hannah-compose-builder [data-hcb="errors"]{background:#fdecea;color:#611a15;border-radius:8px;padding:12px 16px;margin:12px 0}
+    .hannah-compose-builder select{display:block;width:100%;max-width:420px;margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid var(--md-default-fg-color--light,#8b96a3);border-radius:6px;background:var(--md-code-bg-color,#f5f5f5);color:var(--md-default-fg-color,#1c2430)}
     .hannah-compose-builder pre{max-height:420px;overflow:auto}
     </style>
 
@@ -76,6 +77,33 @@ Installations-Script pro Komponente.
     <label><input type="checkbox" data-hcb="component-timer"> Timer — Timer und Wecker</label>
     <label><input type="checkbox" data-hcb="component-logcollector"> LogCollector — sammelt Logs aller anderen Komponenten</label>
     <label><input type="checkbox" data-hcb="component-assetserver"> Asset Server — liefert Sounds (Jingles, Benachrichtigungen) an die Satelliten. Ohne ihn läuft Hannah, die Satelliten bleiben aber stumm</label>
+    </fieldset>
+
+    <fieldset>
+    <legend>Sprachausgabe (damit Hannah laut antwortet)</legend>
+    <p><em>Ohne Stimme führt Hannah Befehle aus, antwortet aber nie hörbar — du brauchst also eine.</em></p>
+    <div class="seg">
+    <label><input type="radio" name="hcb-tts-mode" value="piper" checked>Piper (lokal)</label>
+    <label><input type="radio" name="hcb-tts-mode" value="azure">Azure (Cloud)</label>
+    </div>
+    <p><em>Piper läuft lokal auf deinem Server, ganz ohne Cloud. Azure ist eine Cloud-Stimme von Microsoft: sie klingt natürlicher, braucht aber ein Azure-Konto.</em></p>
+    <div data-hcb="piper-fields" style="margin-left:24px">
+    <label>Stimme
+    <select data-hcb="tts-voice">
+    <option value="de_DE-thorsten-medium" selected>Thorsten (männlich) — gute Qualität, empfohlen</option>
+    <option value="de_DE-thorsten-low">Thorsten (männlich) — schneller, etwas einfacher</option>
+    <option value="de_DE-kerstin-low">Kerstin (weiblich) — schnell, einfachere Qualität</option>
+    </select></label>
+    </div>
+    <div data-hcb="azure-fields" hidden style="margin-left:24px">
+    <label>Schlüssel (aus dem Azure-Portal, Ressource „Speech“)<input type="password" data-hcb="azure-key"></label>
+    <label>Region<input type="text" data-hcb="azure-region" placeholder="germanywestcentral"></label>
+    <label>Stimme
+    <select data-hcb="azure-voice">
+    <option value="de-DE-KatjaNeural" selected>Katja (weiblich)</option>
+    <option value="de-DE-ConradNeural">Conrad (männlich)</option>
+    </select></label>
+    </div>
     </fieldset>
 
     <fieldset>
@@ -122,6 +150,10 @@ Installations-Script pro Komponente.
     <p>Danach kurz <code>docker compose logs -f hannah-core</code> prüfen — beim
     allerersten Start steht dort dein generierter Admin-Login, siehe
     <a href="../users/#erster-login">Nutzerverwaltung → Erster Login</a>.</p>
+    <p data-hcb="piper-note" hidden><strong>Sprachausgabe (Piper):</strong> Beim allerersten Start lädt
+    Core die gewählte Stimme (rund 60 MB) aus dem Internet herunter und legt sie im Volume
+    <code>core_data</code> ab — der erste Start dauert dadurch etwas länger. Danach läuft Piper
+    ohne Internet. Im Log steht dann <code>Piper bereit.</code></p>
     <p data-hcb="asset-note" hidden><strong>Asset Server:</strong> Er ist nach dem Start noch leer.
     Melde dich unter <code>http://&lt;deine-IP&gt;:8080</code> als <code>admin</code> an (Passwort:
     <code>ADMIN_PASSWORD</code> aus der Datei) und richte den Zugang für die Satelliten ein —
@@ -387,6 +419,15 @@ Installations-Script pro Komponente.
     Broker Zugangsdaten verlangt (Mosquitto läuft im Standardfall sogar ganz ohne Auth,
     siehe [with-mqtt](#mosquitto-config-nur-bei-with-mqtt) weiter unten). Alle Schlüssel
     erklärt [Core → Konfiguration](../components/core/configuration.md).
+
+    !!! warning "tts.model auf einen Pfad im Container setzen"
+        Damit Hannah laut antwortet, braucht Core eine Stimme. In der Vorlage steht für
+        `tts.model` ein Pfad wie `/home/pi/de_DE-kerstin-low.onnx` — den gibt es im Container
+        nicht. Setz ihn auf eine Datei **direkt in `/app/data`**, dem Volume `core_data`, z. B.
+        `/app/data/de_DE-thorsten-medium.onnx`. Fehlt die Datei, lädt Core die Stimme beim
+        ersten Start selbst herunter (rund 60 MB, Internet nötig). Einen Unterordner legt der
+        Download nicht an, deshalb direkt in `/app/data`. Statt Piper kannst du auch Azure
+        nutzen, siehe [Core → Konfiguration](../components/core/configuration.md).
 
     !!! warning "udp.advertise_host setzen"
         Ohne Proxy (siehe Profile-Tabelle unten) übernimmt Core selbst die UDP-Verbindung zu

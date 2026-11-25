@@ -54,6 +54,12 @@
     sel.telegramWebuiUrl = root.querySelector('[data-hcb="telegram-webui-url"]').value.trim();
     sel.hostLanIp = root.querySelector('[data-hcb="host-lan-ip"]').value.trim();
 
+    sel.ttsMode = root.querySelector('[name="hcb-tts-mode"]:checked').value;
+    sel.ttsVoice = root.querySelector('[data-hcb="tts-voice"]').value;
+    sel.azureKey = root.querySelector('[data-hcb="azure-key"]').value.trim();
+    sel.azureRegion = root.querySelector('[data-hcb="azure-region"]').value.trim();
+    sel.azureVoice = root.querySelector('[data-hcb="azure-voice"]').value;
+
     return sel;
   }
 
@@ -76,6 +82,10 @@
     }
     if (sel.telegram && !sel.telegramToken) {
       errors.push("Telegram: Bot-Token fehlt (von @BotFather).");
+    }
+    if (sel.ttsMode === "azure") {
+      if (!sel.azureKey) errors.push("Sprachausgabe (Azure): Schlüssel fehlt.");
+      if (!sel.azureRegion) errors.push("Sprachausgabe (Azure): Region fehlt, z. B. germanywestcentral.");
     }
     return errors;
   }
@@ -111,6 +121,20 @@
     if (sel.voiceid) {
       env.push(["HANNAH_CORE_VOICE_ID__ENABLED", "true"]);
       env.push(["HANNAH_CORE_VOICE_ID__BASE_URL", "http://hannah-voiceid:8080"]);
+    }
+
+    // Sprachausgabe: ohne tts.backend/tts.model startet Core ohne Stimme und antwortet nie
+    // laut ("TTS deaktiviert (kein Backend konfiguriert)"). Die Piper-Stimme lädt Core beim
+    // ersten Start selbst herunter, direkt in den vorhandenen Ordner /app/data (das Volume
+    // core_data) — der Download legt keine Unterordner an, deshalb kein eigener Ordner.
+    if (sel.ttsMode === "piper") {
+      env.push(["HANNAH_CORE_TTS__BACKEND", "piper"]);
+      env.push(["HANNAH_CORE_TTS__MODEL", "/app/data/" + sel.ttsVoice + ".onnx"]);
+    } else if (sel.ttsMode === "azure") {
+      env.push(["HANNAH_CORE_TTS__BACKEND", "azure"]);
+      env.push(["HANNAH_CORE_TTS__AZURE_KEY", sel.azureKey]);
+      env.push(["HANNAH_CORE_TTS__AZURE_REGION", sel.azureRegion]);
+      env.push(["HANNAH_CORE_TTS__AZURE_VOICE", sel.azureVoice]);
     }
 
     // Core übernimmt die UDP-Discovery nur, solange kein Proxy verbunden ist — sobald
@@ -458,6 +482,8 @@
     var dbOwnFields = root.querySelector('[data-hcb="db-own-fields"]');
     var mqttOwnFields = root.querySelector('[data-hcb="mqtt-own-fields"]');
     var telegramFields = root.querySelector('[data-hcb="telegram-fields"]');
+    var piperFields = root.querySelector('[data-hcb="piper-fields"]');
+    var azureFields = root.querySelector('[data-hcb="azure-fields"]');
 
     function syncVisibility() {
       dbFields.hidden = !dbGate.checked;
@@ -468,6 +494,10 @@
       mqttOwnFields.hidden = !mqttMode || mqttMode.value !== "own";
 
       telegramFields.hidden = !root.querySelector('[data-hcb="component-telegram"]').checked;
+
+      var ttsMode = root.querySelector('[name="hcb-tts-mode"]:checked');
+      piperFields.hidden = !ttsMode || ttsMode.value !== "piper";
+      azureFields.hidden = !ttsMode || ttsMode.value !== "azure";
     }
 
     root.addEventListener("change", syncVisibility);
@@ -477,6 +507,7 @@
     var output = root.querySelector('[data-hcb="output"]');
     var yamlCode = root.querySelector('[data-hcb="yaml-code"]');
     var assetNote = root.querySelector('[data-hcb="asset-note"]');
+    var piperNote = root.querySelector('[data-hcb="piper-note"]');
     var lastResult = null;
 
     root.querySelector('[data-hcb="generate"]').addEventListener("click", function () {
@@ -496,6 +527,7 @@
       errorBox.hidden = true;
       lastResult = buildCompose(sel);
       assetNote.hidden = !sel.assetserver;
+      piperNote.hidden = sel.ttsMode !== "piper";
       yamlCode.textContent = lastResult.compose;
       output.hidden = false;
       output.scrollIntoView({ behavior: "smooth", block: "nearest" });
