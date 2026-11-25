@@ -66,3 +66,10 @@ Die Einstellungen des Satelliten (WLAN, MQTT, Update-Server und weitere) liegen 
 eigenen Bereich ab `0x9000`. Den bringt der Satellite Manager im ioBroker-Adapter als
 fertiges Image mit und flasht alles zusammen ab `0x0000`. Flashst du die vier Dateien
 einzeln, wird dieser Bereich nicht beschrieben.
+
+!!! note "Die Adressen gelten für die größere Partitionstabelle unverändert"
+    Die Firmware hat größere Update-Bereiche (3 statt 2 MB) bekommen, die vier Adressen
+    bleiben aber gleich: Es ändert sich nur die Partitionstabelle in diesem ZIP. Ein
+    Satellit mit der alten Tabelle bekommt die neue erst, wenn du ihn einmal flashst, ein
+    Update übers Netz ändert sie nicht. Siehe
+    [Satelliten auf die neue Partitionstabelle umstellen](../satellite/commissioning.md#satelliten-auf-die-neue-partitionstabelle-umstellen).

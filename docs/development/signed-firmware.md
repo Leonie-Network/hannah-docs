@@ -73,7 +73,7 @@ Use the board file that matches your hardware (`rev5` or `devkit`). The result i
 `build-secure/hannah_satellite.bin`, with the signature block appended. Next to it,
 `hannah_satellite-unsigned.bin` is the same image without the block. The signed image is 4 KiB
 larger than the unsigned one, and the image is padded to a multiple of 64 KiB before the block.
-The build prints how much room is left in the 2 MiB app partition.
+The build prints how much room is left in the app partition (3 MiB; satellites flashed with firmware up to 0.106.x still have 2 MiB slots, see [Switching a satellite to the larger partition table](../components/satellite/commissioning.md#satelliten-auf-die-neue-partitionstabelle-umstellen)).
 
 **4. Flash the first image over the cable.** It has to be the signed one:
 

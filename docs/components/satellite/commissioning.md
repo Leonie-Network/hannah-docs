@@ -181,6 +181,52 @@ Im Gegensatz zu einem Satelliten aus dem Satellite Manager hat er dann noch kein
 und keinen Raum. Beides weist du ihm danach in der [WebUI unter Satelliten](../../manual/satellites.md)
 zu.
 
+### Satelliten auf die neue Partitionstabelle umstellen
+
+Die Firmware ist so gewachsen, dass sie mit ihrer Signatur nicht mehr in die bisherigen
+Update-Bereiche des Satelliten passt (je 2 MB). Die neue Aufteilung, die **Partitionstabelle**,
+hat zwei Bereiche von je 3 MB. Alle Satelliten, die mit einer Firmware bis einschließlich
+0.106.x geflasht wurden, haben noch die kleine Aufteilung. Die Release Notes nennen die erste
+Version, die die größere braucht.
+
+Die Partitionstabelle steht an einer festen Stelle im Flash-Speicher und ändert sich durch ein
+Update übers Netz nicht. Dafür musst du jeden Satelliten **einmal flashen**, mit dem
+UART-Wandler wie beim ersten Mal.
+
+!!! warning "Erst umstellen, dann aktualisieren"
+    Ein Satellit mit der alten Tabelle bekommt ein größeres Update angeboten, das nicht in
+    seinen Bereich passt. Das Update bricht dann ab, der Satellit läuft normal mit seiner
+    alten Firmware weiter und versucht es später wieder. Während des Herunterladens hört er
+    kurz nicht auf das Wake-Word. Stelle den Satelliten deshalb um, bevor du ihn
+    aktualisierst.
+
+**Mit dem Satellite Manager** (Einstellungen und Anmeldung bleiben erhalten):
+
+1. Verbinde den UART-Wandler und aktiviere den
+   [Download-Modus](#download-modus-aktivieren), wie beim ersten Flashen.
+2. Öffne im [Satellite Manager](../iobroker-adapter/usage.md#satellite-manager) den Satelliten
+   und klicke auf **Reflash**. Die **Firmware Source URL** im Adapter muss auf den
+   aktuellen `-init`-Kanal des Update-Servers zeigen, das ist die Voreinstellung.
+3. Wähle den seriellen Port des Wandlers und starte. Der Reflash schreibt nur Firmware und
+   Partitionstabelle. WLAN, MQTT, Update-Server, Name, Raum und die Anmeldung bei Hannah
+   bleiben, wie sie waren.
+4. Ziehe danach den UART-Wandler ab und stecke das USB-Stromkabel ein.
+
+**Ohne Satellite Manager** flashst du die vier Dateien aus dem ZIP an ihre Adressen, wie
+[oben beschrieben](#ohne-satellite-manager-flashen-und-einrichten). Nimm **nicht** das
+komplette Image aus dem Satellite Manager (**Download image**), es überschreibt auch die
+Einstellungen.
+
+**Was du beim ersten Start siehst:** Der Satellit formatiert seinen Speicher für die Sounds
+neu. Das dauert etwa eine halbe Minute, in der der LED-Ring weiter die Start-Animation
+zeigt, und er hört in dieser Zeit noch nicht auf das Wake-Word. Danach lädt er seine Sounds
+(zum Beispiel den Verbindungston) wieder vom Asset-Server, das dauert noch einmal ein paar
+Sekunden. Bei jedem weiteren Start entfällt das.
+
+!!! note "Eingebaute Satelliten"
+    Der Reflash braucht dieselbe Verbindung zum UART-Header wie das erste Flashen. Bei einem
+    Satelliten, der fest im Gehäuse sitzt, musst du das Gehäuse dafür öffnen.
+
 ## Satelliten zurücksetzen
 
 Willst du einen Satelliten in ein anderes WLAN umziehen oder weitergeben, löschst du seine
